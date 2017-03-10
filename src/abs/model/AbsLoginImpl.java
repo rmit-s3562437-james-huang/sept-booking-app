@@ -1,5 +1,5 @@
 package abs.model;
 
-public class absLoginImpl {
+public class AbsLoginImpl {
 
 }
