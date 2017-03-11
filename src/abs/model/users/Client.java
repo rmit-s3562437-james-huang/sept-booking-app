@@ -2,15 +2,17 @@ package abs.model.users;
 
 public class Client {
 	
+	private String name;
 	private String userName;
 	private String userPassword;
 	private String userAddress;
 	private String userPhoneNumber;
 	private String userRole;
 	
-	public Client(String userName, String userPassword, String userAddress, 
+	public Client(String name, String userName, String userPassword, String userAddress, 
 			String userPhoneNumber, String userRole)
 	{
+		this.name = name;
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userAddress = userAddress;
@@ -18,7 +20,10 @@ public class Client {
 		this.userRole = userRole;
 	}
 	
-
+	public String getName()
+	{
+		return this.name;
+	}
 	public String getUserName()
 	{
 		return this.userName;
@@ -36,6 +41,10 @@ public class Client {
 		return this.userPhoneNumber;
 	}
 	
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 	public void setUserName(String userName)
 	{
 		this.userName = userName;

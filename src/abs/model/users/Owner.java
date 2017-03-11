@@ -11,10 +11,10 @@ public class Owner extends Client{
 	///public Owner()
 	{
 		///Open ownerInfo.txt
-		///Extract businessName, userName, userPassword,
+		///Extract businessName, name, userName, userPassword,
 		///userAddress, userPhoneNumber
 		
-		///super(userName, userPassword, userAddress, userPhoneNumber, "Owner");
+		///super(name, userName, userPassword, userAddress, userPhoneNumber, "Owner");
 		///this.businessName = businessName;
 	}
 	
