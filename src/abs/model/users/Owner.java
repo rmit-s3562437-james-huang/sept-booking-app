@@ -16,4 +16,20 @@ public class Owner extends Client{
 		///this.businessName = businessName;
 	}
 	
+	///public void addEmployee(String userName, String userPassword, String userAddress, 
+							///String userPhoneNumber, String employeeID)
+	{
+		///Employee newEmployee = new Employee(userName, userPassword, userAddress, 
+							///userPhoneNumber, employeeID);
+		
+		///Write new employee information into employees.txt?
+	}
+	
+	///public void removeEmployee(String EmployeeID)
+	{
+		///Open employees.txt?
+		///Find employee information based of employeeID?
+		///Remove employee information?
+		///Close employees.txt?
+	}
 }
