@@ -6,16 +6,19 @@ public class Client {
 	private String userPassword;
 	private String userAddress;
 	private String userPhoneNumber;
+	private String userRole;
 	
-	public Client(String userName, String userPassword, String userAddress, String userPhoneNumber)
+	public Client(String userName, String userPassword, String userAddress, 
+			String userPhoneNumber, String userRole)
 	{
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userAddress = userAddress;
 		this.userPhoneNumber = userPhoneNumber;
+		this.userRole = userRole;
 	}
 	
-	
+
 	public String getUserName()
 	{
 		return this.userName;

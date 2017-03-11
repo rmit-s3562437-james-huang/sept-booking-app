@@ -8,7 +8,7 @@ public class Employee extends Client{
 	public Employee(String userName, String userPassword, String userAddress, 
 			String userPhoneNumber, String EmployeeID)
 	{
-		super(userName, userPassword, userAddress, userPhoneNumber);
+		super(userName, userPassword, userAddress, userPhoneNumber, "Employee");
 		this.employeeID = employeeID;
 	}
 	
