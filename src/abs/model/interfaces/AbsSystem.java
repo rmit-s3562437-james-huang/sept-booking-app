@@ -1,7 +1,10 @@
 package abs.model.interfaces;
 
-public class AbsSystem {
+public interface AbsSystem {
 	
+	public abstract void createFile();
 	
+	public abstract void readFromFile();
 	
+	public abstract void writeToFile();
 }
