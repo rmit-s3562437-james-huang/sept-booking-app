@@ -1,7 +1,5 @@
 package abs.model.users;
 
-import java.io.*;
-
 public class Owner extends Client{
 
 	private String businessName;

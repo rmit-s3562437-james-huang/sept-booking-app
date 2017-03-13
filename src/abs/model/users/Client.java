@@ -20,45 +20,43 @@ public class Client {
 		this.userRole = userRole;
 	}
 	
-	public String getName()
-	{
+	public String getName() {
 		return this.name;
 	}
-	public String getUserName()
-	{
+	
+	public String getUserName() {
 		return this.userName;
 	}
-	public String getUserPassword()
-	{
+	
+	public String getUserPassword() {
 		return this.userPassword;
 	}
-	public String getUserAddress()
-	{
+	
+	public String getUserAddress() {
 		return this.userAddress;
 	}
-	public String getUserPhoneNumber()
-	{
+	
+	public String getUserPhoneNumber() {
 		return this.userPhoneNumber;
 	}
 	
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
-	public void setUserName(String userName)
-	{
+	
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public void setUserPassword(String userPassword)
-	{
+	
+	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	public void setUserAddress(String userAddress)
-	{
+	
+	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
-	public void setUserPhoneNumber(String userPhoneNumber)
-	{
+	
+	public void setUserPhoneNumber(String userPhoneNumber) {
 		this.userPhoneNumber = userPhoneNumber;
 	}
 }
