@@ -1,6 +1,6 @@
 package abs.model.users;
 
-public class Client {
+public abstract class AbstractClient {
 	
 	private String name;
 	private String userName;
@@ -9,8 +9,8 @@ public class Client {
 	private String userPhoneNumber;
 	private String userRole;
 	
-	public Client(String name, String userName, String userPassword, String userAddress, 
-			String userPhoneNumber, String userRole)
+	public AbstractClient(String name, String userName, String userPassword, String userAddress, 
+			String userPhoneNumber, String userRole) 
 	{
 		this.name = name;
 		this.userName = userName;

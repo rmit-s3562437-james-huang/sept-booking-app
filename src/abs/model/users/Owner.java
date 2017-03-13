@@ -1,12 +1,11 @@
 package abs.model.users;
 
-public class Owner extends Client{
+public class Owner extends AbstractClient{
 
 	private String businessName;
 	
 	public Owner(String name, String userName, String userPassword, String userAddress, 
-			String userPhoneNumber, String userRole, String businessName)
-	{
+			String userPhoneNumber, String userRole, String businessName) {
 		super(name, userName, userPassword, userAddress, userPhoneNumber, userRole);
 		this.businessName = businessName;
 	}
@@ -20,11 +19,11 @@ public class Owner extends Client{
 	}
 
 	public String toString() {
-		return  "\nName: " + this.getName()
+		return  "Name: " + this.getName()
 				+ "\nUsername: " + this.getUserName()
 				+ "\nPassword: " + this.getUserPassword()
 				+ "\nPhone number: " + this.getUserPhoneNumber()
-				+ "\nUserrole: " + this.getUserRole()
+				+ "\nUser role: " + this.getUserRole()
 				+ "\nBusiness: " + this.getBusinessName();
 	}
 

@@ -88,7 +88,7 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
-	public void readFromFile(){
+	public void readFromFile() {
 		
 		String path = this.getFilePath() + this.getFileName() + ".txt";
 		Path file = Paths.get(path);
@@ -106,25 +106,22 @@ public class AbsFileOperationImpl implements FileOperation {
 	}
 	
 	/* Break up this method */
-	public Owner readFromOwner(){
+	public Owner readFromOwner() {
 		
 		String path = this.getFilePath() + this.getFileName() +  ".txt";
 		Path file = Paths.get(path);
 		Owner owner = null;
-		try(BufferedReader reader = Files.newBufferedReader(file)){
+		try(BufferedReader reader = Files.newBufferedReader(file)) {
 			String line = null;
 			line = reader.readLine();
 			String[] data = line.split("\\,\\ "); 
-			System.out.println(Arrays.toString(data));
 			owner = new Owner(data[0].toString(), data[1].toString(),data[2].toString(),
 					data[3].toString(),data[4].toString(),data[5].toString(),data[6].toString());
-			System.out.println(owner.toString());
-		}
-		catch(IOException e)
-		{
+		} catch(IOException e) {
 			System.err.println("HAH IT FUCKED UP!");
 		}
 		
 		return owner;
 	}
+	
 }

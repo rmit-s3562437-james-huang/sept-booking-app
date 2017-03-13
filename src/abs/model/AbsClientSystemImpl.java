@@ -21,7 +21,10 @@ public class AbsClientSystemImpl implements ClientSystem {
 	}
 	
 	public void displayOwnerInfo(Owner owner) {
+		System.out.println("Business Owner Information");
+		System.out.println("==========================");
 		System.out.println(owner.toString());
+		System.out.println("==========================");
 	}
 	
 	
