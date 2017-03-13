@@ -1,6 +1,10 @@
 package abs.model;
 
+import java.util.Arrays;
 import java.util.Scanner;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 import java.nio.file.*;
 import java.io.*;
 
@@ -99,5 +103,21 @@ public class AbsFileOps implements AbsSystem {
 			System.err.println("How come reading can fuck up?");
 		}
 	}
-
+	
+	public void readFromOwner(){
+		
+		String path = this.getFilePath() + this.getFileName() +  ".txt";
+		Path file = Paths.get(path);
+		
+		try(BufferedReader reader = Files.newBufferedReader(file)){
+			String line = null;
+			line = reader.readLine();
+			String[] data = line.split("\\,\\ "); 
+			System.out.println(Arrays.toString(data));
+		}
+		catch(IOException e)
+		{
+			System.err.println("HAH IT FUCKED UP!");
+		}
+	}
 }

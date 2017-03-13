@@ -1,1 +1,1 @@
-Bob's Burgers,Bob,bob1,iambob,1 Bob St,0311111111
+Bob, bob1, iambob, 1 Bob St, 0311111111, Owner, Bob's Burgers
