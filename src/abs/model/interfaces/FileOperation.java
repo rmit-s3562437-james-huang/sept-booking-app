@@ -1,6 +1,6 @@
 package abs.model.interfaces;
 
-public interface AbsSystem {
+public interface FileOperation {
 	
 	public abstract void createFile();
 	

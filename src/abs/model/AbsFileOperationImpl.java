@@ -9,13 +9,14 @@ import java.nio.file.*;
 import java.io.*;
 
 import abs.model.interfaces.*;
+import abs.model.users.Owner;
 
-public class AbsFileOps implements AbsSystem {
+public class AbsFileOperationImpl implements FileOperation {
 	
 	private String filePath;
 	private String fileName;
 	
-	public AbsFileOps(String filePath, String fileName){
+	public AbsFileOperationImpl(String filePath, String fileName){
 		
 		this.filePath = filePath;
 		this.fileName = fileName;
@@ -104,20 +105,26 @@ public class AbsFileOps implements AbsSystem {
 		}
 	}
 	
-	public void readFromOwner(){
+	/* Break up this method */
+	public Owner readFromOwner(){
 		
 		String path = this.getFilePath() + this.getFileName() +  ".txt";
 		Path file = Paths.get(path);
-		
+		Owner owner = null;
 		try(BufferedReader reader = Files.newBufferedReader(file)){
 			String line = null;
 			line = reader.readLine();
 			String[] data = line.split("\\,\\ "); 
 			System.out.println(Arrays.toString(data));
+			owner = new Owner(data[0].toString(), data[1].toString(),data[2].toString(),
+					data[3].toString(),data[4].toString(),data[5].toString(),data[6].toString());
+			System.out.println(owner.toString());
 		}
 		catch(IOException e)
 		{
 			System.err.println("HAH IT FUCKED UP!");
 		}
+		
+		return owner;
 	}
 }
