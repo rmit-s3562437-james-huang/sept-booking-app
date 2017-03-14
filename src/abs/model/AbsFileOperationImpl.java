@@ -111,12 +111,12 @@ public class AbsFileOperationImpl implements FileOperation {
 		String path = this.getFilePath() + this.getFileName() +  ".txt";
 		Path file = Paths.get(path);
 		Owner owner = null;
-		try(BufferedReader reader = Files.newBufferedReader(file)) {
+		try (BufferedReader reader = Files.newBufferedReader(file)) {
 			String line = null;
 			line = reader.readLine();
 			String[] data = line.split("\\,\\ "); 
-			owner = new Owner(data[0].toString(), data[1].toString(),data[2].toString(),
-					data[3].toString(),data[4].toString(),data[5].toString(),data[6].toString());
+			owner = new Owner(data[0].toString(), data[1].toString(), data[2].toString(),
+					data[3].toString(), data[4].toString(), data[5].toString(), data[6].toString());
 		} catch(IOException e) {
 			System.err.println("HAH IT FUCKED UP!");
 		}
