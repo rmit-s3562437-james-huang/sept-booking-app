@@ -78,7 +78,6 @@ public class AbsMenuImpl {
 		
 	}
 	
-	
 	public void printMainMenu() {
 		System.out.println("Application Booking System");
 		System.out.println("==========================");
