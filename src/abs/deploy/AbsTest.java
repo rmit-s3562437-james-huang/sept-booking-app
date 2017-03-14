@@ -2,6 +2,7 @@ package abs.deploy;
 
 import abs.model.AbsFileOperationImpl;
 import abs.model.AbsLoginImpl;
+import abs.model.AbsMenuImpl;
 import abs.model.AbsRegisterImpl;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
@@ -21,6 +22,10 @@ public class AbsTest {
 		initOwner = file.readFromOwner();
 		storeClient.addOwner(file.readFromOwner());
 		storeClient.displayOwnerInfo(initOwner);
+		System.out.println();
+		
+		AbsMenuImpl menu = new AbsMenuImpl();
+		menu.initialMenu();
 	}
 
 }
