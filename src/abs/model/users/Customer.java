@@ -8,4 +8,11 @@ public class Customer extends AbstractClient{
 		super(name, userName, userPassword, userAddress, userPhoneNumber, "Customer");
 	}
 	
+	public String toString() {
+		return  "Name: " + this.getName()
+				+ "\nUsername: " + this.getUserName()
+				+ "\nPassword: " + this.getUserPassword()
+				+ "\nPhone number: " + this.getUserPhoneNumber()
+				+ "\nUser role: " + this.getUserRole();
+	}
 }

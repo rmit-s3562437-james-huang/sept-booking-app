@@ -1,31 +1,37 @@
 package abs.deploy;
 
-import abs.model.AbsFileOperationImpl;
 import abs.model.AbsLoginImpl;
 import abs.model.AbsMenuImpl;
+import abs.model.AbsOwnerDataImpl;
 import abs.model.AbsRegisterImpl;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
 import abs.model.AbsClientSystemImpl;
-
+import abs.model.AbsCustomerDataImpl;
 
 public class AbsTest {
 	
-	public final static String PATH = "/Users/James/git/SEPT2017/";
-	public final static String FILENAME = "ownerInfo";
-	
 	public static void main(String[] args)
 	{
-		Owner initOwner;
-		AbsFileOperationImpl file = new AbsFileOperationImpl(PATH, FILENAME);
-		AbsClientSystemImpl storeClient = new AbsClientSystemImpl();
-		initOwner = file.readFromOwner();
-		storeClient.addOwner(file.readFromOwner());
-		storeClient.displayOwnerInfo(initOwner);
-		System.out.println();
+		//AbsOwnerDataImpl od = new AbsOwnerDataImpl();
+		AbsCustomerDataImpl cd = new AbsCustomerDataImpl();
+		//AbsClientSystemImpl cs = new AbsClientSystemImpl();
 		
-		AbsMenuImpl menu = new AbsMenuImpl();
-		menu.initialMenu();
+		//Owner initOwner = od.getOwner();
+		//od.addOwner(initOwner);
+		
+		//cs.displayOwnerInfo(initOwner);
+		
+		System.out.println(cd.getCustomerMap().get("sandra1").getName());
+		
+		
+//		System.out.print("Enter owner username: ");
+//		od.readUsername();
+//		System.out.print("Enter owner password: ");
+//		od.readPassword();
+		
+		
+		
 	}
 
 }
