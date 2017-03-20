@@ -1,6 +1,6 @@
 package abs.model;
 
-public class AbsDisplayMenuImpl extends AbsMenuImpl {
+public class AbsDisplayMenuImpl {
 	
 	public void printMainMenu() {
 		System.out.println("Application Booking System");
@@ -15,8 +15,7 @@ public class AbsDisplayMenuImpl extends AbsMenuImpl {
 		System.out.println();
 		System.out.println("Login Menu");
 		System.out.println("==========================");
-		System.out.println("1. Login as owner");
-		System.out.println("2. Login as customer");
+		System.out.println("Enter Username and Password");
 		System.out.println("==========================");
 	}
 	

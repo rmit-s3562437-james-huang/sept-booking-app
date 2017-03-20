@@ -106,7 +106,6 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
-	/* Break up this method */
 	public Owner readFromOwner() {
 		
 		Owner owner = null;

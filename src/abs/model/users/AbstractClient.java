@@ -1,6 +1,8 @@
 package abs.model.users;
 
-public abstract class AbstractClient {
+import abs.model.interfaces.Client;
+
+public abstract class AbstractClient implements Client {
 	
 	private String name;
 	private String userName;
