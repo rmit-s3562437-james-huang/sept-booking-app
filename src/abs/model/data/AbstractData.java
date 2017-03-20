@@ -15,7 +15,7 @@ import abs.model.users.Owner;
 
 public abstract class AbstractData {
 
-	public final static String PATH = "/Users/James/git/SEPT2017/";
+	public final static String PATH = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
 	public final static String CUSTOMERFILE = "customerInfo";
 	public final static String OWNERFILE = "ownerInfo";
 	
@@ -103,6 +103,139 @@ public abstract class AbstractData {
 		
 		System.out.println("ERROR: username or password invalid!");
 		return false;
+	}
+	
+	public void registerCustomer() {
+		
+		Scanner scan = new Scanner(System.in);
+		String name, userName, password, address, phoneNumber;
+		
+		boolean valid = false;
+		
+		do {
+			System.out.println("Please enter your desired username:");
+			userName = scan.nextLine();
+			if(userNameExists(userName) == true || userName.equals("")) {
+				System.out.println("That username has already been taken by another user.");
+				System.out.println("Please enter another one");
+				userName = "";
+			}
+			else {
+				valid = true;
+			}
+		} while(valid == false);
+		
+		valid = false;
+		
+		do {
+			System.out.println("Please your desired password:");
+			password = scan.nextLine();
+			if(password.equals(""))
+			{
+				System.out.println("Your password cannot be an empty string.");
+				System.out.println("Please enter a non-empty string.");
+			}
+			else {
+				valid = true;
+			}
+		} while (valid == false);
+		
+		valid = false;
+		
+		do {
+			System.out.println("Please enter your first name:");
+			name = scan.nextLine();
+			
+			if(name.equals("")) {
+				System.out.println("Your name cannot be an empty string.");
+			}
+			else {
+				valid = true;
+			}
+		} while (valid == false);
+		
+		valid = false;
+		
+		do {
+			System.out.println("Please enter your address:");
+			address = scan.nextLine();
+			
+			if(address.equals("")) {
+				System.out.println("Your address cannot be an empty string.");
+			}
+			else {
+				valid = true;
+			}
+		} while(valid == false);
+		
+		valid = false;
+		
+		do {
+			System.out.println("Please enter your phone number:");
+			phoneNumber = scan.nextLine();
+			
+			if(phoneNumber.equals("")) {
+				System.out.println("You phone number cannot be an empty string.");
+			}
+			else {
+				valid = true;
+			}
+		} while(valid == false);
+		
+		Customer newCustomer = new Customer(name, userName, password, address, phoneNumber);
+		
+		addCustomer(newCustomer);
+		compileCustomerMapStrings();
+	}
+	
+	public void compileCustomerMapStrings() {
+		
+		String name, userName, password, address, phoneNumber;
+		String delim = ", ";
+		String customerString;
+		int count = 0;
+		
+		customerfo.primeCustomerFile();
+		
+		for(Customer customer : getCustomerMap().values()) {
+			name = customer.getName();
+			userName = customer.getUserName();
+			password = customer.getUserPassword();
+			address = customer.getUserAddress();
+			phoneNumber = customer.getUserPhoneNumber();
+			
+			count++;
+			customerString = name + delim + userName + delim + 
+					password + delim + address + 
+					delim + phoneNumber;
+			
+			if(count < getCustomerMap().size()) {
+				customerfo.writeToCustomerFile(customerString, true);
+			}
+			else {
+				customerfo.writeToCustomerFile(customerString, false);
+			}
+		}
+	}
+	
+	public boolean userNameExists(String userName) {
+		
+		for(Customer customer : getCustomerMap().values()) {
+			if(customer.getUserName().equals(userName)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void printMapKeys() {
+		for(Customer customer : getCustomerMap().values())
+		{
+			System.out.println("-------------------");
+			System.out.println(customer.toString());
+			System.out.println("-------------------");
+		}
 	}
 
 }

@@ -9,15 +9,16 @@ import abs.model.users.Owner;
 public class AbsMenuImpl {
 
 	AbsDisplayMenuImpl dm = new AbsDisplayMenuImpl();
+	AbstractData data = new CustomerData();
 	
 	public void initialMenu() {
-		dm.printMainMenu();
-		dm.printChoice();
-
+		
 		Scanner scan = new Scanner(System.in);
 		int selected;
 		boolean exit = false;
 		do {
+			dm.printMainMenu();
+			dm.printChoice();
 			selected = scan.nextInt();
 			switch(selected) {
 			case 1:
@@ -38,23 +39,20 @@ public class AbsMenuImpl {
 	public void registerMenu() {
 		Scanner scan = new Scanner(System.in);
 		int selected;
-		boolean exit = false;
-		do {
-			selected = scan.nextInt();
-			switch(selected) {
+		selected = scan.nextInt();
+		switch(selected) {
 			case 1:
 				initialMenu();
 				break;
 			case 2:
-				dm.printExit();
-				exit = true;
+				data.registerCustomer();
 				break;
-			}
-		} while (!exit);
+			case 3:
+				break;
+		}
 	}
 	
 	public void loginMenu() {
-		AbstractData data = new CustomerData();
 		System.out.println();
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter username: ");

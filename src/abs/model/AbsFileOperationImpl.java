@@ -1,9 +1,6 @@
 package abs.model;
 
-import java.util.Arrays;
 import java.util.Scanner;
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import java.nio.file.*;
 import java.io.*;
@@ -11,6 +8,8 @@ import java.io.*;
 import abs.model.interfaces.*;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
+
+import abs.model.data.*;
 
 public class AbsFileOperationImpl implements FileOperation {
 	
@@ -147,4 +146,132 @@ public class AbsFileOperationImpl implements FileOperation {
 		return customer;
 	}
 	
+	public void primeCustomerFile() {
+		
+		AbstractData data = new CustomerData();
+		String path = data.PATH + data.CUSTOMERFILE + ".txt";
+		
+		try(FileWriter writer = new FileWriter(path, false)) {
+			//priming file
+		}
+		catch(IOException e) {
+			System.out.println("failed priming");
+		}
+	}
+	
+	public void writeToCustomerFile(String toWrite, boolean newLine) {
+		
+		AbstractData data = new CustomerData();
+		String path = data.PATH + data.CUSTOMERFILE + ".txt";
+		
+		if(newLine == true) {
+			try(FileWriter writer = new FileWriter(path, true)) {
+				writer.write(toWrite + System.lineSeparator());
+			}
+			catch(IOException e) {
+				System.out.println("fucked up");
+			}
+		}
+		else {
+			try(FileWriter writer = new FileWriter(path, true)) {
+				writer.write(toWrite);
+			}
+			catch(IOException e) {
+				System.out.println("fucked up");
+			}
+		}
+	}
+	
+	/*public void writeToCustomerFile(String toWrite, Boolean newLine) {
+		
+		AbstractData data = new CustomerData();
+		String name, userName, password, address, phoneNumber;
+		String delim = ", ";
+		String customerString;
+		int count = 0;
+		
+		String path = data.PATH + data.CUSTOMERFILE + ".txt";
+		
+		for(Customer customer : data.getCustomerMap().values()) {
+			try(FileWriter writer = new FileWriter(path, true)) {
+				
+				name = customer.getName();
+				userName = customer.getUserName();
+				password = customer.getUserPassword();
+				address = customer.getUserAddress();
+				phoneNumber = customer.getUserPhoneNumber();
+				
+				count++;
+				System.out.println(count);
+				customerString = name + delim + userName + delim + 
+						password + delim + address + 
+						delim + phoneNumber;
+				writer.write(customerString);
+				
+				
+				if(count < data.getCustomerMap().size())
+				{
+					writer.write(System.lineSeparator());
+				}
+			}
+			catch(IOException e) {
+				System.out.println("Fucked up again!");
+			}
+		}
+		
+		try(FileWriter writer = new FileWriter(path, false)) {
+			for(Customer customer : data.getCustomerMap().values()) {
+				name = customer.getName();
+				userName = customer.getUserName();
+				password = customer.getUserPassword();
+				address = customer.getUserAddress();
+				phoneNumber = customer.getUserPhoneNumber();
+				
+				count++;
+				System.out.println(count);
+				customerString = name + delim + userName + delim + 
+						password + delim + address + 
+						delim + phoneNumber;
+				writer.write(customerString);
+				
+				
+				if(count < data.getCustomerMap().size())
+				{
+					writer.write(System.lineSeparator());
+				}
+			}
+			
+		}
+		catch(IOException e) {
+			System.err.println("Write fucked up splendidly.");
+		}
+		
+		for(Customer customer : data.getCustomerMap().values()) {
+			try(BufferedWriter writer = Files.newBufferedWriter(file))
+				{
+					name = customer.getName();
+					userName = customer.getUserName();
+					password = customer.getUserPassword();
+					address = customer.getUserAddress();
+					phoneNumber = customer.getUserPhoneNumber();
+					
+					customerString = name + delim + userName + delim + 
+							password + delim + address + 
+							delim + phoneNumber;
+					writer.write(customerString);
+					
+					count++;
+					
+					if(count != data.getCustomerMap().size())
+					{
+						writer.write(System.lineSeparator());
+					}
+				}
+				catch(IOException e)
+				{
+					System.err.println("Write fucked up splendidly.");
+				}
+			}
+		
+	}*/
 }
