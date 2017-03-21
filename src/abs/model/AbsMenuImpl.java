@@ -59,7 +59,9 @@ public class AbsMenuImpl {
 		String username = scan.nextLine();
 		System.out.print("Enter password: ");
 		String password = scan.nextLine();
-		data.validateUser(username, password);
+		if(data.validateUser(username, password) == true) {
+			data.changeCustomerPassword(username);
+		}
 	}
 	
 	public void customerMenu() {

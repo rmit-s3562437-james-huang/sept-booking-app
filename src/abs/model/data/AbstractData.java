@@ -10,12 +10,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 import abs.model.AbsFileOperationImpl;
-import abs.model.users.Customer;
-import abs.model.users.Owner;
+import abs.model.users.*;
 
 public abstract class AbstractData {
 
-	public final static String PATH = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
+	//public final static String PATH = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
+	public final static String PATH = "C:\\Users\\Sotoam Bak\\Documents\\Repositories\\SEPT2017\\SEPT2017\\";
 	public final static String CUSTOMERFILE = "customerInfo";
 	public final static String OWNERFILE = "ownerInfo";
 	
@@ -236,6 +236,18 @@ public abstract class AbstractData {
 			System.out.println(customer.toString());
 			System.out.println("-------------------");
 		}
+	}
+	
+	public void changeCustomerPassword(String userName) {
+		String newPassword;
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Please enter a new passord:");
+		newPassword = scan.nextLine();
+		
+		//customerMap.get(userName);
+		customerMap.get(userName).setUserPassword(newPassword);
+		compileCustomerMapStrings();
 	}
 
 }
