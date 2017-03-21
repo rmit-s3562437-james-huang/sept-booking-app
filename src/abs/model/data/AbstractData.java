@@ -9,13 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.sun.java_cup.internal.runtime.Symbol;
+
 import abs.model.AbsFileOperationImpl;
 import abs.model.users.*;
 
 public abstract class AbstractData {
 
-	//public final static String PATH = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
-	public final static String PATH = "C:\\Users\\Sotoam Bak\\Documents\\Repositories\\SEPT2017\\SEPT2017\\";
+	public final static String PATH = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
+	//public final static String PATH = "C:\\Users\\Sotoam Bak\\Documents\\Repositories\\SEPT2017\\SEPT2017\\";
 	public final static String CUSTOMERFILE = "customerInfo";
 	public final static String OWNERFILE = "ownerInfo";
 	
@@ -79,13 +81,14 @@ public abstract class AbstractData {
 		return customerMap;
 	}
 	
-	public boolean validateUser(String username, String password) {
+	/*public boolean validateUser(String username, String password) {
 
 		for (Owner owner : getOwnerMap().values()) {
 			if (owner.getUserName().equals(username)) {
-				System.out.println("username valid!");
+				//System.out.println("username valid!");
 				if (owner.getUserPassword().equals(password)) {
-					System.out.println("password valid!");
+					//System.out.println("password valid!");
+					System.out.println("Welcome, Owner.");
 					return true;
 				}
 			}
@@ -93,15 +96,40 @@ public abstract class AbstractData {
 		
 		for (Customer customer : getCustomerMap().values()) {
 			if (customer.getUserName().equals(username)) {
-				System.out.println("username valid!");
+				//System.out.println("username valid!");
 				if (customer.getUserPassword().equals(password)) {
-					System.out.println("password valid!");
+					//System.out.println("password valid!");
+					System.out.println("Welcome, " + username + ".");
 					return true;
 				}
 			}
 		}
 		
 		System.out.println("ERROR: username or password invalid!");
+		return false;
+	}*/
+	
+	public boolean customerValidation(String username, String password) {
+		for (Customer customer : getCustomerMap().values()) {
+			if (customer.getUserName().equals(username)) {
+				if (customer.getUserPassword().equals(password)) {
+					System.out.println("Welcome, " + username + ".");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean ownerValidation(String username, String password) {
+		for (Owner owner : getOwnerMap().values()) {
+			if (owner.getUserName().equals(username)) {
+				if (owner.getUserPassword().equals(password)) {
+					System.out.println("Welcome, Owner.");
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	

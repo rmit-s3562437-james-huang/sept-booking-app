@@ -36,6 +36,24 @@ public class AbsMenuImpl {
 		} while (!exit);
 	}
 	
+	public void loginMenu() {
+		System.out.println();
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter username: ");
+		String username = scan.nextLine();
+		System.out.print("Enter password: ");
+		String password = scan.nextLine();
+		if(data.ownerValidation(username, password) == true) {
+			ownerMenu(username);
+		}
+		else if(data.customerValidation(username, password) == true) {
+			customerMenu(username);
+		}
+		else {
+			System.out.println("Sorry, those credentials are invalid.");
+		}
+	}
+	
 	public void registerMenu() {
 		Scanner scan = new Scanner(System.in);
 		int selected;
@@ -52,23 +70,46 @@ public class AbsMenuImpl {
 		}
 	}
 	
-	public void loginMenu() {
-		System.out.println();
+	public void customerMenu(String username) {
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter username: ");
-		String username = scan.nextLine();
-		System.out.print("Enter password: ");
-		String password = scan.nextLine();
-		if(data.validateUser(username, password) == true) {
-			data.changeCustomerPassword(username);
-		}
+		int selected;
+		boolean logout = false;
+		do {
+			dm.printVerifiedCustomerMenu();
+			selected = scan.nextInt();
+			switch(selected) {
+				case 1:
+					System.out.println(data.getCustomerMap().get(username).toString());
+					break;
+				case 2:
+					//change password
+					data.changeCustomerPassword(username);
+					break;
+				case 3:
+					//edit information
+					break;
+				case 4:
+					logout = true;
+					break;
+			} 
+		} while (logout == false);
 	}
 	
-	public void customerMenu() {
-		
-	}
-	
-	public void ownerMenu() {
-		
+	public void ownerMenu(String username) {
+		Scanner scan = new Scanner(System.in);
+		int selected;
+		boolean logout = false;
+		do {
+			dm.printVerifiedOwnerMenu();
+			selected = scan.nextInt();
+			switch(selected) {
+				case 1:
+					System.out.println(data.getOwnerMap().get(username).toString());
+					break;
+				case 2:
+					logout = true;
+					break;
+			} 
+		} while (logout == false);
 	}
 }
