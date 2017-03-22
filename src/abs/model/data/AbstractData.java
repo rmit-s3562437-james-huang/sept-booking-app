@@ -258,11 +258,10 @@ public abstract class AbstractData {
 	}
 	
 	public void printMapKeys() {
-		for(Customer customer : getCustomerMap().values())
-		{
-			System.out.println("-------------------");
+		for(Customer customer : getCustomerMap().values()) {
+			System.out.println("==========================");
 			System.out.println(customer.toString());
-			System.out.println("-------------------");
+			System.out.println("==========================");
 		}
 	}
 	
@@ -276,6 +275,14 @@ public abstract class AbstractData {
 		//customerMap.get(userName);
 		customerMap.get(userName).setUserPassword(newPassword);
 		compileCustomerMapStrings();
+	}
+	
+	public void printCustomerMap() {
+		for(Customer customer : getCustomerMap().values()) {
+			System.out.println("\n==========================");
+			System.out.println(customer.toString());
+			System.out.println("==========================\n");
+		}
 	}
 
 }

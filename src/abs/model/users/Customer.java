@@ -9,7 +9,7 @@ public class Customer extends AbstractClient{
 	}
 	
 	public String toString() {
-		return  "\nName: " + this.getName()
+		return  "Name: " + this.getName()
 				+ "\nUsername: " + this.getUserName()
 				+ "\nPassword: " + this.getUserPassword()
 				+ "\nPhone number: " + this.getUserPhoneNumber()

@@ -107,6 +107,9 @@ public class AbsMenuImpl {
 					System.out.println(data.getOwnerMap().get(username).toString());
 					break;
 				case 2:
+					data.printCustomerMap();
+					break;
+				case 3:
 					logout = true;
 					break;
 			} 

@@ -45,7 +45,8 @@ public class AbsDisplayMenuImpl {
 		System.out.println("Owner Menu");
 		System.out.println("==========================");
 		System.out.println("1. Display owner details");
-		System.out.println("2. Logout");
+		System.out.println("2. Print all customer details");
+		System.out.println("3. Logout");
 		System.out.println("==========================");
 		printChoice();
 	}
