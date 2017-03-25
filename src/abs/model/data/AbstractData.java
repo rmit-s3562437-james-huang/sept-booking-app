@@ -35,6 +35,8 @@ public abstract class AbstractData {
 		readFromCustomer();
 	}
 	
+	/* Add another AbstractData constructor */
+	
 	public void readFromCustomer() {
 		
 		Customer customer = null;
