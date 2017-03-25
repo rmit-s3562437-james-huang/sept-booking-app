@@ -81,34 +81,6 @@ public abstract class AbstractData {
 		return customerMap;
 	}
 	
-	/*public boolean validateUser(String username, String password) {
-
-		for (Owner owner : getOwnerMap().values()) {
-			if (owner.getUserName().equals(username)) {
-				//System.out.println("username valid!");
-				if (owner.getUserPassword().equals(password)) {
-					//System.out.println("password valid!");
-					System.out.println("Welcome, Owner.");
-					return true;
-				}
-			}
-		}
-		
-		for (Customer customer : getCustomerMap().values()) {
-			if (customer.getUserName().equals(username)) {
-				//System.out.println("username valid!");
-				if (customer.getUserPassword().equals(password)) {
-					//System.out.println("password valid!");
-					System.out.println("Welcome, " + username + ".");
-					return true;
-				}
-			}
-		}
-		
-		System.out.println("ERROR: username or password invalid!");
-		return false;
-	}*/
-	
 	public boolean customerValidation(String username, String password) {
 		for (Customer customer : getCustomerMap().values()) {
 			if (customer.getUserName().equals(username)) {
@@ -285,4 +257,46 @@ public abstract class AbstractData {
 		}
 	}
 
+	public void editCustomerInformation(String userName) {
+		String newName, newUser, newPass, newAddress, newPhoneNumber;
+		Scanner scan = new Scanner(System.in);
+		
+		boolean back = false;
+		int opt;
+		
+		do {
+			opt = scan.nextInt();
+			switch(opt) {
+				case 1:
+					System.out.print("\nEnter new Username: ");
+					newUser = scan.next();
+					customerMap.get(userName).setUserName(newUser);
+					System.out.print("Choose an option: ");
+					break;
+				case 2:
+					System.out.print("\nEnter new Name: ");
+					newName = scan.next();
+					customerMap.get(userName).setName(newName);
+					System.out.print("Choose an option: ");
+					break;
+				case 3:
+					System.out.print("\nEnter new Address: ");
+					newAddress = scan.next();
+					customerMap.get(userName).setUserAddress(newAddress);
+					System.out.print("Choose an option: ");
+					break;
+				case 4:
+					System.out.print("\nEnter new Phone number: ");
+					newPhoneNumber = scan.next();
+					customerMap.get(userName).setUserPhoneNumber(newPhoneNumber);
+					System.out.print("Choose an option: ");
+					break;
+				case 5:
+					back = true;
+					break;
+			}
+		} while (!back);
+		compileCustomerMapStrings();
+	}
+	
 }

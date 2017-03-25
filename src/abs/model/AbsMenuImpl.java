@@ -52,8 +52,10 @@ public class AbsMenuImpl {
 		else {
 			System.out.println("Sorry, those credentials are invalid.");
 		}
+		System.out.println();
+
 	}
-	
+
 	public void registerMenu() {
 		Scanner scan = new Scanner(System.in);
 		int selected;
@@ -66,6 +68,7 @@ public class AbsMenuImpl {
 				data.registerCustomer();
 				break;
 			case 3:
+				System.out.println();
 				break;
 		}
 	}
@@ -79,6 +82,7 @@ public class AbsMenuImpl {
 			selected = scan.nextInt();
 			switch(selected) {
 				case 1:
+					System.out.println();
 					System.out.println(data.getCustomerMap().get(username).toString());
 					break;
 				case 2:
@@ -86,9 +90,12 @@ public class AbsMenuImpl {
 					data.changeCustomerPassword(username);
 					break;
 				case 3:
-					//edit information
+					dm.printEditCustomer();
+					dm.printChoice();
+					data.editCustomerInformation(username);
 					break;
 				case 4:
+					System.out.println();
 					logout = true;
 					break;
 			} 
@@ -115,4 +122,6 @@ public class AbsMenuImpl {
 			} 
 		} while (logout == false);
 	}
+	
+	
 }

@@ -12,6 +12,7 @@ public class Customer extends AbstractClient{
 		return  "Name: " + this.getName()
 				+ "\nUsername: " + this.getUserName()
 				+ "\nPassword: " + this.getUserPassword()
+				+ "\nAddress: " + this.getUserAddress()
 				+ "\nPhone number: " + this.getUserPhoneNumber()
 				+ "\nUser role: " + this.getUserRole();
 	}

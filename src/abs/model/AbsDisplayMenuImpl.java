@@ -63,6 +63,18 @@ public class AbsDisplayMenuImpl {
 		printChoice();
 	}
 	
+	public void printEditCustomer() {
+		System.out.println();
+		System.out.println("Edit Customer information");
+		System.out.println("==========================");
+		System.out.println("1. Username");
+		System.out.println("2. Name");
+		System.out.println("3. Address");
+		System.out.println("4. Phone number");
+		System.out.println("5. Complete");
+		System.out.println("==========================");
+	}
+	
 	
 	public void printChoice() {
 		System.out.print("Choose an option: ");
