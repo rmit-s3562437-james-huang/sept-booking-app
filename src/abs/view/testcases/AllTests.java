@@ -1,4 +1,4 @@
-package abs.deploy.testcases;
+package abs.view.testcases;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

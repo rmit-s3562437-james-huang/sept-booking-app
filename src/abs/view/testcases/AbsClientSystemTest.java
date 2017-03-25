@@ -1,4 +1,4 @@
-package abs.deploy.testcases;
+package abs.view.testcases;
 
 import static org.junit.Assert.*;
 import org.junit.*;

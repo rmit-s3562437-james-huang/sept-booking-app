@@ -1,4 +1,4 @@
-package abs.deploy;
+package abs.view;
 
 import abs.model.AbsMenuImpl;
 
