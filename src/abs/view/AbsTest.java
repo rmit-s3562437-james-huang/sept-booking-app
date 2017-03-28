@@ -2,40 +2,38 @@ package abs.view;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import abs.model.AbsClientSystemImpl;
 import abs.model.AbsFileOperationImpl;
+import abs.model.AbsMaps;
 import abs.model.AbsMenuImpl;
-import abs.model.booking.Booking;
-import abs.model.data.AbstractData;
-import abs.model.data.CustomerData;
-import abs.model.interfaces.Book;
-import abs.model.interfaces.FileOperation;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
 
 public class AbsTest {
 	
+	public final static String PATHNAME = "/Users/James/git/SEPT2017/";
+	public final static String CUSTOMERFILE = "customerInfo";
+	public final static String OWNERFILE = "ownerInfo";
+	public final static Path CUSTOMERFILEPATH = Paths.get(PATHNAME + CUSTOMERFILE + ".txt");
+	public final static Path OWNERFILEPATH = Paths.get(PATHNAME + OWNERFILE + ".txt");
+	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + CUSTOMERFILE + ".txt";
+	
 	public static void main(String[] args)
 	{
+		AbsFileOperationImpl fo = new AbsFileOperationImpl();
+		AbsMaps absMaps = new AbsMaps();
 		AbsMenuImpl menu = new AbsMenuImpl();
-		menu.initialMenu();	
+		AbsClientSystemImpl cs = new AbsClientSystemImpl();
 		
+		Customer customer = null;
+		Owner owner = null;
 		
-		//Date dNow = new Date( );
-	    //SimpleDateFormat ft = 
-	    //new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
-
- 	    //System.out.println("Current Date: " + ft.format(dNow));
+		fo.readToCustomer(CUSTOMERFILEPATH, customer, absMaps.getCustomerMap());
+		fo.readToOwner(OWNERFILEPATH, owner, absMaps.getOwnerMap());
 		
+		menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH);
 		
-		
-		
-		//Class nesting needs work
-		
-		//AbstractData data = new CustomerData();
-		//data.getAvailability().displayAllAvailabilities();
 	}
 
 }
