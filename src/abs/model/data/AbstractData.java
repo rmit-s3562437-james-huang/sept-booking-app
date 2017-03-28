@@ -1,12 +1,16 @@
 package abs.model.data;
 
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import abs.model.AbsFileOperationImpl;
-import abs.model.interfaces.Availability;
+import abs.model.booking.Booking;
+import abs.model.interfaces.Book;
 import abs.model.interfaces.Data;
 import abs.model.interfaces.FileOperation;
 import abs.model.users.Customer;
@@ -14,13 +18,16 @@ import abs.model.users.Owner;
 
 public abstract class AbstractData implements Data {
 	
+	private static Logger logger = Logger.getLogger("absLogging");
+	
 	protected Map<String, Owner> ownerMap;
 	protected Map<String, Customer> customerMap;
+	protected Map<String, Booking> bookingMap;
 	
 	protected Owner owner;
 	protected Customer customer;
 	
-	private Availability availability;
+	private Book availability;
 	
 	FileOperation fo = new AbsFileOperationImpl();
 	
@@ -47,7 +54,10 @@ public abstract class AbstractData implements Data {
 		customerMap.put(customer.getUserName(), customer);
 	}
 	
-	public Customer getCustomer() {
+	public Customer getCustomer(String userName) {
+		if (customer.getName() == userName) {
+			return customer;
+		}
 		return customer;
 	}
 	
@@ -62,6 +72,7 @@ public abstract class AbstractData implements Data {
 			customer = new Customer(data[0].toString(), data[1].toString(), data[2].toString(),
 					data[3].toString(), data[4].toString());
 			addCustomer(customer);
+			logger.log(Level.INFO, customer.toString());
 		}
 	}
 	
@@ -72,6 +83,7 @@ public abstract class AbstractData implements Data {
 			owner = new Owner(data[0].toString(), data[1].toString(), data[2].toString(), data[3].toString(),
 					data[4].toString(), data[5].toString(), data[6].toString());
 			addOwner(owner);
+			logger.log(Level.INFO, owner.toString());
 		}
 	}
 	
@@ -284,9 +296,16 @@ public abstract class AbstractData implements Data {
 		} while (!back);
 		compileCustomerMapStrings();
 	}
-
+	
+	public boolean scheduleBooking(Date date, String userName) {
+		Booking book = new Booking(date);
+		bookingMap.put(book.getId(), book);
+		
+		return book.scheduleBooking(getCustomer(userName));
+	}
+	
 	@Override
-	public Availability getAvailability() {
+	public Book getAvailability() {
 		return availability;
 	}
 	

@@ -4,7 +4,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
-public interface Availability {
+import abs.model.users.Customer;
+
+public interface Book {
 	
 	public final static String PATHNAME = "/Users/James/git/SEPT2017/";
 	public final static String CUSTOMERAVAIL = "customerAvailability";
@@ -23,5 +25,9 @@ public interface Availability {
 	public abstract boolean isAvailable (Data date);
 
 	public abstract void displayAllAvailabilities();
+
+	public abstract String getId();
+
+	public abstract boolean scheduleBooking(Customer customer);
 	
 }

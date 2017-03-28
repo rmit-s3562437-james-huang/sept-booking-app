@@ -3,26 +3,24 @@ package abs.model.booking;
 import java.util.Date;
 
 import abs.model.AbsFileOperationImpl;
-import abs.model.interfaces.Availability;
+import abs.model.interfaces.Book;
 import abs.model.interfaces.Client;
 import abs.model.interfaces.Data;
 import abs.model.interfaces.FileOperation;
+import abs.model.users.Customer;
 
-public class AbstractAvailability implements Availability {
-	
-	protected Client client;
-	protected String userName;
+public class Booking implements Book {
+
+	protected Date date;
 	
 	FileOperation fo = new AbsFileOperationImpl();
 	
+	private String id;
+	private static int maxID = 0;
 	
-	public AbstractAvailability(Client client, String userName) {
-		this.client = client;
-		this.userName = userName;
-	}
-	
-	public AbstractAvailability() {
-		
+	public Booking(Date date) {
+		this.id = Integer.toString(maxID++);
+		this.date = date;
 	}
 	
 	@Override
@@ -32,18 +30,26 @@ public class AbstractAvailability implements Availability {
 		}
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	@Override
 	public void setAvailabilities(Date date) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	@Override
@@ -58,6 +64,12 @@ public class AbstractAvailability implements Availability {
 
 	@Override
 	public boolean isAvailable(Data date) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean scheduleBooking(Customer customer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
