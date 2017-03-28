@@ -1,25 +1,18 @@
 package abs.model.interfaces;
 
-import abs.model.users.Customer;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Map;
+
 import abs.model.users.Owner;
 
 public interface FileOperation {
 	
-	public abstract String getFilePath();
+	public abstract void createFile(Path path);
 	
-	public abstract void setFilePath(String filePath);
+	public abstract void primeCustomerFile(String FileWritePath);
 	
-	public abstract String getFileName();
-	
-	public abstract void setFileName(String fileName);
-	
-	public abstract Owner readFromOwner();
-	
-	public abstract Customer readFromCustomer();
-	
-	public abstract void createFile();
-	
-	public abstract void readFromFile();
-	
-	public abstract void writeToFile();
+	public abstract void writeToCustomerFile(String FileWritePath, String toWrite, boolean newLine);
+
+	public abstract ArrayList<String> readFromFile(Path path);
 }

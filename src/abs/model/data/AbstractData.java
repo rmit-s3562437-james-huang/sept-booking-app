@@ -1,25 +1,18 @@
 package abs.model.data;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 import abs.model.AbsFileOperationImpl;
+import abs.model.interfaces.Availability;
+import abs.model.interfaces.Data;
+import abs.model.interfaces.FileOperation;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
 
-public abstract class AbstractData {
-
-	//public final static String PATH = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
-	public final static String PATH = "/Users/James/git/SEPT2017/";
-	//public final static String PATH = "C:\\Users\\Sotoam Bak\\Documents\\Repositories\\SEPT2017\\SEPT2017\\";
-	public final static String CUSTOMERFILE = "customerInfo";
-	public final static String OWNERFILE = "ownerInfo";
+public abstract class AbstractData implements Data {
 	
 	protected Map<String, Owner> ownerMap;
 	protected Map<String, Customer> customerMap;
@@ -27,34 +20,15 @@ public abstract class AbstractData {
 	protected Owner owner;
 	protected Customer customer;
 	
-	private AbsFileOperationImpl ownerfo = new AbsFileOperationImpl(PATH, OWNERFILE);
-	private AbsFileOperationImpl customerfo = new AbsFileOperationImpl(PATH, CUSTOMERFILE);
+	private Availability availability;
+	
+	FileOperation fo = new AbsFileOperationImpl();
 	
 	public AbstractData() {
 		ownerMap = new HashMap<String, Owner>();
 		customerMap = new HashMap<String, Customer>();
-		addOwner(owner = ownerfo.readFromOwner());
-		readFromCustomer();
-	}
-	
-	public void readFromCustomer() {
-		
-		Customer customer = null;
-		String path = PATH + CUSTOMERFILE + ".txt";
-		Path file = Paths.get(path);
-		
-		try (BufferedReader reader = Files.newBufferedReader(file)) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] data = line.split("\\,\\ "); 
-				customer = new Customer(data[0].toString(), data[1].toString(), data[2].toString(),
-						data[3].toString(), data[4].toString());
-				addCustomer(customer);
-			}
-			
-		} catch(IOException e) {
-			System.err.println("HAH IT FUCKED UP!");
-		}
+		readFromCustomer(CUSTOMERFILEPATH);
+		readFromOwner(OWNERFILEPATH);
 	}
 	
 	public void addOwner(Owner owner) {
@@ -79,6 +53,26 @@ public abstract class AbstractData {
 	
 	public Map<String, Customer> getCustomerMap() {
 		return customerMap;
+	}
+	
+	public void readFromCustomer(Path path) {
+		String[] data; 
+		for (int i = 0; i < fo.readFromFile(path).size() ; i++) {
+			data = fo.readFromFile(path).get(i).split(REGEX);
+			customer = new Customer(data[0].toString(), data[1].toString(), data[2].toString(),
+					data[3].toString(), data[4].toString());
+			addCustomer(customer);
+		}
+	}
+	
+	public void readFromOwner(Path path) {
+		String[] data; 
+		for (int i = 0; i < fo.readFromFile(path).size() ; i++) {
+			data = fo.readFromFile(path).get(i).split(REGEX);
+			owner = new Owner(data[0].toString(), data[1].toString(), data[2].toString(), data[3].toString(),
+					data[4].toString(), data[5].toString(), data[6].toString());
+			addOwner(owner);
+		}
 	}
 	
 	public boolean customerValidation(String username, String password) {
@@ -195,7 +189,7 @@ public abstract class AbstractData {
 		String customerString;
 		int count = 0;
 		
-		customerfo.primeCustomerFile();
+		fo.primeCustomerFile(CUSTOMERWRITEFILEPATH);
 		
 		for(Customer customer : getCustomerMap().values()) {
 			name = customer.getName();
@@ -210,10 +204,10 @@ public abstract class AbstractData {
 					delim + phoneNumber;
 			
 			if(count < getCustomerMap().size()) {
-				customerfo.writeToCustomerFile(customerString, true);
+				fo.writeToCustomerFile(CUSTOMERWRITEFILEPATH, customerString, true);
 			}
 			else {
-				customerfo.writeToCustomerFile(customerString, false);
+				fo.writeToCustomerFile(CUSTOMERWRITEFILEPATH, customerString, false);
 			}
 		}
 	}
@@ -228,14 +222,7 @@ public abstract class AbstractData {
 		
 		return false;
 	}
-	
-	public void printMapKeys() {
-		for(Customer customer : getCustomerMap().values()) {
-			System.out.println("==========================");
-			System.out.println(customer.toString());
-			System.out.println("==========================");
-		}
-	}
+
 	
 	public void changeCustomerPassword(String userName) {
 		String newPassword;
@@ -244,7 +231,6 @@ public abstract class AbstractData {
 		System.out.println("Please enter a new passord:");
 		newPassword = scan.nextLine();
 		
-		//customerMap.get(userName);
 		customerMap.get(userName).setUserPassword(newPassword);
 		compileCustomerMapStrings();
 	}
@@ -297,6 +283,11 @@ public abstract class AbstractData {
 			}
 		} while (!back);
 		compileCustomerMapStrings();
+	}
+
+	@Override
+	public Availability getAvailability() {
+		return availability;
 	}
 	
 }

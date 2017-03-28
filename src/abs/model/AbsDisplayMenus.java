@@ -1,6 +1,6 @@
 package abs.model;
 
-public class AbsDisplayMenuImpl {
+public class AbsDisplayMenus {
 	
 	public void printMainMenu() {
 		System.out.println("Application Booking System");

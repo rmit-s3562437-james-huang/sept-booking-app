@@ -8,7 +8,7 @@ import abs.model.users.Owner;
 
 public class AbsMenuImpl {
 
-	AbsDisplayMenuImpl dm = new AbsDisplayMenuImpl();
+	AbsDisplayMenus dm = new AbsDisplayMenus();
 	AbstractData data = new CustomerData();
 	
 	public void initialMenu() {
