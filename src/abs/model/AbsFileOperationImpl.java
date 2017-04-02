@@ -2,17 +2,22 @@ package abs.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Locale;
 import java.nio.file.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.io.*;
 
 import abs.model.interfaces.*;
 import abs.model.users.Customer;
+import abs.model.users.Employee;
 import abs.model.users.Owner;
 
 public class AbsFileOperationImpl implements FileOperation {
 
 	private static final String REGEX = "\\,\\ ";
+	private static final String EMPREGEX = " \\|\\ ";
 
 	public void createFile(Path path) {
 
@@ -41,7 +46,33 @@ public class AbsFileOperationImpl implements FileOperation {
 
 		return storeLines;
 	}
+	
+	/*=========================================================================*/
+	
+	// Change constructor to store a data implementation
+	// Map within a map (or arraylist) so link Employee to the day then to the times
+	// ArrayList<UserName, ArrayList<<(String)Day, (String[])TimeSlots>>
+	
+	public void readToEmployeeAvailability(Path path, Employee employee, HashMap<String, Employee> map) {
+		
+		String employeeRecord[];
+		
+		for (int i = 0; i < readFromFile(path).size() ; i++) {
+			
+			employeeRecord = readFromFile(path).get(i).split(EMPREGEX);
+			
+			String username = employeeRecord[0];
+			String availability  = employeeRecord[1];
+			
+			employee = new Employee(null, username, null, null, null, null, null, availability);
+			
+			map.put(employee.getUserName(), employee);
+		}
+	}
+	
 
+	/*=========================================================================*/
+	
 	public void primeCustomerFile(String FileWritePath) {
 
 		try (FileWriter writer = new FileWriter(FileWritePath, false)) {

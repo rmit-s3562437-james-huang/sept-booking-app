@@ -1,15 +1,96 @@
 package abs.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
+import abs.model.bookings.Availability;
+import abs.model.bookings.Booking;
 import abs.model.users.Customer;
+import abs.model.users.Employee;
 import abs.model.users.Owner;
 
 public class AbsMaps {
 	
-	protected HashMap<String, Owner> ownerMap = new HashMap<String, Owner>();
-	protected HashMap<String, Customer> customerMap = new HashMap<String, Customer>();
+	private HashMap<String, Owner> ownerMap = new HashMap<String, Owner>();
+	private HashMap<String, Customer> customerMap = new HashMap<String, Customer>();
+	private HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
+	
+	/* username, map(days, timeslots) */
+	private HashMap<String, Availability> employeeLinkedTimesMap = new HashMap<String, Availability>();
+	
+	public void linkEmployeeDayTimeSlot() {
+		/* days, timeslots */
+		HashMap<String, String[]> daysTimesMap = null;
+		Availability availability = null;
+		// loop employees
+		// no need to clear()
+		for (Employee employee : employeeMap.values()) {
+			System.out.println(employee.getUserName());
+			System.out.println("####################");
+			String[] allAvailabilities = employee.getAvailability().split(", ");
+			daysTimesMap = new HashMap<String, String[]>();
+			// split data
+			for (int i = 0; i < allAvailabilities.length ; i++) {
+				String[] availabilitiesOnDay = allAvailabilities[i].split(" ");
+				String day = availabilitiesOnDay[0];
+				System.out.println(day);
+				String[] timeSlot = availabilitiesOnDay[1].split("\\+");
+	
+				for (int j = 0; j < timeSlot.length ; j++) {
+					System.out.println(timeSlot[j]);
+				}
+				System.out.println("====================");
+				// store new day/time
+				daysTimesMap.put(day, timeSlot);
+				
+			}
+			
+			availability = new Availability(daysTimesMap);
+			// problem is that the daysTimesMap is being rewritten
+			// instead of creating a map (have a contructor which stores the day/available time
+			employeeLinkedTimesMap.put(employee.getUserName(), availability);
+		}
+		/* test user to day to time slot*/
+		// arrays incorrect by 1 
+		// works fine for Jess
+		System.out.println("========Test========");
+		System.out.println(employeeLinkedTimesMap.get("Tess").getDaysTimesMap().get("Tue")[1]);
+	}
+	
+	// jesus wtf am i doing
+	//hard code atm
+	public void makeBooking() {
+		Booking booking = null; 
+		Scanner scan = new Scanner(System.in);
+		
+		
+		
+		System.out.println("Select a Doctor: ");
+		String employeeName = scan.nextLine();
+		
+		System.out.println("Select a Day: ");
+		String selectedDay = scan.nextLine();
+		if (employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().containsKey(selectedDay)) {
+			for (int i = 0 ; i <employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().get(selectedDay).length; i++) {
+				System.out.println(i+1 + ". " + employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().get(selectedDay)[i]);
+			}
+			int selectedTime = scan.nextInt();
+			System.out.println(employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().get(selectedDay)[selectedTime-1]);
+			
+			// before making a booking you must cross check the booking.txt file for customers 
+			
+			// if not booked then continue else loop (checking) 
+			
+			// create a new booking, username followed by day and time
+			
+			// create booking object to store this
+			
+			// finally write to file
+		}
+		
+	}
 	
 	public void addOwner(Owner owner) {
 		ownerMap.put(owner.getUserName(), owner);
@@ -27,10 +108,22 @@ public class AbsMaps {
 		return customerMap.get(userName);
 	}
 	
+	public void addEmployee(Employee employee) {
+		employeeMap.put(employee.getUserName(), employee);
+	}
+	
+	public Employee getEmployee(String username) {
+		return employeeMap.get(username);
+	}
+	
 	public void displayAllCustomers()
 	{
 		for (Customer customer : customerMap.values())
 			System.out.println(customer);
+	}
+	
+	public HashMap<String, Employee> getEmployeeMap() {
+		return employeeMap;
 	}
 	
 	public HashMap<String, Owner> getOwnerMap() {

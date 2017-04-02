@@ -15,4 +15,5 @@ public interface FileOperation {
 	public abstract void writeToCustomerFile(String FileWritePath, String toWrite, boolean newLine);
 
 	public abstract ArrayList<String> readFromFile(Path path);
+	
 }
