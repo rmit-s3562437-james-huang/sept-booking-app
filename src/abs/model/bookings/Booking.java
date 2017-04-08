@@ -1,67 +1,73 @@
 package abs.model.bookings;
 
-import abs.model.users.Customer;
-import abs.model.users.Employee;
+import java.util.ArrayList;
 
 public class Booking {
+	
+	private static int maxID = 0;
 
 	private String bookingId;
+	private String employeeUserName;
+	private String customerUserName;
 	private String day;
-	private String time;
-	private Customer customer;
-	private Employee employee;
+	private ArrayList<String> timeSlot = new ArrayList<>();
 	
-	/* date is the reference key */
-	public Booking (String bookingId, String day, String time, Customer customer, Employee employee) {
-		this.bookingId = bookingId;
+	public Booking(String employeeUserName, String customerUserName, String day, ArrayList<String> timeSlot) {
+		this.bookingId = Integer.toString(maxID++);
+		this.employeeUserName = employeeUserName;
+		this.customerUserName = customerUserName;
 		this.day = day;
-		this.time = time; 
-		this.customer = customer;
-		this.employee = employee;
+		this.timeSlot = timeSlot;
 	}
 
+	
 	public String getBookingId() {
 		return bookingId;
 	}
 
+
 	public void setBookingId(String bookingId) {
 		this.bookingId = bookingId;
 	}
-	
-	public String getTime() {
-		return this.time;
+
+
+	public String getEmployeeUserName() {
+		return employeeUserName;
 	}
-	
-	public void setTime(String time) {
-		this.time = time;
+
+	public void setEmployeeUserName(String employeeUserName) {
+		this.employeeUserName = employeeUserName;
+	}
+
+	public String getCustomerUserName() {
+		return customerUserName;
+	}
+
+	public void setCustomerUserName(String customerUserName) {
+		this.customerUserName = customerUserName;
 	}
 
 	public String getDay() {
-		return this.day;
+		return day;
 	}
 
 	public void setDay(String day) {
 		this.day = day;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public ArrayList<String> getTimeSlot() {
+		return timeSlot;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setTimeSlot(ArrayList<String> timeSlot) {
+		this.timeSlot = timeSlot;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	@Override
+	public String toString() {
+		return "RecordBooking [bookingId=" + bookingId + ", employeeUserName=" + employeeUserName
+				+ ", customerUserName=" + customerUserName + ", day=" + day + ", timeSlot=" + timeSlot + "]";
 	}
-	
-	
-	
-	
 	
 }

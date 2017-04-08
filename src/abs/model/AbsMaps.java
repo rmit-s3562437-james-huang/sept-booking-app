@@ -2,7 +2,6 @@ package abs.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import abs.model.bookings.Availability;
@@ -17,89 +16,13 @@ public class AbsMaps {
 	private HashMap<String, Customer> customerMap = new HashMap<String, Customer>();
 	private HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
 	
-	/* username, map(days, timeslots) */
-	private HashMap<String, Availability> employeeLinkedTimesMap = new HashMap<String, Availability>();
+	private HashMap<String, Booking> recordBookingMap = new HashMap<String, Booking>();
+	private HashMap<String, Availability> employeeAvailabilityMap = new HashMap<String, Availability>();
 	
-	public void linkEmployeeDayTimeSlot() {
-		/* days, timeslots */
-		HashMap<String, String[]> daysTimesMap = null;
-		Availability availability = null;
-		// loop employees
-		// no need to clear()
-		for (Employee employee : employeeMap.values()) {
-			System.out.println(employee.getUserName());
-			System.out.println("####################");
-			String[] allAvailabilities = employee.getAvailability().split(", ");
-			daysTimesMap = new HashMap<String, String[]>();
-			// split data
-			for (int i = 0; i < allAvailabilities.length ; i++) {
-				String[] availabilitiesOnDay = allAvailabilities[i].split(" ");
-				String day = availabilitiesOnDay[0];
-				System.out.println(day);
-				String[] timeSlot = availabilitiesOnDay[1].split("\\+");
-	
-				for (int j = 0; j < timeSlot.length ; j++) {
-					System.out.println(timeSlot[j]);
-				}
-				System.out.println("====================");
-				// store new day/time
-				daysTimesMap.put(day, timeSlot);
-				
-			}
-			
-			availability = new Availability(daysTimesMap);
-			// problem is that the daysTimesMap is being rewritten
-			// instead of creating a map (have a contructor which stores the day/available time
-			employeeLinkedTimesMap.put(employee.getUserName(), availability);
-		}
-		/* test user to day to time slot*/
-		// arrays incorrect by 1 
-		// works fine for Jess
-		System.out.println("========Test========");
-		System.out.println(employeeLinkedTimesMap.get("Tess").getDaysTimesMap().get("Tue")[1]);
+	public HashMap<String, Availability> getEmployeeAvailabilityMap() {
+		return employeeAvailabilityMap;
 	}
-	
-	// jesus wtf am i doing
-	//hard code atm
-	public void makeBooking() {
-		Booking booking = null; 
-		Scanner scan = new Scanner(System.in);
-		
-		
-		
-		System.out.println("Select a Doctor: ");
-		String employeeName = scan.nextLine();
-		
-		System.out.println("Select a Day: ");
-		String selectedDay = scan.nextLine();
-		if (employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().containsKey(selectedDay)) {
-			for (int i = 0 ; i <employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().get(selectedDay).length; i++) {
-				System.out.println(i+1 + ". " + employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().get(selectedDay)[i]);
-			}
-			int selectedTime = scan.nextInt();
-			System.out.println(employeeLinkedTimesMap.get(employeeName).getDaysTimesMap().get(selectedDay)[selectedTime-1]);
-			
-			// before making a booking you must cross check the booking.txt file for customers 
-			
-			// if not booked then continue else loop (checking) 
-			
-			// create a new booking, username followed by day and time
-			
-			// create booking object to store this
-			
-			// finally write to file
-		}
-		
-	}
-	
-	public void addOwner(Owner owner) {
-		ownerMap.put(owner.getUserName(), owner);
-	}
-	
-	public Owner getOwner(String userName) {
-		return ownerMap.get(userName);
-	}
-	
+
 	public void addCustomer(Customer customer) {
 		customerMap.put(customer.getUserName(), customer);
 	}
@@ -108,18 +31,14 @@ public class AbsMaps {
 		return customerMap.get(userName);
 	}
 	
-	public void addEmployee(Employee employee) {
-		employeeMap.put(employee.getUserName(), employee);
-	}
-	
-	public Employee getEmployee(String username) {
-		return employeeMap.get(username);
-	}
-	
 	public void displayAllCustomers()
 	{
 		for (Customer customer : customerMap.values())
 			System.out.println(customer);
+	}
+	
+	public HashMap<String, Booking> getRecordBookingMap() {
+		return recordBookingMap;
 	}
 	
 	public HashMap<String, Employee> getEmployeeMap() {
@@ -167,5 +86,101 @@ public class AbsMaps {
 		}
 		return false;
 	}
+	
+	public void displayAllBookings() {
+		for (Booking booking : recordBookingMap.values()) {
+			System.out.println(booking.toString());
+		}
+	}
+	
+	private boolean validateBooking(String day, String time) {
 
+		for (Booking booking : recordBookingMap.values()) {
+			if (booking.getDay().equals(day) && booking.getTimeSlot().contains(time)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void bookByTimeOfDay(String custUserName) {
+		
+		ArrayList<String> tempTimeSlot = new ArrayList<>();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Select a Day: ");
+		String selectedDay = scan.nextLine();
+		
+		int index = 1;
+		/* loops through map to display timeslots of the given day | ordered by index */
+		for (Availability empAvailability : employeeAvailabilityMap.values()) {
+			if (empAvailability.getDay().equals(selectedDay)) {
+				for (int i = 0; i < empAvailability.getTimeSlot().size(); i++) {
+					System.out.println(index++ + ". " + empAvailability.getTimeSlot().get(i));
+					empAvailability.getEmployeeUserName();
+					/* temp store for the times so that index matches to the time 
+					 * NOTE: because each arraylist has different index */
+					tempTimeSlot.add(empAvailability.getTimeSlot().get(i));
+				}
+			}
+		}
+		
+		System.out.println("Select a time: ");
+		int selectTime = scan.nextInt();
+		
+		String time = tempTimeSlot.get(selectTime-1);
+		
+		int countDays = 0;
+		int countEmp = 0;
+		int countCust = 0;
+		
+		/* cross check between availabilities and bookings */
+		for (Availability empAvailability : employeeAvailabilityMap.values()) {
+			if (empAvailability.getDay().equals(selectedDay)) {
+				if (empAvailability.getTimeSlot().contains(time)) {
+					/* validates if given time of day is located in the booking map */
+					if (validateBooking(selectedDay, time)) {
+						System.out.println("Booking already exists!");
+					} else {
+						
+						System.out.println("Creating booking!");
+						
+						for (Booking booking : recordBookingMap.values()) {
+							if (booking.getCustomerUserName().equals(custUserName)) {
+								if (booking.getEmployeeUserName().equals(empAvailability.getEmployeeUserName())) {
+									if (booking.getDay().equals(empAvailability.getDay())) {
+										System.out.println(empAvailability.getDay());
+										booking.getTimeSlot().add(time);
+									} else {
+										/* if day does not exist in booking.txt */
+										countDays++;
+									}
+								} else {
+									/* if employee does not exist in booking.txt */
+									countEmp++;
+								}
+							} else {
+								/* if customer does not exist in booking.txt */
+								countCust++;
+							}
+						}
+						
+						/*DELETE: checking counters */
+						System.out.println("Customers: " + countCust 
+								+ "\nEmployees: " + countEmp 
+								+ "\nDays: " + countDays 
+								+ "\nBookings: " + recordBookingMap.size());
+					
+						/* if total of cust+emp+days is equal to map size create a new booking */
+						if ((countCust + countEmp + countDays) == recordBookingMap.size()) {
+							ArrayList<String> timeSlot = new ArrayList<>();
+							timeSlot.add(time);
+							Booking recordBooking = new Booking(empAvailability.getEmployeeUserName(), custUserName, empAvailability.getDay(), timeSlot);
+							recordBookingMap.put(recordBooking.getBookingId(), recordBooking);
+						}
+						
+					}
+				} 
+			}
+		}
+	}
 }

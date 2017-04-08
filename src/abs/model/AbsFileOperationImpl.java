@@ -2,13 +2,11 @@ package abs.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.nio.file.*;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.io.*;
 
+import abs.model.bookings.Availability;
+import abs.model.bookings.Booking;
 import abs.model.interfaces.*;
 import abs.model.users.Customer;
 import abs.model.users.Employee;
@@ -47,15 +45,10 @@ public class AbsFileOperationImpl implements FileOperation {
 		return storeLines;
 	}
 	
-	/*=========================================================================*/
-	
-	// Change constructor to store a data implementation
-	// Map within a map (or arraylist) so link Employee to the day then to the times
-	// ArrayList<UserName, ArrayList<<(String)Day, (String[])TimeSlots>>
 	
 	public void readToEmployeeAvailability(Path path, Employee employee, HashMap<String, Employee> map) {
 		
-		String employeeRecord[];
+		String[] employeeRecord;
 		
 		for (int i = 0; i < readFromFile(path).size() ; i++) {
 			
@@ -70,8 +63,68 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
+	public void readEmployeeAvailabilityTest(Path path, Availability employeeAvailability, HashMap<String, Availability> map) {
+		
+		String[] splitRecord = null;
+		String[] record;
+		String empUserName, day;
+		
+		for (int i = 0; i < readFromFile(path).size(); i++) {
+			
+			ArrayList<String> timeSlot = new ArrayList<>();
+			record = readFromFile(path).get(i).split(": ");
+			
+			splitRecord = record[0].split(" ");
+			empUserName = splitRecord[0];
+			day = splitRecord[1];
+			record[1] = record[1].replaceAll("\\[", "").replaceAll("\\]","");
+		
+			String[] storeBookingRecord = record[1].split(", ");
+			for (int j = 0; j < storeBookingRecord.length; j++) {
+				storeBookingRecord[j] = storeBookingRecord[j].replaceAll(" ", "");
+				if (storeBookingRecord[j].equals("empty")) {
+					break;
+				} else {
+					timeSlot.add(storeBookingRecord[j]);
+				}
+			}
+			
+			employeeAvailability = new Availability(empUserName, day, timeSlot);
+			map.put(employeeAvailability.getAvailabilityId(), employeeAvailability);
+		}
+	}
 
-	/*=========================================================================*/
+	
+	public void readBookingTest (Path path, Booking recordBooking, HashMap<String, Booking> map) {
+		
+		String[] splitRecord = null;
+		String[] record;
+		String custUserName, empUserName, day;
+		
+		for (int i = 0; i < readFromFile(path).size(); i++) {
+			
+			ArrayList<String> timeSlot = new ArrayList<>();
+			record = readFromFile(path).get(i).split(": ");
+			
+			splitRecord = record[0].split(" ");
+			custUserName = splitRecord[0];
+			empUserName = splitRecord[1];
+			day = splitRecord[2];
+			
+			record[1] = record[1].replaceAll("\\[", "").replaceAll("\\]","");
+			String[] storeBookingRecord = record[1].split(",");
+			
+			for (int j = 0; j < storeBookingRecord.length; j++) {
+				storeBookingRecord[j] = storeBookingRecord[j].replaceAll(" ", "");
+				timeSlot.add(storeBookingRecord[j]);
+			}
+			
+			recordBooking = new Booking(empUserName, custUserName, day, timeSlot);
+			map.put(recordBooking.getBookingId(), recordBooking);
+		}
+	}
+	
+	
 	
 	public void primeCustomerFile(String FileWritePath) {
 
@@ -148,5 +201,37 @@ public class AbsFileOperationImpl implements FileOperation {
 			}
 		}
 	}
+    
+    public void compileBookingMapStrings(String writePath, HashMap<String, Booking> map) {
+    	
+    	String bookingId, custUserName, empUserName, day, timeSlot;
+		String delim1 = " ";
+		String delim2 = ": ";
+		String bookingString;
+		int count = 0;
+		
+		primeCustomerFile(writePath);
+		
+		for (Booking booking : map.values()) {
+			custUserName = booking.getCustomerUserName();
+			empUserName = booking.getEmployeeUserName();
+			day = booking.getDay();
+			timeSlot = booking.getTimeSlot().toString();
+			
+			count++;
+			bookingString = custUserName + delim1 + empUserName 
+					+ delim1 + day + delim2 + timeSlot;
+			
+			if(count < map.size()) {
+				writeToCustomerFile(writePath, bookingString, true);
+			}
+			else {
+				writeToCustomerFile(writePath, bookingString, false);
+			}
+		}
+    }
+    
+    
+
 
 }
