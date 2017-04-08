@@ -9,6 +9,9 @@ public class AbsMenuImpl {
 	
 	AbsDisplayMenus dm = new AbsDisplayMenus();
 	
+	/* TODO: add booking implementations 
+	 * call methods to read create and write bookings */
+	
 	public void initializeMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, AbsFileOperationImpl fo, String writePath) {
 		
 		Scanner scan = new Scanner(System.in);

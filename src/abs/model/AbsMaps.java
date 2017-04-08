@@ -103,9 +103,21 @@ public class AbsMaps {
 		return false;
 	}
 
+	
+
+	/* TODO: make booking with dentist name */
+	
+	/* TODO: remove bookings */
+	
+	
+	
+	/* TODO: break up this method */
 	public void bookByTimeOfDay(String custUserName) {
 		
 		ArrayList<String> tempTimeSlot = new ArrayList<>();
+		
+		/* TODO: check for exceptions */
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Select a Day: ");
 		String selectedDay = scan.nextLine();
@@ -123,6 +135,8 @@ public class AbsMaps {
 				}
 			}
 		}
+		
+		/* TODO: check for exceptions */
 		
 		System.out.println("Select a time: ");
 		int selectTime = scan.nextInt();
