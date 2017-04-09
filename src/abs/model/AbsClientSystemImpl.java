@@ -152,7 +152,7 @@ public class AbsClientSystemImpl {
 				case 1:
 					System.out.print("\nEnter new Name: ");
 					newName = scan.next();
-					if(validName(newName)) {
+					if(validName(newName)){
 						map.get(userName).setName(newName);
 						System.out.println("Name has been changed!");
 					}
@@ -218,8 +218,7 @@ public class AbsClientSystemImpl {
 	
 	public boolean validName(String name){
 		
-		if(name.equals("") == false && name.matches("[a-z][A-Z]+")) {
-			
+		if(name.equals("") == false && name.matches(".*\\d+.*") == false) {
 			return true;
 		}
 		else if(name.equals("")) {
