@@ -35,6 +35,8 @@ public class AbsMenuImpl {
 				dm.printExit();
 				exit = true;
 				break;
+			default:
+				System.out.println("Please choose a valid option.");	
 			}
 		} while (!exit);
 	}
@@ -76,6 +78,8 @@ public class AbsMenuImpl {
 			case 3:
 				System.out.println();
 				break;
+			default:
+				System.out.println("Please choose a valid option.");
 		}
 	}
 	
@@ -125,6 +129,8 @@ public class AbsMenuImpl {
 					System.out.println();
 					logout = true;
 					break;
+				default:
+					System.out.println("Please choose a valid option.");
 			} 
 		} while (logout == false);
 	}
@@ -146,6 +152,8 @@ public class AbsMenuImpl {
 				case 3:
 					logout = true;
 					break;
+				default:
+					System.out.println("Please choose a valid option.");
 			} 
 		} while (logout == false);
 	}

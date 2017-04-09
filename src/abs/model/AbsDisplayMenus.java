@@ -72,11 +72,11 @@ public class AbsDisplayMenus {
 		System.out.println();
 		System.out.println("Edit Customer information");
 		System.out.println("==========================");
-		System.out.println("1. Username");
-		System.out.println("2. Name");
-		System.out.println("3. Address");
-		System.out.println("4. Phone number");
-		System.out.println("5. Complete");
+		//System.out.println("1. Username");
+		System.out.println("1. Name");
+		System.out.println("2. Address");
+		System.out.println("3. Phone number");
+		System.out.println("4. Complete");
 		System.out.println("==========================");
 	}
 	
