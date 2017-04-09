@@ -144,19 +144,25 @@ public class AbsClientSystemImpl {
 				case 1:
 					System.out.print("\nEnter new Name: ");
 					newName = scan.next();
-					map.get(userName).setName(newName);
+					if(validName(newName)) {
+						map.get(userName).setName(newName);
+					}
 					System.out.print("Choose an option: ");
 					break;
 				case 2:
 					System.out.print("\nEnter new Address: ");
 					newAddress = scan.next();
-					map.get(userName).setUserAddress(newAddress);
+					if(validAddress(newAddress)){
+						map.get(userName).setUserAddress(newAddress);
+					}
 					System.out.print("Choose an option: ");
 					break;
 				case 3:
 					System.out.print("\nEnter new Phone number: ");
 					newPhoneNumber = scan.next();
-					map.get(userName).setUserPhoneNumber(newPhoneNumber);
+					if(validPhoneNumber(newPhoneNumber)){
+						map.get(userName).setUserPhoneNumber(newPhoneNumber);
+					}
 					System.out.print("Choose an option: ");
 					break;
 				case 4:
