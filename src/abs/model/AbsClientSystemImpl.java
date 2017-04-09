@@ -214,6 +214,9 @@ public class AbsClientSystemImpl {
 		else if(name.matches(".*\\d+.*")) {
 			System.out.println("Your name should not contain a number.");
 		}
+		else if(name.matches(".*\\s+.*")) {
+			System.out.println("Your name should not contain any white spaces!");
+		}
 		
 		return false;
 	}
@@ -235,7 +238,7 @@ public class AbsClientSystemImpl {
 		else if(phoneNumber.matches(".*[a-z][A-Z]+.*")) {
 			System.out.println("Your phone number should not contain letters!");
 		}
-		else if(phoneNumber.length() != 10)
+		else if(phoneNumber.length() != 10 || phoneNumber.matches(".*\\s+.*"))
 		{
 			System.out.println("Please enter your phone number as without spaces.");
 			System.out.println("e.g '0412345678");
