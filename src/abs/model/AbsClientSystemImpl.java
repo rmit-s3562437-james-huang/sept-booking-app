@@ -130,11 +130,19 @@ public class AbsClientSystemImpl {
 		Scanner scan = new Scanner(System.in);
 		
 		boolean back = false;
-		int opt;
+		int selected;
+		String input;
 		
 		do {
-			opt = scan.nextInt();
-			switch(opt) {
+			input = scan.nextLine();
+			if(input.matches("[0-9]+")){
+				selected = Integer.parseInt(input);
+			}
+			else {
+				selected = 0;
+			}
+			
+			switch(selected) {
 				/*case 1:
 					System.out.print("\nEnter new Username: ");
 					newUser = scan.next();

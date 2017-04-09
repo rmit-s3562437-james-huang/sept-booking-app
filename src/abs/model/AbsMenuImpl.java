@@ -1,5 +1,6 @@
 package abs.model;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -18,11 +19,13 @@ public class AbsMenuImpl {
 		
 		Scanner scan = new Scanner(System.in);
 		int selected;
+		String input;
 		boolean exit = false;
 		do {
+			input = scan.nextLine();
+			selected = checkChoice(input);
 			dm.printMainMenu();
 			dm.printChoice();
-			selected = scan.nextInt();
 			switch(selected) {
 			case 1:
 				loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
@@ -38,6 +41,7 @@ public class AbsMenuImpl {
 			default:
 				System.out.println("Please choose a valid option.");	
 			}
+			
 		} while (!exit);
 	}
 	
@@ -66,7 +70,9 @@ public class AbsMenuImpl {
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		Scanner scan = new Scanner(System.in);
 		int selected;
-		selected = scan.nextInt();
+		String input;
+		input = scan.nextLine();
+		selected = checkChoice(input);
 		switch(selected) {
 			case 1:
 				initializeMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
@@ -86,11 +92,14 @@ public class AbsMenuImpl {
 	public void customerMenu(String username, AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		Scanner scan = new Scanner(System.in);
+		String input;
 		int selected;
 		boolean logout = false;
 		do {
 			dm.printVerifiedCustomerMenu();
-			selected = scan.nextInt();
+			input = scan.nextLine();
+			selected = checkChoice(input);
+			
 			switch(selected) {
 				case 1:
 					System.out.println();
@@ -138,10 +147,12 @@ public class AbsMenuImpl {
 	public void ownerMenu(String username, AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map) {
 		Scanner scan = new Scanner(System.in);
 		int selected;
+		String input;
 		boolean logout = false;
 		do {
 			dm.printVerifiedOwnerMenu();
-			selected = scan.nextInt();
+			input = scan.nextLine();
+			selected = checkChoice(input);
 			switch(selected) {
 				case 1:
 					System.out.println(absMaps.getOwnerMap().get(username).toString());
@@ -158,5 +169,18 @@ public class AbsMenuImpl {
 		} while (logout == false);
 	}
 	
+	public int checkChoice(String choice){
+		
+		int ret;
+		
+		if (choice.matches("[0-9]+")){
+			ret = Integer.parseInt(choice);
+		}
+		else {
+			ret = 0;
+		}
+		
+		return ret;
+	}
 	
 }
