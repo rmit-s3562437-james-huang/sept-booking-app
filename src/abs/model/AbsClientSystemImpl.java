@@ -245,7 +245,7 @@ public class AbsClientSystemImpl {
 	
 	public boolean validPhoneNumber(String phoneNumber){
 		
-		if(phoneNumber.matches("[0-9]+") && phoneNumber.length() == 10) {
+		if(phoneNumber.matches(".*[a-z][A-Z].*") == false && phoneNumber.length() == 10) {
 			return true;
 		}
 		else if(phoneNumber.matches(".*[a-z][A-Z]+.*")) {
