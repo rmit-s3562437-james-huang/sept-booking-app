@@ -1,9 +1,11 @@
 package abs.model;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import abs.model.bookings.Booking;
+import abs.model.exceptions.InputGreaterThanException;
 import abs.model.users.Customer;
 
 public class AbsMenuImpl {
@@ -17,26 +19,41 @@ public class AbsMenuImpl {
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		
 		Scanner scan = new Scanner(System.in);
-		int selected;
 		boolean exit = false;
-		do {
-			dm.printMainMenu();
-			dm.printChoice();
-			selected = scan.nextInt();
-			switch(selected) {
-			case 1:
-				loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
-				break;
-			case 2:
-				dm.printRegisterMenu();
-				registerMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
-				break;
-			case 3:
-				dm.printExit();
-				exit = true;
-				break;
+		boolean check = false;
+		int selected;
+		
+		
+		while (!check) {
+			try {
+				dm.printMainMenu();
+				dm.printChoice();
+				selected = scan.nextInt();
+				if (selected >= 4) throw new InputGreaterThanException();
+				check = false;
+				do {
+					switch(selected) {
+					case 1:
+						loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
+						break;
+					case 2:
+						dm.printRegisterMenu();
+						registerMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
+						break;
+					case 3:
+						dm.printExit();
+						exit = true;
+						break;
+					}
+				} while (!exit);
+				
+			} catch (InputMismatchException | InputGreaterThanException e) {
+				System.out.println("Invalid input");
+				scan.next();
 			}
-		} while (!exit);
+		}
+		
+
 	}
 	
 	public void loginMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,

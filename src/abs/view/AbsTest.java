@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsFileOperationImpl;
@@ -17,8 +18,9 @@ import abs.model.users.Owner;
 
 public class AbsTest {
 	
-	public final static String PATHNAME = "/Users/James/git/SEPT2017/";
+	private static final Logger LOGGER = Logger.getLogger( AbsTest.class.getName() );
 	
+	public final static String PATHNAME = "/Users/James/git/SEPT2017/";
 	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + "customerInfo" + ".txt";
 	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "bookingTest" + ".txt";
 
@@ -27,11 +29,11 @@ public class AbsTest {
 	public final static Path CUSTOMERFILEPATH = Paths.get(PATHNAME + "customerInfo" + ".txt");
 	public final static Path OWNERFILEPATH = Paths.get(PATHNAME + "ownerInfo" + ".txt");
 	public final static Path BOOKINGTESTPATH = Paths.get(PATHNAME + "bookingTest" + ".txt");
-	
-	
-	
+
 	public static void main(String[] args)
 	{		
+		LOGGER.info("Logging an INFO-level message");
+		
 		/* create objects */
 		AbsFileOperationImpl fo = new AbsFileOperationImpl();
 		AbsMaps absMaps = new AbsMaps();
