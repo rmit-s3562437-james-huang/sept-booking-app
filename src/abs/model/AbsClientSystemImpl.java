@@ -30,9 +30,10 @@ public class AbsClientSystemImpl {
 		valid = false;
 		
 		do {
-			System.out.println("Please your desired password:");
+			System.out.println("Please enter your desired password:");
 			password = scan.nextLine();
-			if(password.equals(""))
+			
+			/*if(password.equals(""))
 			{
 				System.out.println("Your password cannot be an empty string.");
 				System.out.println("Please enter a non-empty string.");
@@ -43,7 +44,12 @@ public class AbsClientSystemImpl {
 			}
 			else {
 				valid = true;
+			}*/
+			
+			if(validPassword(password)) {
+				valid = true;
 			}
+			
 		} while (valid == false);
 		
 		valid = false;
@@ -52,7 +58,7 @@ public class AbsClientSystemImpl {
 			System.out.println("Please enter your first name:");
 			name = scan.nextLine();
 			
-			if(name.equals("")) {
+			/*if(name.equals("")) {
 				System.out.println("Your name cannot be an empty string.");
 			}
 			else if(name.matches(".*\\d.*")) {
@@ -60,7 +66,12 @@ public class AbsClientSystemImpl {
 			}
 			else {
 				valid = true;
+			}*/
+			
+			if(validName(name)) {
+				valid = true;
 			}
+			
 		} while (valid == false);
 		
 		valid = false;
@@ -69,12 +80,17 @@ public class AbsClientSystemImpl {
 			System.out.println("Please enter your address:");
 			address = scan.nextLine();
 			
-			if(address.equals("")) {
+			/*if(address.equals("")) {
 				System.out.println("Your address cannot be an empty string.");
 			}
 			else {
 				valid = true;
+			}*/
+			
+			if(validAddress(address)) {
+				valid = true;
 			}
+			
 		} while(valid == false);
 		
 		valid = false;
@@ -83,7 +99,7 @@ public class AbsClientSystemImpl {
 			System.out.println("Please enter your phone number:");
 			phoneNumber = scan.nextLine();
 			
-			if(phoneNumber.equals("")) {
+			/*if(phoneNumber.equals("")) {
 				System.out.println("You phone number cannot be an empty string.");
 			}
 			else if(phoneNumber.length() < 10) {
@@ -94,7 +110,12 @@ public class AbsClientSystemImpl {
 			}
 			else {
 				valid = true;
+			}*/
+			
+			if(validPhoneNumber(phoneNumber)) {
+				valid = true;
 			}
+			
 		} while(valid == false);
 		
 		Customer newCustomer = new Customer(name, userName, password, address, phoneNumber);
@@ -109,10 +130,14 @@ public class AbsClientSystemImpl {
 		System.out.println("Please enter a new passord:");
 		newPassword = scan.nextLine();
 		
-		if(newPassword.length() < 6) {
+		/*if(newPassword.length() < 6) {
 			System.out.println("Your password is too short. It should contain atleast 6 characters.");
 		}
 		else {
+			map.get(userName).setUserPassword(newPassword);
+		}*/
+		
+		if(validPassword(newPassword)){
 			map.get(userName).setUserPassword(newPassword);
 		}
 	}
@@ -161,7 +186,7 @@ public class AbsClientSystemImpl {
 					break;
 				case 2:
 					System.out.print("\nEnter new Address: ");
-					newAddress = scan.next();
+					newAddress = scan.nextLine();
 					if(validAddress(newAddress)){
 						map.get(userName).setUserAddress(newAddress);
 						System.out.println("Address has been changed!");
@@ -200,13 +225,13 @@ public class AbsClientSystemImpl {
 	
 	public boolean validPassword(String password){
 		
-		if(password.length() > 6 && password.matches(".*\\s+.*") == false){
+		if(password.length() >= 6 && password.matches(".*\\s+.*") == false){
 			return true;
 		}
 		else if(password.equals("")) {
 			System.out.println("Password should not be an empty string!");
 		}
-		else if (password.length() <6) {
+		else if (password.length() < 6) {
 			System.out.println("Password is too short. Your password should be at least 6 characters.");
 		}
 		else if(password.matches(".*\\s+.*") == true) {
