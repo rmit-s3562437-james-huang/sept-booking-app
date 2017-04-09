@@ -1,5 +1,6 @@
 package abs.model;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -19,7 +20,13 @@ public class AbsMenuImpl {
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		
 		Scanner scan = new Scanner(System.in);
+<<<<<<< HEAD
+=======
+		int selected;
+		String input;
+>>>>>>> refs/heads/sotoam
 		boolean exit = false;
+<<<<<<< HEAD
 		boolean check = false;
 		int selected;
 		
@@ -50,10 +57,36 @@ public class AbsMenuImpl {
 			} catch (InputMismatchException | InputGreaterThanException e) {
 				System.out.println("Invalid input");
 				scan.next();
+=======
+		do {
+			dm.printMainMenu();
+			dm.printChoice();
+			input = scan.nextLine();
+			selected = checkChoice(input);
+			switch(selected) {
+			case 1:
+				loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
+				break;
+			case 2:
+				dm.printRegisterMenu();
+				registerMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
+				break;
+			case 3:
+				dm.printExit();
+				exit = true;
+				break;
+			default:
+				System.out.println("Please choose a valid option.");	
+>>>>>>> refs/heads/sotoam
 			}
+<<<<<<< HEAD
 		}
 		
 
+=======
+			
+		} while (!exit);
+>>>>>>> refs/heads/sotoam
 	}
 	
 	public void loginMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,
@@ -81,7 +114,9 @@ public class AbsMenuImpl {
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		Scanner scan = new Scanner(System.in);
 		int selected;
-		selected = scan.nextInt();
+		String input;
+		input = scan.nextLine();
+		selected = checkChoice(input);
 		switch(selected) {
 			case 1:
 				initializeMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
@@ -93,17 +128,22 @@ public class AbsMenuImpl {
 			case 3:
 				System.out.println();
 				break;
+			default:
+				System.out.println("Please choose a valid option.");
 		}
 	}
 	
 	public void customerMenu(String username, AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		Scanner scan = new Scanner(System.in);
+		String input;
 		int selected;
 		boolean logout = false;
 		do {
 			dm.printVerifiedCustomerMenu();
-			selected = scan.nextInt();
+			input = scan.nextLine();
+			selected = checkChoice(input);
+			
 			switch(selected) {
 				case 1:
 					System.out.println();
@@ -142,6 +182,8 @@ public class AbsMenuImpl {
 					System.out.println();
 					logout = true;
 					break;
+				default:
+					System.out.println("Please choose a valid option.");
 			} 
 		} while (logout == false);
 	}
@@ -149,10 +191,12 @@ public class AbsMenuImpl {
 	public void ownerMenu(String username, AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map) {
 		Scanner scan = new Scanner(System.in);
 		int selected;
+		String input;
 		boolean logout = false;
 		do {
 			dm.printVerifiedOwnerMenu();
-			selected = scan.nextInt();
+			input = scan.nextLine();
+			selected = checkChoice(input);
 			switch(selected) {
 				case 1:
 					System.out.println(absMaps.getOwnerMap().get(username).toString());
@@ -163,9 +207,24 @@ public class AbsMenuImpl {
 				case 3:
 					logout = true;
 					break;
+				default:
+					System.out.println("Please choose a valid option.");
 			} 
 		} while (logout == false);
 	}
 	
+	public int checkChoice(String choice){
+		
+		int ret;
+		
+		if (choice.matches("[0-9]+")){
+			ret = Integer.parseInt(choice);
+		}
+		else {
+			ret = 0;
+		}
+		
+		return ret;
+	}
 	
 }
