@@ -104,21 +104,24 @@ public class AbsMenuImpl {
 					fo.compileCustomerMapStrings(writePath, map);
 					break;
 				case 4:
-					absMaps.displayAllBookings(username);
+					absMaps.displayUserBookings(username);
 					break;
 				case 5:
+					absMaps.displayAllBookings();
+					break;
+				case 6:
 					absMaps.bookByTimeOfDay(username);
 					fo.compileBookingMapStrings(writeBookingPath, bookingMap);
 					break;
-				case 6:
+				case 7:
 					absMaps.bookByDentist(username);
 					fo.compileBookingMapStrings(writeBookingPath, bookingMap);
 					break;
-				case 7: 	
+				case 8: 	
 					absMaps.removeBooking(username);
 					fo.compileBookingMapStrings(writeBookingPath, bookingMap);
 					break;
-				case 8:
+				case 9:
 					System.out.println();
 					logout = true;
 					break;

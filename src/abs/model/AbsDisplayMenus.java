@@ -58,11 +58,12 @@ public class AbsDisplayMenus {
 		System.out.println("1. Display your details");
 		System.out.println("2. Change your password");
 		System.out.println("3. Edit your information");
-		System.out.println("4. Display all bookings");
-		System.out.println("5. Book by time");
-		System.out.println("6. Book by dentist");
-		System.out.println("7. Remove a booking");
-		System.out.println("4. Log Out");
+		System.out.println("4. Display your bookings");
+		System.out.println("5. Display all bookings");
+		System.out.println("6. Book by time");
+		System.out.println("7. Book by dentist");
+		System.out.println("8. Remove a booking");
+		System.out.println("9. Log Out");
 		System.out.println("==========================");
 		printChoice();
 	}

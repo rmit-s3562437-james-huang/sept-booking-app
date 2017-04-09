@@ -20,11 +20,11 @@ public class AbsMaps {
 	private HashMap<String, Customer> customerMap = new HashMap<String, Customer>();
 	private HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
 	
-	private HashMap<String, Booking> recordBookingMap = new HashMap<String, Booking>();
-	private HashMap<String, Availability> employeeAvailabilityMap = new HashMap<String, Availability>();
+	private HashMap<String, Booking> bookingMap = new HashMap<String, Booking>();
+	private HashMap<String, Availability> availabilityMap = new HashMap<String, Availability>();
 	
 	public HashMap<String, Availability> getEmployeeAvailabilityMap() {
-		return employeeAvailabilityMap;
+		return availabilityMap;
 	}
 
 	public void addCustomer(Customer customer) {
@@ -42,7 +42,7 @@ public class AbsMaps {
 	}
 	
 	public HashMap<String, Booking> getRecordBookingMap() {
-		return recordBookingMap;
+		return bookingMap;
 	}
 	
 	public HashMap<String, Employee> getEmployeeMap() {
@@ -91,8 +91,14 @@ public class AbsMaps {
 		return false;
 	}
 	
-	public void displayAllBookings(String custUserName) {
-		for (Booking booking : recordBookingMap.values()) {
+	public void displayAllBookings() {
+		for (Booking booking : bookingMap.values()) {
+			System.out.println(booking.toString());
+		}
+	}
+	
+	public void displayUserBookings(String custUserName) {
+		for (Booking booking : bookingMap.values()) {
 			if (booking.getCustomerUserName().equals(custUserName)) {
 				System.out.println(booking.toString());
 			}
@@ -101,7 +107,7 @@ public class AbsMaps {
 	
 	private boolean validateBooking(String day, String time) {
 
-		for (Booking booking : recordBookingMap.values()) {
+		for (Booking booking : bookingMap.values()) {
 			if (booking.getDay().equals(day) && booking.getTimeSlot().contains(time)) {
 				return true;
 			}
@@ -109,7 +115,6 @@ public class AbsMaps {
 		return false;
 	}
 
-	/* TODO: make booking with dentist name */
 	public void bookByDentist(String custUserName) {
 		
 		ArrayList<String> tempStoreEmp = new ArrayList<>();
@@ -117,7 +122,8 @@ public class AbsMaps {
 		
 		System.out.println("Enter the Dentist you wish to make a booking with: ");
 		
-		for (Availability availability : employeeAvailabilityMap.values()) {
+		/* display all employees */
+		for (Availability availability : availabilityMap.values()) {
 			if (!tempStoreEmp.contains(availability.getEmployeeUserName())) {
 				tempStoreEmp.add(availability.getEmployeeUserName());
 			} 
@@ -133,7 +139,7 @@ public class AbsMaps {
 		String selectedDentist = tempStoreEmp.get(selected-1);
 		
 		int index = 1;
-		for (Availability availability : employeeAvailabilityMap.values()) {
+		for (Availability availability : availabilityMap.values()) {
 			if (availability.getEmployeeUserName().equals(selectedDentist)) {
 				System.out.println(index++ + ". " + availability.getDay() + ": " + availability.getTimeSlot());
 				
@@ -152,7 +158,7 @@ public class AbsMaps {
 		String day = info[1];
 		String timeSlot = splitSelected[1];
 		
-		for (Availability availability : employeeAvailabilityMap.values()) {
+		for (Availability availability : availabilityMap.values()) {
 			if (availability.getEmployeeUserName().equals(empUserName) 
 					&& availability.getDay().equals(day) 
 					&& availability.getTimeSlot().toString().equals(timeSlot)) {
@@ -179,7 +185,7 @@ public class AbsMaps {
 		} else {
 			System.out.println("Creating booking!");
 			
-			for (Booking booking : recordBookingMap.values()) {
+			for (Booking booking : bookingMap.values()) {
 				if (booking.getCustomerUserName().equals(customerUserName)) {
 					if (booking.getEmployeeUserName().equals(employeeUserName)) {
 						if (booking.getDay().equals(day)) {
@@ -199,31 +205,33 @@ public class AbsMaps {
 				}
 			}
 			
-			/*DELETE: checking counters */
-			System.out.println("Customers: " + countCust 
+			/*	REMOVE: checking counters */
+			/*
+				System.out.println("Customers: " + countCust 
 					+ "\nEmployees: " + countEmp 
 					+ "\nDays: " + countDays 
 					+ "\nBookings: " + recordBookingMap.size());
-		
+			*/
+			
 			/* if total of cust+emp+days is equal to map size create a new booking */
-			if ((countCust + countEmp + countDays) == recordBookingMap.size()) {
+			if ((countCust + countEmp + countDays) == bookingMap.size()) {
 				ArrayList<String> newTimeSlot = new ArrayList<>();
 				newTimeSlot.add(time);
 				Booking recordBooking = new Booking(employeeUserName, 
 						customerUserName, day, newTimeSlot);
-				recordBookingMap.put(recordBooking.getBookingId(), recordBooking);
+				bookingMap.put(recordBooking.getBookingId(), recordBooking);
 			}	
 		}
 	}
 	
-	/* TODO: remove bookings */
 	public void removeBooking(String custUserName) {
 		
 		ArrayList<String> tempStore = new ArrayList<>();
 		
 		int index = 1;
 		
-		for (Booking booking : recordBookingMap.values()) {
+		/* display bookings by index */
+		for (Booking booking : bookingMap.values()) {
 			if (booking.getCustomerUserName().equals(custUserName)) {
 				System.out.println(index++ + ". " + booking.getEmployeeUserName() 
 				+ " " + booking.getDay() + ": " + booking.getTimeSlot());
@@ -233,6 +241,7 @@ public class AbsMaps {
 			}
 		}
 		
+		/* split data accodringly */
 		System.out.println("Select a booking to delete: ");
 		Scanner scan = new Scanner(System.in);
 		int toDelete = scan.nextInt();
@@ -250,7 +259,7 @@ public class AbsMaps {
 		/* reset index */
 		index = 1;
 		
-		for (Booking booking : recordBookingMap.values()) {
+		for (Booking booking : bookingMap.values()) {
 			if (booking.getEmployeeUserName().equals(empUserName) 
 					&& booking.getDay().equals(day)
 					&& booking.getTimeSlot().toString().equals(timeSlot)) {
@@ -266,10 +275,10 @@ public class AbsMaps {
 		}
 		
 		/* Removes bookings which do not contain a timeslot */
-		java.util.Iterator<Entry<String, Booking>> iter = recordBookingMap.entrySet().iterator();
+		java.util.Iterator<Entry<String, Booking>> iter = bookingMap.entrySet().iterator();
 		while (iter.hasNext()) {
 		    Entry<String, Booking> entry = iter.next();
-		    if(recordBookingMap.get(entry.getKey()).getTimeSlot().isEmpty()){
+		    if(bookingMap.get(entry.getKey()).getTimeSlot().isEmpty()){
 		        iter.remove();
 		    }
 		}
@@ -301,7 +310,7 @@ public class AbsMaps {
 		
 		int index = 1;
 		/* loops through map to display timeslots of the given day | ordered by index */
-		for (Availability empAvailability : employeeAvailabilityMap.values()) {
+		for (Availability empAvailability : availabilityMap.values()) {
 			if (empAvailability.getDay().equals(day)) {
 				for (int i = 0; i < empAvailability.getTimeSlot().size(); i++) {
 					System.out.println(index++ + ". " + empAvailability.getTimeSlot().get(i));
@@ -321,7 +330,7 @@ public class AbsMaps {
 		String time = tempTimeSlot.get(selectTime-1);
 		
 		/* cross check between availabilities and bookings */
-		for (Availability empAvailability : employeeAvailabilityMap.values()) {
+		for (Availability empAvailability : availabilityMap.values()) {
 			if (empAvailability.getDay().equals(day)) {
 				if (empAvailability.getTimeSlot().contains(time)) {
 					/* validates if given time of day is located in the booking map */
