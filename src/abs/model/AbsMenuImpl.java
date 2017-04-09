@@ -1,63 +1,27 @@
 package abs.model;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import abs.model.bookings.Booking;
-import abs.model.exceptions.InputGreaterThanException;
 import abs.model.users.Customer;
+import abs.view.AbsTest;
 
 public class AbsMenuImpl {
 	
-	AbsDisplayMenus dm = new AbsDisplayMenus();
+	Logger LOGGER = Logger.getLogger(AbsMenuImpl.class.getName());
 	
-	/* TODO: add booking implementations 
-	 * call methods to read create and write bookings */
+	AbsDisplayMenus dm = new AbsDisplayMenus();
 	
 	public void initializeMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, 
 			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		
 		Scanner scan = new Scanner(System.in);
-<<<<<<< HEAD
-=======
 		int selected;
 		String input;
->>>>>>> refs/heads/sotoam
 		boolean exit = false;
-<<<<<<< HEAD
-		boolean check = false;
-		int selected;
-		
-		
-		while (!check) {
-			try {
-				dm.printMainMenu();
-				dm.printChoice();
-				selected = scan.nextInt();
-				if (selected >= 4) throw new InputGreaterThanException();
-				check = false;
-				do {
-					switch(selected) {
-					case 1:
-						loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
-						break;
-					case 2:
-						dm.printRegisterMenu();
-						registerMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
-						break;
-					case 3:
-						dm.printExit();
-						exit = true;
-						break;
-					}
-				} while (!exit);
-				
-			} catch (InputMismatchException | InputGreaterThanException e) {
-				System.out.println("Invalid input");
-				scan.next();
-=======
+
 		do {
 			dm.printMainMenu();
 			dm.printChoice();
@@ -77,16 +41,8 @@ public class AbsMenuImpl {
 				break;
 			default:
 				System.out.println("Please choose a valid option.");	
->>>>>>> refs/heads/sotoam
 			}
-<<<<<<< HEAD
-		}
-		
-
-=======
-			
 		} while (!exit);
->>>>>>> refs/heads/sotoam
 	}
 	
 	public void loginMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,
@@ -150,7 +106,6 @@ public class AbsMenuImpl {
 					System.out.println(absMaps.getCustomerMap().get(username).toString());
 					break;
 				case 2:
-					//change password
 					cs.changeCustomerPassword(username, map);
 					fo.compileCustomerMapStrings(writePath, map);
 					break;

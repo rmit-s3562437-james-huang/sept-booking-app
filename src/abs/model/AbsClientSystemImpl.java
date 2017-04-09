@@ -2,11 +2,17 @@ package abs.model;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
+import abs.model.interfaces.ClientSystem;
 import abs.model.users.Customer;
+import abs.view.AbsTest;
 
-public class AbsClientSystemImpl {
+public class AbsClientSystemImpl implements ClientSystem {
 	
+	Logger LOGGER = Logger.getLogger(AbsClientSystemImpl.class.getName());
+	
+	@Override
 	public void registerCustomer(HashMap<String, Customer> map) {
 		
 		Scanner scan = new Scanner(System.in);
@@ -33,19 +39,6 @@ public class AbsClientSystemImpl {
 			System.out.println("Please enter your desired password:");
 			password = scan.nextLine();
 			
-			/*if(password.equals(""))
-			{
-				System.out.println("Your password cannot be an empty string.");
-				System.out.println("Please enter a non-empty string.");
-			}
-			else if(password.length() < 6)
-			{
-				System.out.println("You're password is too short. It must be atleast 6 characters long.");
-			}
-			else {
-				valid = true;
-			}*/
-			
 			if(validPassword(password)) {
 				valid = true;
 			}
@@ -57,16 +50,6 @@ public class AbsClientSystemImpl {
 		do {
 			System.out.println("Please enter your first name:");
 			name = scan.nextLine();
-			
-			/*if(name.equals("")) {
-				System.out.println("Your name cannot be an empty string.");
-			}
-			else if(name.matches(".*\\d.*")) {
-				System.out.println("Your name should not contain a digit.");
-			}
-			else {
-				valid = true;
-			}*/
 			
 			if(validName(name)) {
 				valid = true;
@@ -80,13 +63,6 @@ public class AbsClientSystemImpl {
 			System.out.println("Please enter your address:");
 			address = scan.nextLine();
 			
-			/*if(address.equals("")) {
-				System.out.println("Your address cannot be an empty string.");
-			}
-			else {
-				valid = true;
-			}*/
-			
 			if(validAddress(address)) {
 				valid = true;
 			}
@@ -99,19 +75,6 @@ public class AbsClientSystemImpl {
 			System.out.println("Please enter your phone number:");
 			phoneNumber = scan.nextLine();
 			
-			/*if(phoneNumber.equals("")) {
-				System.out.println("You phone number cannot be an empty string.");
-			}
-			else if(phoneNumber.length() < 10) {
-				System.out.println("Please enter a valid Australian landline or mobile number.");
-			}
-			else if(phoneNumber.matches(".*[a-zA-Z]+.*")) {
-				System.out.println("Your phone number should not contain any alphabet characters.");
-			}
-			else {
-				valid = true;
-			}*/
-			
 			if(validPhoneNumber(phoneNumber)) {
 				valid = true;
 			}
@@ -123,6 +86,7 @@ public class AbsClientSystemImpl {
 		map.put(newCustomer.getUserName(), newCustomer);
 	}
 	
+	@Override
 	public void changeCustomerPassword(String userName, HashMap<String, Customer> map) {
 		String newPassword;
 		Scanner scan = new Scanner(System.in);
@@ -130,18 +94,12 @@ public class AbsClientSystemImpl {
 		System.out.println("Please enter a new passord:");
 		newPassword = scan.nextLine();
 		
-		/*if(newPassword.length() < 6) {
-			System.out.println("Your password is too short. It should contain atleast 6 characters.");
-		}
-		else {
-			map.get(userName).setUserPassword(newPassword);
-		}*/
-		
 		if(validPassword(newPassword)){
 			map.get(userName).setUserPassword(newPassword);
 		}
 	}
 	
+	@Override
 	public void printCustomerMap(HashMap<String, Customer> map) {
 		for(Customer customer : map.values()) {
 			System.out.println("\n==========================");
@@ -150,6 +108,7 @@ public class AbsClientSystemImpl {
 		}
 	}
 	
+	@Override
 	public void editCustomerInformation(String userName, HashMap<String, Customer> map) {
 		String newName, newUser, newPass, newAddress, newPhoneNumber;
 		Scanner scan = new Scanner(System.in);
@@ -168,12 +127,6 @@ public class AbsClientSystemImpl {
 			}
 			
 			switch(selected) {
-				/*case 1:
-					System.out.print("\nEnter new Username: ");
-					newUser = scan.next();
-					map.get(userName).setUserName(newUser);
-					System.out.print("Choose an option: ");
-					break; */
 				case 1:
 					System.out.print("\nEnter new Name: ");
 					newName = scan.next();
@@ -181,7 +134,6 @@ public class AbsClientSystemImpl {
 						map.get(userName).setName(newName);
 						System.out.println("Name has been changed!");
 					}
-					//System.out.print("Choose an option: ");
 					back = true;
 					break;
 				case 2:
@@ -191,7 +143,6 @@ public class AbsClientSystemImpl {
 						map.get(userName).setUserAddress(newAddress);
 						System.out.println("Address has been changed!");
 					}
-					//System.out.print("Choose an option: ");
 					back = true;
 					break;
 				case 3:
@@ -201,7 +152,6 @@ public class AbsClientSystemImpl {
 						map.get(userName).setUserPhoneNumber(newPhoneNumber);
 						System.out.println("Phone number has been changed!");
 					}
-					//System.out.print("Choose an option: ");
 					back = true;
 					break;
 				case 4:
@@ -213,6 +163,7 @@ public class AbsClientSystemImpl {
 		} while (!back);
 	}
 	
+	@Override
 	public boolean validUserName(String userName){
 		
 		if(userName.equals("") == false)
@@ -223,6 +174,7 @@ public class AbsClientSystemImpl {
 		return false;
 	}
 	
+	@Override
 	public boolean validPassword(String password){
 		
 		if(password.length() >= 6 && password.matches(".*\\s+.*") == false){
@@ -241,6 +193,7 @@ public class AbsClientSystemImpl {
 		return false;
 	}
 	
+	@Override
 	public boolean validName(String name){
 		
 		if(name.equals("") == false && name.matches(".*\\d+.*") == false) {
@@ -259,6 +212,7 @@ public class AbsClientSystemImpl {
 		return false;
 	}
 	
+	@Override
 	public boolean validAddress(String address){
 		
 		if(address.equals("") == false) {
@@ -268,6 +222,7 @@ public class AbsClientSystemImpl {
 		return false;
 	}
 	
+	@Override
 	public boolean validPhoneNumber(String phoneNumber){
 		
 		if(phoneNumber.matches(".*[a-z][A-Z].*") == false && phoneNumber.length() == 10) {

@@ -19,7 +19,6 @@ public class Booking {
 		this.day = day;
 		this.timeSlot = timeSlot;
 	}
-
 	
 	public String getBookingId() {
 		return bookingId;
@@ -63,11 +62,10 @@ public class Booking {
 		this.timeSlot = timeSlot;
 	}
 
-
 	@Override
 	public String toString() {
-		return "RecordBooking [bookingId=" + bookingId + ", employeeUserName=" + employeeUserName
-				+ ", customerUserName=" + customerUserName + ", day=" + day + ", timeSlot=" + timeSlot + "]";
+		return "RecordBooking bookingId=" + bookingId + "   " + "employeeUserName=" + employeeUserName
+				+ "\tcustomerUserName=" + customerUserName + "\tday=" + day + "\ttimeSlot=" + timeSlot;
 	}
 	
 }

@@ -2,6 +2,8 @@ package abs.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.nio.file.*;
 import java.io.*;
 
@@ -9,16 +11,19 @@ import abs.model.bookings.Availability;
 import abs.model.bookings.Booking;
 import abs.model.interfaces.*;
 import abs.model.users.Customer;
-import abs.model.users.Employee;
 import abs.model.users.Owner;
+import abs.view.AbsTest;
 
 public class AbsFileOperationImpl implements FileOperation {
 
+	Logger LOGGER = Logger.getLogger(AbsFileOperationImpl.class.getName());
+	
 	private static final String REGEX = "\\,\\ ";
 	private static final String EMPREGEX = " \\|\\ ";
 
+	@Override
 	public void createFile(Path path) {
-
+		LOGGER.log(Level.WARNING, "Creating File");
 		System.out.println("A file is about to be created!");
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -27,9 +32,9 @@ public class AbsFileOperationImpl implements FileOperation {
 			System.err.println("ERROR: failed to create file");
 		}
 	}
-
+	
+	@Override
 	public ArrayList<String> readFromFile(Path path) {
-
 		ArrayList<String> storeLines = new ArrayList<>();
 
 		try (BufferedReader reader = Files.newBufferedReader(path)) {
@@ -45,8 +50,9 @@ public class AbsFileOperationImpl implements FileOperation {
 		return storeLines;
 	}
 	
+	@Override
 	public void readEmployeeAvailabilityTest(Path path, Availability employeeAvailability, HashMap<String, Availability> map) {
-		
+		LOGGER.log(Level.WARNING, "Reading File");
 		String[] splitRecord = null;
 		String[] record;
 		String empUserName, day;
@@ -76,9 +82,9 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 
-	
+	@Override
 	public void readBookingTest (Path path, Booking recordBooking, HashMap<String, Booking> map) {
-		
+		LOGGER.log(Level.WARNING, "Reading File");
 		String[] splitRecord = null;
 		String[] record;
 		String custUserName, empUserName, day;
@@ -106,8 +112,7 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
-	
-	
+	@Override
 	public void primeCustomerFile(String FileWritePath) {
 
 		try (FileWriter writer = new FileWriter(FileWritePath, false)) {
@@ -117,8 +122,9 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 
+	@Override
 	public void writeToCustomerFile(String FileWritePath, String toWrite, boolean newLine) {
-		
+		LOGGER.log(Level.WARNING, "Writing File");
 		if (newLine == true) {
 			try (FileWriter writer = new FileWriter(FileWritePath, true)) {
 				writer.write(toWrite + System.lineSeparator());
@@ -134,6 +140,7 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
+	@Override
 	public void readToCustomer(Path path, Customer customer, HashMap<String, Customer> map) {
 		String[] data; 
 		for (int i = 0; i < readFromFile(path).size() ; i++) {
@@ -144,6 +151,7 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
+	@Override
 	public void readToOwner(Path path, Owner owner, HashMap<String, Owner> map) {
 		String[] data; 
 		for (int i = 0; i < readFromFile(path).size() ; i++) {
@@ -154,6 +162,7 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
 	
+	@Override
     public void compileCustomerMapStrings(String writePath, HashMap<String, Customer> map) {
 		
 		String name, userName, password, address, phoneNumber;
@@ -184,8 +193,9 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
     
+	@Override
     public void compileBookingMapStrings(String writePath, HashMap<String, Booking> map) {
-    	
+		LOGGER.log(Level.WARNING, "Writing File");
     	String custUserName, empUserName, day, timeSlot;
 		String delim1 = " ";
 		String delim2 = ": ";
@@ -212,8 +222,4 @@ public class AbsFileOperationImpl implements FileOperation {
 			}
 		}
     }
-    
-    
-
-
 }

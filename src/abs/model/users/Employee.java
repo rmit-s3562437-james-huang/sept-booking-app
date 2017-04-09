@@ -1,7 +1,5 @@
 package abs.model.users;
 
-import java.time.LocalDateTime;
-
 public class Employee extends AbstractClient {
 	
 	private String availability;
