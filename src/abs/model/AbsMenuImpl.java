@@ -3,6 +3,7 @@ package abs.model;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import abs.model.bookings.Booking;
 import abs.model.users.Customer;
 
 public class AbsMenuImpl {
@@ -12,7 +13,8 @@ public class AbsMenuImpl {
 	/* TODO: add booking implementations 
 	 * call methods to read create and write bookings */
 	
-	public void initializeMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, AbsFileOperationImpl fo, String writePath) {
+	public void initializeMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, 
+			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		
 		Scanner scan = new Scanner(System.in);
 		int selected;
@@ -23,11 +25,11 @@ public class AbsMenuImpl {
 			selected = scan.nextInt();
 			switch(selected) {
 			case 1:
-				loginMenu(absMaps, cs, map, fo, writePath);
+				loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
 				break;
 			case 2:
 				dm.printRegisterMenu();
-				registerMenu(absMaps, cs, map, fo, writePath);
+				registerMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
 				break;
 			case 3:
 				dm.printExit();
@@ -37,7 +39,8 @@ public class AbsMenuImpl {
 		} while (!exit);
 	}
 	
-	public void loginMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, AbsFileOperationImpl fo, String writePath) {
+	public void loginMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,
+			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		System.out.println();
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter username: ");
@@ -48,7 +51,7 @@ public class AbsMenuImpl {
 			ownerMenu(username, absMaps, cs, map);
 		}
 		else if(absMaps.customerValidation(username, password) == true) {
-			customerMenu(username, absMaps, cs, map, fo, writePath);
+			customerMenu(username, absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
 		}
 		else {
 			System.out.println("Sorry, those credentials are invalid.");
@@ -57,13 +60,14 @@ public class AbsMenuImpl {
 
 	}
 
-	public void registerMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, AbsFileOperationImpl fo, String writePath) {
+	public void registerMenu(AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, 
+			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		Scanner scan = new Scanner(System.in);
 		int selected;
 		selected = scan.nextInt();
 		switch(selected) {
 			case 1:
-				initializeMenu(absMaps, cs, map, fo, writePath);
+				initializeMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
 				break;
 			case 2:
 				cs.registerCustomer(map);
@@ -75,7 +79,8 @@ public class AbsMenuImpl {
 		}
 	}
 	
-	public void customerMenu(String username, AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map, AbsFileOperationImpl fo, String writePath) {
+	public void customerMenu(String username, AbsMaps absMaps, AbsClientSystemImpl cs, HashMap<String, Customer> map,
+			AbsFileOperationImpl fo, String writePath, String writeBookingPath, HashMap<String, Booking> bookingMap) {
 		Scanner scan = new Scanner(System.in);
 		int selected;
 		boolean logout = false;
@@ -99,6 +104,21 @@ public class AbsMenuImpl {
 					fo.compileCustomerMapStrings(writePath, map);
 					break;
 				case 4:
+					absMaps.displayAllBookings(username);
+					break;
+				case 5:
+					absMaps.bookByTimeOfDay(username);
+					fo.compileBookingMapStrings(writeBookingPath, bookingMap);
+					break;
+				case 6:
+					absMaps.bookByDentist(username);
+					fo.compileBookingMapStrings(writeBookingPath, bookingMap);
+					break;
+				case 7: 	
+					absMaps.removeBooking(username);
+					fo.compileBookingMapStrings(writeBookingPath, bookingMap);
+					break;
+				case 8:
 					System.out.println();
 					logout = true;
 					break;

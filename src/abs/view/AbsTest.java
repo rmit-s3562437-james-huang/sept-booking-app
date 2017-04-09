@@ -48,17 +48,20 @@ public class AbsTest {
 		/* read files */
 		fo.readToCustomer(CUSTOMERFILEPATH, customer, absMaps.getCustomerMap());
 		fo.readToOwner(OWNERFILEPATH, owner, absMaps.getOwnerMap());
+		fo.readEmployeeAvailabilityTest(EMPLOYEEAVAILABILITYPATH, empAvailability, absMaps.getEmployeeAvailabilityMap());
+		fo.readBookingTest(BOOKINGTESTPATH, recordBooking, absMaps.getRecordBookingMap());
 		
 		/* TESTING: TO DELETE */
-		//fo.readEmployeeAvailabilityTest(EMPLOYEEAVAILABILITYPATH, empAvailability, absMaps.getEmployeeAvailabilityMap());
-		//fo.readBookingTest(BOOKINGTESTPATH, recordBooking, absMaps.getRecordBookingMap());
 		//absMaps.displayAllBookings();
 		//absMaps.bookByTimeOfDay("Ness");
+		//absMaps.removeBooking("Cass");
+		//absMaps.bookByDentist("Cass");
 		//fo.compileBookingMapStrings(BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());
 		//absMaps.displayAllBookings();
 
 		/* run program */
-		//menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH);
+		menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
+				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());
 		
 	}
 

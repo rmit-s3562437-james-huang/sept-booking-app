@@ -45,24 +45,6 @@ public class AbsFileOperationImpl implements FileOperation {
 		return storeLines;
 	}
 	
-	
-	public void readToEmployeeAvailability(Path path, Employee employee, HashMap<String, Employee> map) {
-		
-		String[] employeeRecord;
-		
-		for (int i = 0; i < readFromFile(path).size() ; i++) {
-			
-			employeeRecord = readFromFile(path).get(i).split(EMPREGEX);
-			
-			String username = employeeRecord[0];
-			String availability  = employeeRecord[1];
-			
-			employee = new Employee(null, username, null, null, null, null, null, availability);
-			
-			map.put(employee.getUserName(), employee);
-		}
-	}
-	
 	public void readEmployeeAvailabilityTest(Path path, Availability employeeAvailability, HashMap<String, Availability> map) {
 		
 		String[] splitRecord = null;
@@ -204,7 +186,7 @@ public class AbsFileOperationImpl implements FileOperation {
     
     public void compileBookingMapStrings(String writePath, HashMap<String, Booking> map) {
     	
-    	String bookingId, custUserName, empUserName, day, timeSlot;
+    	String custUserName, empUserName, day, timeSlot;
 		String delim1 = " ";
 		String delim2 = ": ";
 		String bookingString;
