@@ -22,10 +22,10 @@ public class AbsMenuImpl {
 		String input;
 		boolean exit = false;
 		do {
-			input = scan.nextLine();
-			selected = checkChoice(input);
 			dm.printMainMenu();
 			dm.printChoice();
+			input = scan.nextLine();
+			selected = checkChoice(input);
 			switch(selected) {
 			case 1:
 				loginMenu(absMaps, cs, map, fo, writePath, writeBookingPath, bookingMap);
