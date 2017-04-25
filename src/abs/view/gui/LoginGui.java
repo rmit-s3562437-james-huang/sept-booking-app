@@ -3,18 +3,17 @@ package abs.view.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginGui {
+public class LoginGui extends JFrame {
 	
 	private static final int WINDOW_WIDTH = 400;
 	private static final int WINDOW_HEIGHT = 150;
 	
 	public LoginGui() {
-		
+		super("Login");
 	}
 	
 	public void build() {
 		
-		JFrame window = new JFrame("Login");
 		JPanel container = new JPanel();
 		JPanel grid = new JPanel(new GridLayout(3,2,5,5));
 		
@@ -36,13 +35,13 @@ public class LoginGui {
 		
 		container.add(grid);
 		
-		window.setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		
-		window.add(container, BorderLayout.NORTH);
-		window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(false);
-		window.setVisible(true);
+		add(container, BorderLayout.NORTH);
+		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setVisible(true);
 	}
 
 }
