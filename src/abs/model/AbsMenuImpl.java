@@ -174,11 +174,9 @@ public class AbsMenuImpl {
 		
 		if (choice.matches("[0-9]+")){
 			ret = Integer.parseInt(choice);
-		}
-		else {
+		} else {
 			ret = 0;
 		}
-		
 		return ret;
 	}
 	

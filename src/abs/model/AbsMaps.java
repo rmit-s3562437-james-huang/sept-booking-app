@@ -491,7 +491,6 @@ public class AbsMaps implements Maps {
 	
 		}
 		
-		
 		/* cross check between availabilities and bookings */
 		for (Availability empAvailability : availabilityMap.values()) {
 			if (empAvailability.getDay().equals(day)) {

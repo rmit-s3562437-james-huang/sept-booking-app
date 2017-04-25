@@ -62,5 +62,6 @@ public class AbsTest {
 		LOGGER.log(Level.INFO, "Run program");
 		menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
 				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());		
+		
 	}
 }
