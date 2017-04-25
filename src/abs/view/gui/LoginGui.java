@@ -3,7 +3,7 @@ package abs.view.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginGui implements GuiInterface {
+public class LoginGui {
 	
 	private static final int WINDOW_WIDTH = 400;
 	private static final int WINDOW_HEIGHT = 150;
