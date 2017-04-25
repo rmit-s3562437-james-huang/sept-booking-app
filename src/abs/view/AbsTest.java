@@ -13,6 +13,7 @@ import abs.model.bookings.Availability;
 import abs.model.bookings.Booking;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
+import abs.view.gui.LoginGui;
 
 /* 
  * HOW TO RUN CODE:
@@ -59,8 +60,12 @@ public class AbsTest {
 		fo.readEmployeeAvailabilityTest(EMPLOYEEAVAILABILITYPATH, empAvailability, absMaps.getEmployeeAvailabilityMap());
 		fo.readBookingTest(BOOKINGTESTPATH, recordBooking, absMaps.getRecordBookingMap());
 
-		LOGGER.log(Level.INFO, "Run program");
-		menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
-				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());		
+		//LOGGER.log(Level.INFO, "Run program");
+		/*menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
+				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());*/
+		
+		LoginGui lg = new LoginGui();
+		
+		lg.build();
 	}
 }
