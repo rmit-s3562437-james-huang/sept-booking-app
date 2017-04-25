@@ -423,8 +423,9 @@ public class AbsMaps implements Maps {
 		String time = null;
 		int ret;
 		boolean check = true;
+		boolean exit = false;
 		
-		while (check) {
+		while (check && !exit) {
 			System.out.println("\nSelect day");
 			System.out.println("==========================");
 			String[] daysOfWeek = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
@@ -433,7 +434,7 @@ public class AbsMaps implements Maps {
 				tempDays.add(daysOfWeek[k]);
 			}
 			System.out.println("==========================");
-			System.out.print("Choose an option: ");
+			System.out.print("Choose an option or type 'exit' to return to menu: ");
 			
 			try {
 				selected = scan.nextLine();
@@ -446,6 +447,10 @@ public class AbsMaps implements Maps {
 					/* match to booking.txt days */
 					day = day.substring(0, (day.length()-(day.length()-3)));
 				}
+				else if(selected.equals("exit")) {
+					exit = true;
+					break;
+				}
 			} catch (IllegalArgumentException e) {
 				System.out.println("\nInvalid option");
 				check = true;
@@ -453,7 +458,7 @@ public class AbsMaps implements Maps {
 		}
 		check = true;
 		
-		while (check) {
+		while (check && !exit) {
 			
 			int index = 1;
 			System.out.println();
@@ -472,7 +477,7 @@ public class AbsMaps implements Maps {
 				}
 			}
 			System.out.println("==========================");
-			System.out.print("Choose an option: ");
+			System.out.print("Choose an option or type 'exit' to return to menu: ");
 			
 			try {
 				
@@ -484,6 +489,9 @@ public class AbsMaps implements Maps {
 				
 					time = tempTimeSlot.get(ret-1);
 				}
+				else if(selected.equals("exit")) {
+					exit = true;
+				}
 			} catch (IllegalArgumentException e) {
 				System.out.println("\nInvalid option");
 				check = true;
@@ -491,17 +499,21 @@ public class AbsMaps implements Maps {
 	
 		}
 		
-		
-		/* cross check between availabilities and bookings */
-		for (Availability empAvailability : availabilityMap.values()) {
-			if (empAvailability.getDay().equals(day)) {
-				if (empAvailability.getTimeSlot().contains(time)) {
-					/* validates if given time of day is located in the booking map */
-					LOGGER.log(Level.INFO, empAvailability.getDay() + " " + empAvailability.getTimeSlot());
-					createBooking(day, time, custUserName, empAvailability.getEmployeeUserName());
-					
+		if(!exit) {
+			/* cross check between availabilities and bookings */
+			for (Availability empAvailability : availabilityMap.values()) {
+				if (empAvailability.getDay().equals(day)) {
+					if (empAvailability.getTimeSlot().contains(time)) {
+						/* validates if given time of day is located in the booking map */
+						LOGGER.log(Level.INFO, empAvailability.getDay() + " " + empAvailability.getTimeSlot());
+						createBooking(day, time, custUserName, empAvailability.getEmployeeUserName());
+						System.out.println("You have successfully made a booking at: " + time + " on " + day + " with " + empAvailability.getEmployeeUserName() + ".");
+					}
 				} 
 			}
+		}
+		else {
+			System.out.println("No booking has been made as you've elected to cancle mid-way.");
 		}
 	}
 }

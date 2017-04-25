@@ -27,8 +27,8 @@ public class AbsTest {
 	
 	/* DEFUALT STATIC PATH */
 	//public final static String PATHNAME = "../SEPT2017/";
-	public final static String PATHNAME = "/Users/James/git/SEPT2017/";
-	//public final static String PATHNAME = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
+	//public final static String PATHNAME = "/Users/James/git/SEPT2017/";
+	public final static String PATHNAME = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
 	
 	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + "customerInfo" + ".txt";
 	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "bookingTest" + ".txt";
@@ -60,12 +60,12 @@ public class AbsTest {
 		fo.readEmployeeAvailabilityTest(EMPLOYEEAVAILABILITYPATH, empAvailability, absMaps.getEmployeeAvailabilityMap());
 		fo.readBookingTest(BOOKINGTESTPATH, recordBooking, absMaps.getRecordBookingMap());
 
-		//LOGGER.log(Level.INFO, "Run program");
-		/*menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
-				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());*/
+		LOGGER.log(Level.INFO, "Run program");
+		menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
+				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());
 		
-		LoginGui lg = new LoginGui();
+		//LoginGui lg = new LoginGui();
 		
-		lg.build();
+		//lg.build();
 	}
 }
