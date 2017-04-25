@@ -56,7 +56,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 		if(e.getSource().equals(loginButton)) {
 			
 			String userName = userNameField.getText();
-			String passWord = passWordField.getText();
+			String passWord = String.valueOf(passWordField.getPassword());
 			
 			if(absMaps.customerValidation(userName, passWord) == true) {
 				System.out.println("successful login!");

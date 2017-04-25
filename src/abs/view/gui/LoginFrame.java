@@ -16,7 +16,6 @@ public class LoginFrame extends JFrame {
 	private LoginPanel loginPanel;
 	private AbsMaps absMaps;
 	
-	
 	public LoginFrame(AbsMaps absMaps) {
 		super("Dentist Booking System - Login");
 		this.absMaps = absMaps;
