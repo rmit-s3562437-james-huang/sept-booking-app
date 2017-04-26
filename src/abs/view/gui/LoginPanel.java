@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
 
 public class LoginPanel extends JPanel implements ActionListener {
@@ -19,13 +20,15 @@ public class LoginPanel extends JPanel implements ActionListener {
 	private JButton registerButton;
 	private JTextField userNameField;
 	private JPasswordField passWordField;
-	private AbsMaps absMaps;
+	private AbsMaps absmaps;
 	private LoginFrame loginFrame;
+	private AbsClientSystemImpl absclientsystem;
 	
-	public LoginPanel(LoginFrame loginFrame, AbsMaps absMaps) {
+	public LoginPanel(LoginFrame loginFrame, AbsMaps absmaps, AbsClientSystemImpl absclientsystem) {
 		
 		this.loginFrame = loginFrame;
-		this.absMaps = absMaps;
+		this.absmaps = absmaps;
+		this.absclientsystem = absclientsystem;
 		
 		setLayout(new GridLayout(3,2,5,5));
 		
@@ -57,11 +60,11 @@ public class LoginPanel extends JPanel implements ActionListener {
 			String userName = userNameField.getText();
 			String passWord = String.valueOf(passWordField.getPassword());
 			
-			if(absMaps.customerValidation(userName, passWord) == true) {
+			if(absmaps.customerValidation(userName, passWord) == true) {
 				System.out.println("successful login!");
 				new MainCustomerFrame();
 				loginFrame.dispose();
-			} else if (absMaps.ownerValidation(userName, passWord) == true) {
+			} else if (absmaps.ownerValidation(userName, passWord) == true) {
 				System.out.println("successful login!");
 				
 			} else {
@@ -71,7 +74,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 		
 		if(e.getSource().equals(registerButton)) {
 			System.out.println("Proceed to register using register function.");
-			new RegisterFrame();
+			new RegisterFrame(absmaps, absclientsystem);
 			loginFrame.dispose();
 		}
 	}

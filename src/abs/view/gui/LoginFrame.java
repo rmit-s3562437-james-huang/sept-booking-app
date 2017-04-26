@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
 
 public class LoginFrame extends JFrame {
@@ -15,14 +16,16 @@ public class LoginFrame extends JFrame {
 	private JPanel mainPanel;
 	private LoginPanel loginPanel;
 	private AbsMaps absMaps;
+	private AbsClientSystemImpl absclientsystem;
 	
-	public LoginFrame(AbsMaps absMaps) {
+	public LoginFrame(AbsMaps absMaps, AbsClientSystemImpl absclientsystem) {
 		super("Dentist Booking System - Login");
 		this.absMaps = absMaps;
+		this.absclientsystem = absclientsystem;
 		 
 		/* store login panel to a main panel 
 		 * without set border required */
-		loginPanel = new LoginPanel(this, absMaps);
+		loginPanel = new LoginPanel(this, absMaps, absclientsystem);
 		mainPanel = new JPanel();
 		mainPanel.add(loginPanel);
 
