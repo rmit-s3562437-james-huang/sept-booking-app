@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,6 +35,8 @@ public class LoginPanel extends JPanel implements ActionListener {
 		
 		loginButton = new JButton("Login");
 		registerButton = new JButton("Register");
+		
+		this.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		
 		loginButton.addActionListener(this);
 		registerButton.addActionListener(this);

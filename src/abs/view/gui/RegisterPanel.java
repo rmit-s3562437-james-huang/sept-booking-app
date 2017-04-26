@@ -1,25 +1,21 @@
 package abs.view.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
-import abs.model.AbsMaps;
 import abs.model.AbsClientSystemImpl;
-
-import abs.model.users.Customer;
+import abs.model.AbsMaps;
 
 public class RegisterPanel extends JPanel implements ActionListener {
 
@@ -46,7 +42,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		this.absmaps = absmaps;
 		this.absclientsystem = absclientsystem;
 		
-		setLayout(new GridLayout(11,2,5,5));
+		setLayout(new GridBagLayout());
 		
 		confirmButton = new JButton("Confirm");
 		backButton = new JButton("Back");
@@ -57,64 +53,141 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		JLabel nameLabel = new JLabel("First Name:");
 		badNameLabel = new JLabel("You name cannot be an empty string or contain numbers!");
 		badNameLabel.setForeground(Color.RED);
+		badNameLabel.setFont(new Font("Arial", Font.PLAIN, 10));
 		badNameLabel.setVisible(false);
 		
 		JLabel userNameLabel = new JLabel("Username:");
-		badUserNameLabel = new JLabel("You username cannot be an empty string or is currently in use!");
+		badUserNameLabel = new JLabel("You username cannot be empty or currently exists!");
 		badUserNameLabel.setForeground(Color.RED);
+		badUserNameLabel.setFont(new Font("Arial", Font.PLAIN, 10));
 		badUserNameLabel.setVisible(false);
 		
 		JLabel passwordLabel = new JLabel("Password:");
 		badPasswordLabel = new JLabel("Your password must be atleast 6 characters long!");
 		badPasswordLabel.setForeground(Color.RED);
+		badPasswordLabel.setFont(new Font("Arial", Font.PLAIN, 10));
 		badPasswordLabel.setVisible(false);
 		
 		JLabel addressLabel = new JLabel("Address:");
 		badAddressLabel = new JLabel("Your address cannot be an empty string!");
 		badAddressLabel.setForeground(Color.RED);
+		badAddressLabel.setFont(new Font("Arial", Font.PLAIN, 10));
 		badAddressLabel.setVisible(false);
 		
 		JLabel phoneNumberLabel = new JLabel("Phone Number:");
 		badPhoneNumberLabel = new JLabel("Please enter a valid Australian phone number!");
 		badPhoneNumberLabel.setForeground(Color.RED);
+		badPhoneNumberLabel.setFont(new Font("Arial", Font.PLAIN, 10));
 		badPhoneNumberLabel.setVisible(false);
 		
-		this.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+		this.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
 		
-		nameField = new JTextField("");
-		userNameField = new JTextField("");
-		addressField = new JTextField("");
-		phoneNumberField = new JTextField("");
+		nameField = new JTextField(20);
+		userNameField = new JTextField(20);
+		addressField = new JTextField(20);
+		phoneNumberField = new JTextField(20);
+		passwordField = new JPasswordField(20);
 		
-		passwordField = new JPasswordField("");
+		GridBagConstraints gbc = new GridBagConstraints();
 		
-		add(nameLabel);
-		add(nameField);
-		add(new JPanel());
-		add(badNameLabel);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+	    gbc.gridy = 0;
+		add(nameLabel, gbc);
 		
-		add(userNameLabel);
-		add(userNameField);
-		add(new JPanel());
-		add(badUserNameLabel);
+		gbc.gridx = 1;
+	    gbc.gridy = 0;
+		add(nameField, gbc);
 		
-		add(passwordLabel);
-		add(passwordField);
-		add(new JPanel());
-		add(badPasswordLabel);
+		gbc.gridx = 0;
+	    gbc.gridy = 1;
+		add(new JPanel(), gbc);
 		
-		add(addressLabel);
-		add(addressField);
-		add(new JPanel());
-		add(badAddressLabel);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+	    gbc.gridy = 1;
+		add(badNameLabel, gbc);
 		
-		add(phoneNumberLabel);
-		add(phoneNumberField);
-		add(new JPanel());
-		add(badPhoneNumberLabel);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+	    gbc.gridy = 2;
+		add(userNameLabel, gbc);
 		
-		add(backButton);
-		add(confirmButton);
+		gbc.gridx = 1;
+	    gbc.gridy = 2;
+		add(userNameField, gbc);
+		
+		gbc.gridx = 0;
+	    gbc.gridy = 3;
+		add(new JPanel(), gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+	    gbc.gridy = 3;
+		add(badUserNameLabel, gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+	    gbc.gridy = 4;
+		add(passwordLabel, gbc);
+		
+		gbc.gridx = 1;
+	    gbc.gridy = 4;
+		add(passwordField, gbc);
+		
+		gbc.gridx = 0;
+	    gbc.gridy = 5;
+		add(new JPanel(), gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+	    gbc.gridy = 5;
+		add(badPasswordLabel, gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+	    gbc.gridy = 6;
+	    add(addressLabel, gbc);
+		
+	    gbc.gridx = 1;
+	    gbc.gridy = 6;
+		add(addressField, gbc);
+		
+		gbc.gridx = 0;
+	    gbc.gridy = 7;
+		add(new JPanel(), gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+	    gbc.gridy = 7;
+		add(badAddressLabel, gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+	    gbc.gridy = 8;
+		add(phoneNumberLabel, gbc);
+		
+		gbc.gridx = 1;
+	    gbc.gridy = 8;
+		add(phoneNumberField, gbc);
+		
+		gbc.gridx = 0;
+	    gbc.gridy = 9;
+		add(new JPanel(), gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+	    gbc.gridy = 9;
+		add(badPhoneNumberLabel, gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+	    gbc.gridy = 10;
+		add(backButton, gbc);
+		
+		gbc.gridx = 1;
+	    gbc.gridy = 10;
+		add(confirmButton, gbc);
 		
 	}
 	

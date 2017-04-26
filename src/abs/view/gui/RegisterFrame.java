@@ -10,8 +10,8 @@ import abs.model.AbsMaps;
 
 public class RegisterFrame extends JFrame {
 
-	private static final int WINDOW_WIDTH = 800;
-	private static final int WINDOW_HEIGHT = 500;
+	private static final int WINDOW_WIDTH = 400;
+	private static final int WINDOW_HEIGHT = 278;
 	
 	private JPanel mainPanel;
 	private RegisterPanel registerPanel;
@@ -34,6 +34,7 @@ public class RegisterFrame extends JFrame {
 		add(mainPanel, BorderLayout.CENTER);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
 	}

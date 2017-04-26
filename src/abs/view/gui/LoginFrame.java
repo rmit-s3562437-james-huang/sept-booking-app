@@ -34,6 +34,7 @@ public class LoginFrame extends JFrame {
 		add(mainPanel, BorderLayout.CENTER);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
 	}
