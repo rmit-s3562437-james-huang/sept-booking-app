@@ -5,16 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import abs.model.AbsMaps;
 import abs.model.AbsClientSystemImpl;
-
 
 public class RegisterPanel extends JPanel implements ActionListener {
 
@@ -46,9 +47,11 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		
 		JLabel nameLabel = new JLabel("First Name:");
 		JLabel userNameLabel = new JLabel("Username:");
-		JLabel passwordLabel = new JLabel("Password");
+		JLabel passwordLabel = new JLabel("Password:");
 		JLabel addressLabel = new JLabel("Address:");
 		JLabel phoneNumberLabel = new JLabel("Phone Number:");
+		
+		this.setBorder(BorderFactory.createEmptyBorder(75, 0, 0, 0));
 		
 		nameField = new JTextField();
 		userNameField = new JTextField();
@@ -73,14 +76,14 @@ public class RegisterPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		JButton source = (JButton) e.getSource();
 		
 		if(e.getSource().equals(confirmButton)) {
-				
+			
 		}
 		
 		if(e.getSource().equals(backButton)) {
-			
+			new LoginFrame(this.absmaps);
+			registerFrame.dispose();
 		}
 	}
 	

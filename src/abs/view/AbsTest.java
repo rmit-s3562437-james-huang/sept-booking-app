@@ -26,9 +26,9 @@ public class AbsTest {
 	static Logger LOGGER = Logger.getLogger(AbsTest.class.getName());
 	
 	/* DEFUALT STATIC PATH */
-	//public final static String PATHNAME = "../SEPT2017/";
+	public final static String PATHNAME = "../SEPT2017/";
 	//public final static String PATHNAME = "/Users/James/git/SEPT2017/";
-	public final static String PATHNAME = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
+	//public final static String PATHNAME = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
 	
 	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + "customerInfo" + ".txt";
 	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "bookingTest" + ".txt";

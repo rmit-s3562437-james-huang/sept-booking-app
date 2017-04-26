@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class RegisterFrame extends JFrame {
 
 	private static final int WINDOW_WIDTH = 600;
-	private static final int WINDOW_HEIGHT = 450;
+	private static final int WINDOW_HEIGHT = 425;
 	
 	private JPanel mainPanel;
 	private RegisterPanel registerPanel;

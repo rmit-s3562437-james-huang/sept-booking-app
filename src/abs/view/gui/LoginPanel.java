@@ -51,7 +51,6 @@ public class LoginPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton source = (JButton) e.getSource();
 		
 		if(e.getSource().equals(loginButton)) {
 			
@@ -60,13 +59,13 @@ public class LoginPanel extends JPanel implements ActionListener {
 			
 			if(absMaps.customerValidation(userName, passWord) == true) {
 				System.out.println("successful login!");
-				new MainFrame();
+				new MainCustomerFrame();
 				loginFrame.dispose();
 			} else if (absMaps.ownerValidation(userName, passWord) == true) {
 				System.out.println("successful login!");
 				
 			} else {
-				JOptionPane.showMessageDialog(source, "Inccorect password or username");
+				JOptionPane.showMessageDialog(loginButton, "Inccorect password or username");
 			}
 		}
 		
