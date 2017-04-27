@@ -16,16 +16,16 @@ public class RegisterFrame extends JFrame {
 	private JPanel mainPanel;
 	private RegisterPanel registerPanel;
 	
-	private AbsClientSystemImpl absclientsystem;
-	private AbsMaps absmaps;
+	private AbsClientSystemImpl absClientSystem;
+	private AbsMaps absMaps;
 	
-	public RegisterFrame(AbsMaps absmaps, AbsClientSystemImpl absclientsystem) {
+	public RegisterFrame(AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
 		super("Registration Form");
 		
-		this.absclientsystem = absclientsystem;
-		this.absmaps = absmaps;
+		this.absClientSystem = absClientSystem;
+		this.absMaps = absMaps;
 		
-		registerPanel = new RegisterPanel(this, absmaps, absclientsystem);
+		registerPanel = new RegisterPanel(this, absMaps, absClientSystem);
 		mainPanel = new JPanel();
 		mainPanel.add(registerPanel);
 

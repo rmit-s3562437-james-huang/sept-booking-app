@@ -35,14 +35,14 @@ public class RegisterPanel extends JPanel implements ActionListener {
 	private JLabel badPasswordLabel;
 	
 	private RegisterFrame registerFrame;
-	private AbsMaps absmaps;
-	private AbsClientSystemImpl absclientsystem;
+	private AbsMaps absMaps;
+	private AbsClientSystemImpl absClientSystem;
 	
-	public RegisterPanel(RegisterFrame registerFrame, AbsMaps absmaps, AbsClientSystemImpl absclientsystem) {
+	public RegisterPanel(RegisterFrame registerFrame, AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
 		
 		this.registerFrame = registerFrame;
-		this.absmaps = absmaps;
-		this.absclientsystem = absclientsystem;
+		this.absMaps = absMaps;
+		this.absClientSystem = absClientSystem;
 		
 		setLayout(new GridBagLayout());
 		
@@ -207,7 +207,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		}
 		
 		if(e.getSource().equals(backButton)) {
-			new LoginFrame(absmaps, absclientsystem);
+			new LoginFrame(absMaps, absClientSystem);
 			registerFrame.dispose();
 		}
 	}
@@ -222,7 +222,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		
 		boolean allGood = true;
 		
-		if(absclientsystem.validUserName(userName)) {
+		if(absClientSystem.validUserName(userName)) {
 			badUserNameLabel.setVisible(false);
 		}
 		else {
@@ -230,7 +230,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 			badUserNameLabel.setVisible(true);
 		}
 		
-		if(absclientsystem.validName(name)) {
+		if(absClientSystem.validName(name)) {
 			badNameLabel.setVisible(false);
 		}
 		else {
@@ -238,7 +238,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 			badNameLabel.setVisible(true);
 		}
 		
-		if(absclientsystem.validPassword(password)){
+		if(absClientSystem.validPassword(password)){
 			badPasswordLabel.setVisible(false);
 		}
 		else {
@@ -246,7 +246,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 			badPasswordLabel.setVisible(true);
 		}
 		
-		if(absclientsystem.validAddress(address)) {
+		if(absClientSystem.validAddress(address)) {
 			badAddressLabel.setVisible(false);
 		}
 		else {
@@ -254,7 +254,7 @@ public class RegisterPanel extends JPanel implements ActionListener {
 			badAddressLabel.setVisible(true);
 		}
 		
-		if(absclientsystem.validPhoneNumber(phoneNumber)) {
+		if(absClientSystem.validPhoneNumber(phoneNumber)) {
 			badPhoneNumberLabel.setVisible(false);
 		}
 		else {
