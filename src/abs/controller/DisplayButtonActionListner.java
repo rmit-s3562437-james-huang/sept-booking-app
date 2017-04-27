@@ -6,18 +6,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import abs.model.users.Customer;
+import abs.view.gui.MainCustomerFrame;
 
 public class DisplayButtonActionListner implements ActionListener {
 
-	private Customer customer;
+	private MainCustomerFrame mainFrame;
 	
-	public DisplayButtonActionListner(Customer customer) {
-		this.customer = customer;
+	public DisplayButtonActionListner(MainCustomerFrame mainFrame) {
+		this.mainFrame = mainFrame;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, customer.toString(), "Customer Information",
+		JOptionPane.showMessageDialog(null, mainFrame.getCustomer().toString(), "Customer Information",
 			    JOptionPane.PLAIN_MESSAGE);
 	}
 	

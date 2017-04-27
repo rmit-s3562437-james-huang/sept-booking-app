@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 import abs.model.users.Customer;
+import abs.view.AbsTest;
+import abs.view.gui.MainCustomerFrame;
 
 public class ChangePasswordDialog extends JDialog implements ActionListener {
 	
@@ -26,14 +28,12 @@ public class ChangePasswordDialog extends JDialog implements ActionListener {
 	
 	private JButton okButton;
 	private JButton cancelButton;
+	private MainCustomerFrame mainFrame;
 	
-	private Customer customer;
-	
-	private Boolean checkPass;
-	
-	public ChangePasswordDialog(Customer customer) {
+	public ChangePasswordDialog(MainCustomerFrame mainFrame) {
 		setTitle("Change Password");
-		this.customer = customer;
+		this.mainFrame = mainFrame;
+		
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(3,2,5,5));
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
@@ -64,25 +64,31 @@ public class ChangePasswordDialog extends JDialog implements ActionListener {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(cancelButton)) {
+			dispose();
+		}
 		/* deprecation is warned because of not 
 		 * calling getPassword() which returns chars
 		 * our setMethod uses Strings
 		 */
-		if (passField1.getText().equals(passField2.getText())) {
-			
-			/* TODO
-			 *  - need to write to file
-			 *  - and validate password, i.e length
-			 */
-			
-			customer.setUserPassword(passField2.getText());
-			System.out.println(customer.getUserPassword());
-			
-			JOptionPane.showMessageDialog(this, "Password changed");
-			dispose();
-		} else {
-			JOptionPane.showMessageDialog(this, "Passwords do not match, please try again",
-					"Invalid Passwords", JOptionPane.WARNING_MESSAGE);
+		if (e.getSource().equals(okButton)) {
+			if (passField1.getText().equals(passField2.getText())) {
+				if(passField2.getText().length() > 5) {
+					mainFrame.getCustomer().setUserPassword(passField2.getText());
+					mainFrame.getFileOps().compileCustomerMapStrings(AbsTest.CUSTOMERWRITEFILEPATH, 
+							mainFrame.getAbsMaps().getCustomerMap());
+					System.out.println(mainFrame.getCustomer().getUserPassword());
+					
+					JOptionPane.showMessageDialog(this, "Password changed");
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(this, "Passwords must be greater than 5 characters",
+							"Invalid Passwords", JOptionPane.WARNING_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(this, "Passwords do not match, please try again",
+						"Invalid Passwords", JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 }

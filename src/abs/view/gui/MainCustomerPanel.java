@@ -2,30 +2,25 @@ package abs.view.gui;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import abs.controller.ChangePassButtonActionListener;
+import abs.controller.DisplayBookingButtonActionListener;
 import abs.controller.DisplayButtonActionListner;
-import abs.model.AbsClientSystemImpl;
-import abs.model.AbsMaps;
-import abs.model.users.Customer;
 
-public class MainCustomerPanel extends JPanel implements ActionListener {
+public class MainCustomerPanel extends JPanel {
 		
 	private JButton dispDetailButton, passButton, editButton, disyBookButton, disaBookButton, 
 		bookTimeButton, bookDentButton, removeButton, logOutButton;
+	
 	private MainCustomerFrame  mainCustomerFrame;
 	
-	public MainCustomerPanel(MainCustomerFrame maincustomerframe, Customer customer) {
+	public MainCustomerPanel(MainCustomerFrame maincustomerframe) {
 		
 		this.mainCustomerFrame = maincustomerframe;
-		//this.absmaps = absmaps;
-		//this.loginFrame = loginFrame;
 		
 		setLayout(new GridLayout(10,2,5,5));
 		setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
@@ -44,67 +39,17 @@ public class MainCustomerPanel extends JPanel implements ActionListener {
 		
 		
 		add(dispDetailButton);
-		dispDetailButton.addActionListener(new DisplayButtonActionListner(customer));
+		dispDetailButton.addActionListener(new DisplayButtonActionListner(mainCustomerFrame));
 		add(passButton);
-		passButton.addActionListener(new ChangePassButtonActionListener(customer));
+		passButton.addActionListener(new ChangePassButtonActionListener(mainCustomerFrame));
 		add(editButton);
 		add(disyBookButton);
+		disyBookButton.addActionListener(new DisplayBookingButtonActionListener(mainCustomerFrame));
 		add(disaBookButton);
 		add(bookTimeButton);
-		add(bookTimeButton);
+		add(bookDentButton);
 		add(removeButton);
 		add(logOutButton);
 	}
-	
-	
-	/* ATM: not required */
-	@Override
-	public void actionPerformed(ActionEvent e){
-		
-		if(e.getSource().equals(dispDetailButton)) {
-			//new displayDetails();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(passButton)) {
-			//new changePass();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(editButton)) {
-			//new editInfo();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(disyBookButton)) {
-			//new displayYourBookings();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(disaBookButton)) {
-			//new displayAllBookings();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(bookTimeButton)) {
-			//new bookTime();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(bookDentButton)) {
-			//new bookDentist();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(removeButton)) {
-			//new removeBooking();
-			mainCustomerFrame.dispose();
-		}
-		
-		if(e.getSource().equals(logOutButton)) {
-			//new LoginFrame(absmaps, absclientsystem);
-			mainCustomerFrame.dispose();
-		}
-		
-	}
+
 }

@@ -73,7 +73,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 				for (Customer customer : absMaps.getCustomerMap().values()) {
 					if (customer.getUserName().equals(userName) && 
 							customer.getUserPassword().equals(passWord)) {
-						new MainCustomerFrame(customer);
+						new MainCustomerFrame(customer, absfileops, absMaps);
 					}
 				}
 				loginFrame.dispose();

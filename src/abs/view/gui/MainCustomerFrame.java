@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import abs.model.AbsMaps;
+import abs.model.interfaces.FileOperation;
 import abs.model.users.Customer;
 
 public class MainCustomerFrame extends JFrame{
@@ -15,12 +17,17 @@ public class MainCustomerFrame extends JFrame{
 	
 	private JPanel mainPanel;
 	private MainCustomerPanel maincustomerpanel;
+	private AbsMaps absMaps;
+	private Customer customer;
+	private FileOperation fileOps;
 	
-	public MainCustomerFrame(Customer customer) {
+	public MainCustomerFrame(Customer customer, FileOperation fo, AbsMaps absMaps) {
 		super("Customer - Main menu");
+		this.absMaps = absMaps;
+		this.customer = customer;
+		this.fileOps = fo;
 		
-		
-		maincustomerpanel = new MainCustomerPanel(this, customer);
+		maincustomerpanel = new MainCustomerPanel(this);
 		mainPanel = new JPanel();
 		mainPanel.add(maincustomerpanel);
 		
@@ -32,5 +39,17 @@ public class MainCustomerFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
+	}
+	
+	public AbsMaps getAbsMaps() {
+		return absMaps;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	
+	public FileOperation getFileOps() {
+		return fileOps;
 	}
 }
