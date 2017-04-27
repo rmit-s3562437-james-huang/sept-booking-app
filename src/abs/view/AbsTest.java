@@ -64,7 +64,7 @@ public class AbsTest {
 		/*menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 
 				BOOKINGWRITEFILEPATH, absMaps.getRecordBookingMap());*/
 		
-		new LoginFrame(absMaps,cs);
+		new LoginFrame(absMaps, cs);
 		
 	}
 }

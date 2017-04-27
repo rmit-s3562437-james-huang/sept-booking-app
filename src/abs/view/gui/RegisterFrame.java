@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
+import abs.model.users.Customer;
 
 public class RegisterFrame extends JFrame {
 

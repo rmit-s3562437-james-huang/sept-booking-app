@@ -1,7 +1,6 @@
 package abs.view.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +17,7 @@ import javax.swing.JTextField;
 
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
+import abs.model.users.Customer;
 
 public class RegisterPanel extends JPanel implements ActionListener {
 

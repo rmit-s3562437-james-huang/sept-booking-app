@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
+import abs.model.users.Customer;
 
 public class LoginFrame extends JFrame {
 	
@@ -17,6 +18,7 @@ public class LoginFrame extends JFrame {
 	private LoginPanel loginPanel;
 	private AbsMaps absMaps;
 	private AbsClientSystemImpl absclientsystem;
+	private Customer customer;
 	
 	public LoginFrame(AbsMaps absMaps, AbsClientSystemImpl absclientsystem) {
 		super("Dentist Booking System - Login");

@@ -2,12 +2,10 @@ package abs.view.gui;
 
 import java.awt.BorderLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import abs.model.AbsClientSystemImpl;
-import abs.model.AbsMaps;
+import abs.model.users.Customer;
 
 public class MainCustomerFrame extends JFrame{
 
@@ -17,21 +15,16 @@ public class MainCustomerFrame extends JFrame{
 	
 	private JPanel mainPanel;
 	private MainCustomerPanel maincustomerpanel;
-	//private AbsMaps absMaps;
-	//private AbsClientSystemImpl absclientsystem;	
 	
-	public MainCustomerFrame() {
+	public MainCustomerFrame(Customer customer) {
 		super("Customer - Main menu");
 		
-		//this.absMaps = absMaps;
-		//this.absclientsystem = absclientsystem;
 		
-		maincustomerpanel = new MainCustomerPanel(this);
+		maincustomerpanel = new MainCustomerPanel(this, customer);
 		mainPanel = new JPanel();
 		mainPanel.add(maincustomerpanel);
 		
 		setLayout(new BorderLayout());
-		//setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
 		
 		add(mainPanel, BorderLayout.CENTER);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);

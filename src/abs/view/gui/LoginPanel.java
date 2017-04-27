@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
+import abs.model.users.Customer;
 
 public class LoginPanel extends JPanel implements ActionListener {
 
@@ -21,15 +22,15 @@ public class LoginPanel extends JPanel implements ActionListener {
 	private JButton registerButton;
 	private JTextField userNameField;
 	private JPasswordField passWordField;
-	private AbsMaps absmaps;
+	private AbsMaps absMaps;
 	private LoginFrame loginFrame;
-	private AbsClientSystemImpl absclientsystem;
+	private AbsClientSystemImpl absClientSystem;
 	
-	public LoginPanel(LoginFrame loginFrame, AbsMaps absmaps, AbsClientSystemImpl absclientsystem) {
+	public LoginPanel(LoginFrame loginFrame, AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
 		
 		this.loginFrame = loginFrame;
-		this.absmaps = absmaps;
-		this.absclientsystem = absclientsystem;
+		this.absMaps = absMaps;
+		this.absClientSystem = absClientSystem;
 		
 		setLayout(new GridLayout(3,2,5,5));
 		
@@ -63,11 +64,20 @@ public class LoginPanel extends JPanel implements ActionListener {
 			String userName = userNameField.getText();
 			String passWord = String.valueOf(passWordField.getPassword());
 			
-			if(absmaps.customerValidation(userName, passWord) == true) {
+			if(absMaps.customerValidation(userName, passWord) == true) {
 				System.out.println("successful login!");
-				new MainCustomerFrame();
+				/* to get the customer from the map and revalidate */
+				for (Customer customer : absMaps.getCustomerMap().values()) {
+					if (customer.getUserName().equals(userName) && 
+							customer.getUserPassword().equals(passWord)) {
+						new MainCustomerFrame(customer);
+					}
+				}
 				loginFrame.dispose();
-			} else if (absmaps.ownerValidation(userName, passWord) == true) {
+			} else if (absMaps.ownerValidation(userName, passWord) == true) {
+				/*
+				 * TODO
+				 */
 				System.out.println("successful login!");
 				
 			} else {
@@ -77,7 +87,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 		
 		if(e.getSource().equals(registerButton)) {
 			System.out.println("Proceed to register using register function.");
-			new RegisterFrame(absmaps, absclientsystem);
+			new RegisterFrame(absMaps, absClientSystem);
 			loginFrame.dispose();
 		}
 	}

@@ -9,19 +9,19 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import abs.controller.ChangePassButtonActionListener;
+import abs.controller.DisplayButtonActionListner;
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsMaps;
+import abs.model.users.Customer;
 
 public class MainCustomerPanel extends JPanel implements ActionListener {
 		
 	private JButton dispDetailButton, passButton, editButton, disyBookButton, disaBookButton, 
 		bookTimeButton, bookDentButton, removeButton, logOutButton;
-
-	private AbsMaps absmaps;
 	private MainCustomerFrame  mainCustomerFrame;
-	private AbsClientSystemImpl absclientsystem;
-
-	public MainCustomerPanel(MainCustomerFrame maincustomerframe) {
+	
+	public MainCustomerPanel(MainCustomerFrame maincustomerframe, Customer customer) {
 		
 		this.mainCustomerFrame = maincustomerframe;
 		//this.absmaps = absmaps;
@@ -44,7 +44,9 @@ public class MainCustomerPanel extends JPanel implements ActionListener {
 		
 		
 		add(dispDetailButton);
+		dispDetailButton.addActionListener(new DisplayButtonActionListner(customer));
 		add(passButton);
+		passButton.addActionListener(new ChangePassButtonActionListener(customer));
 		add(editButton);
 		add(disyBookButton);
 		add(disaBookButton);
@@ -54,6 +56,8 @@ public class MainCustomerPanel extends JPanel implements ActionListener {
 		add(logOutButton);
 	}
 	
+	
+	/* ATM: not required */
 	@Override
 	public void actionPerformed(ActionEvent e){
 		
@@ -98,7 +102,7 @@ public class MainCustomerPanel extends JPanel implements ActionListener {
 		}
 		
 		if(e.getSource().equals(logOutButton)) {
-			new LoginFrame(absmaps, absclientsystem);
+			//new LoginFrame(absmaps, absclientsystem);
 			mainCustomerFrame.dispose();
 		}
 		
