@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import abs.model.AbsClientSystemImpl;
+import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Customer;
 
@@ -19,15 +20,17 @@ public class LoginFrame extends JFrame {
 	private AbsMaps absMaps;
 	private AbsClientSystemImpl absclientsystem;
 	private Customer customer;
+	private AbsFileOperationImpl absfileops;
 	
-	public LoginFrame(AbsMaps absMaps, AbsClientSystemImpl absclientsystem) {
+	public LoginFrame(AbsMaps absMaps, AbsClientSystemImpl absclientsystem, AbsFileOperationImpl absfileops) {
 		super("Dentist Booking System - Login");
 		this.absMaps = absMaps;
 		this.absclientsystem = absclientsystem;
-		 
+		this.absfileops = absfileops;
+		
 		/* store login panel to a main panel 
 		 * without set border required */
-		loginPanel = new LoginPanel(this, absMaps, absclientsystem);
+		loginPanel = new LoginPanel(this, absMaps, absclientsystem, absfileops);
 		mainPanel = new JPanel();
 		mainPanel.add(loginPanel);
 

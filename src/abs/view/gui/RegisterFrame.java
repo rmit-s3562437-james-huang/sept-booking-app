@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import abs.model.AbsClientSystemImpl;
+import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
-import abs.model.users.Customer;
 
 public class RegisterFrame extends JFrame {
 
@@ -19,14 +19,16 @@ public class RegisterFrame extends JFrame {
 	
 	private AbsClientSystemImpl absClientSystem;
 	private AbsMaps absMaps;
+	private AbsFileOperationImpl absfileops;
 	
-	public RegisterFrame(AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
+	public RegisterFrame(AbsMaps absMaps, AbsClientSystemImpl absClientSystem, AbsFileOperationImpl absfileops) {
 		super("Registration Form");
 		
 		this.absClientSystem = absClientSystem;
 		this.absMaps = absMaps;
+		this.absfileops = absfileops;
 		
-		registerPanel = new RegisterPanel(this, absMaps, absClientSystem);
+		registerPanel = new RegisterPanel(this, absMaps, absClientSystem, absfileops);
 		mainPanel = new JPanel();
 		mainPanel.add(registerPanel);
 

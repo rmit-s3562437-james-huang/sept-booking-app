@@ -11,13 +11,16 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import abs.model.AbsClientSystemImpl;
+import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Customer;
+import abs.view.AbsTest;
 
 public class RegisterPanel extends JPanel implements ActionListener {
 
@@ -37,12 +40,14 @@ public class RegisterPanel extends JPanel implements ActionListener {
 	private RegisterFrame registerFrame;
 	private AbsMaps absMaps;
 	private AbsClientSystemImpl absClientSystem;
+	private AbsFileOperationImpl absfileops;
 	
-	public RegisterPanel(RegisterFrame registerFrame, AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
+	public RegisterPanel(RegisterFrame registerFrame, AbsMaps absMaps, AbsClientSystemImpl absClientSystem, AbsFileOperationImpl absfileops) {
 		
 		this.registerFrame = registerFrame;
 		this.absMaps = absMaps;
 		this.absClientSystem = absClientSystem;
+		this.absfileops = absfileops;
 		
 		setLayout(new GridBagLayout());
 		
@@ -197,17 +202,34 @@ public class RegisterPanel extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		
+		String newName;
+		String newUserName;
+		String newPassword;
+		String newAddress;
+		String newPhoneNumber;
+		Customer newCustomer;
+		
 		if(e.getSource().equals(confirmButton)) {
 			boolean legit = checkDetails();
 			
 			if(legit) {
-				//Customer newCustomer = new Customer();
-				//absmaps.addCustomer(customer);
+				newName = nameField.getText();
+				newUserName = userNameField.getText();
+				newPassword = String.valueOf(passwordField.getPassword());
+				newAddress = addressField.getText();
+				newPhoneNumber = phoneNumberField.getText();
+				newCustomer = new Customer(newName, newUserName, newPassword, newAddress, newPhoneNumber);
+				absMaps.addCustomer(newCustomer);
+				absfileops.compileCustomerMapStrings(AbsTest.CUSTOMERWRITEFILEPATH, absMaps.getCustomerMap());
+				JOptionPane.showMessageDialog(null, "You've successfully registered!\n Your username is: '" + newUserName + "'.\n Your password is: '" + 
+					newPassword + "'.\n\n Press OK to go back to the Login Screen."); 
+				new LoginFrame(absMaps, absClientSystem, absfileops);
+				registerFrame.dispose();
 			}
 		}
 		
 		if(e.getSource().equals(backButton)) {
-			new LoginFrame(absMaps, absClientSystem);
+			new LoginFrame(absMaps, absClientSystem, absfileops);
 			registerFrame.dispose();
 		}
 	}

@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import abs.model.AbsClientSystemImpl;
+import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Customer;
 
@@ -25,12 +26,14 @@ public class LoginPanel extends JPanel implements ActionListener {
 	private AbsMaps absMaps;
 	private LoginFrame loginFrame;
 	private AbsClientSystemImpl absClientSystem;
+	private AbsFileOperationImpl absfileops;
 	
-	public LoginPanel(LoginFrame loginFrame, AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
+	public LoginPanel(LoginFrame loginFrame, AbsMaps absMaps, AbsClientSystemImpl absClientSystem, AbsFileOperationImpl absfileops) {
 		
 		this.loginFrame = loginFrame;
 		this.absMaps = absMaps;
 		this.absClientSystem = absClientSystem;
+		this.absfileops = absfileops;
 		
 		setLayout(new GridLayout(3,2,5,5));
 		
@@ -87,7 +90,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 		
 		if(e.getSource().equals(registerButton)) {
 			System.out.println("Proceed to register using register function.");
-			new RegisterFrame(absMaps, absClientSystem);
+			new RegisterFrame(absMaps, absClientSystem, absfileops);
 			loginFrame.dispose();
 		}
 	}
