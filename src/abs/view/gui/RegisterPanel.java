@@ -1,9 +1,11 @@
 package abs.view.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -51,33 +53,33 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		backButton.addActionListener(this);
 		
 		JLabel nameLabel = new JLabel("First Name:");
-		badNameLabel = new JLabel("You name cannot be an empty string or contain numbers!");
+		badNameLabel = new JLabel("  You name cannot be an empty string or contain numbers!");
 		badNameLabel.setForeground(Color.RED);
-		badNameLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+		badNameLabel.setFont(new Font("Arial", Font.PLAIN, 9));
 		badNameLabel.setVisible(false);
 		
 		JLabel userNameLabel = new JLabel("Username:");
-		badUserNameLabel = new JLabel("You username cannot be empty or currently exists!");
+		badUserNameLabel = new JLabel("  You username cannot be empty or currently exists!");
 		badUserNameLabel.setForeground(Color.RED);
-		badUserNameLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+		badUserNameLabel.setFont(new Font("Arial", Font.PLAIN, 9));
 		badUserNameLabel.setVisible(false);
 		
 		JLabel passwordLabel = new JLabel("Password:");
-		badPasswordLabel = new JLabel("Your password must be atleast 6 characters long!");
+		badPasswordLabel = new JLabel("  Your password must be atleast 6 characters long!");
 		badPasswordLabel.setForeground(Color.RED);
-		badPasswordLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+		badPasswordLabel.setFont(new Font("Arial", Font.PLAIN, 9));
 		badPasswordLabel.setVisible(false);
 		
 		JLabel addressLabel = new JLabel("Address:");
-		badAddressLabel = new JLabel("Your address cannot be an empty string!");
+		badAddressLabel = new JLabel("  Your address cannot be an empty string!");
 		badAddressLabel.setForeground(Color.RED);
-		badAddressLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+		badAddressLabel.setFont(new Font("Arial", Font.PLAIN, 9));
 		badAddressLabel.setVisible(false);
 		
 		JLabel phoneNumberLabel = new JLabel("Phone Number:");
-		badPhoneNumberLabel = new JLabel("Please enter a valid Australian phone number!");
+		badPhoneNumberLabel = new JLabel("  Please enter a valid Australian phone number!");
 		badPhoneNumberLabel.setForeground(Color.RED);
-		badPhoneNumberLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+		badPhoneNumberLabel.setFont(new Font("Arial", Font.PLAIN, 9));
 		badPhoneNumberLabel.setVisible(false);
 		
 		this.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
@@ -179,12 +181,14 @@ public class RegisterPanel extends JPanel implements ActionListener {
 		gbc.gridx = 1;
 	    gbc.gridy = 9;
 		add(badPhoneNumberLabel, gbc);
-		
+
+		gbc.insets = new Insets(4,0,0,0);
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 	    gbc.gridy = 10;
 		add(backButton, gbc);
 		
+		gbc.insets = new Insets(4,0,0,0);
 		gbc.gridx = 1;
 	    gbc.gridy = 10;
 		add(confirmButton, gbc);
