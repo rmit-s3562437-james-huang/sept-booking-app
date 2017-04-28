@@ -14,7 +14,6 @@ public class MainCustomerFrame extends JFrame{
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 425;
 	
-	
 	private JPanel mainPanel;
 	private MainCustomerPanel maincustomerpanel;
 	private AbsMaps absMaps;

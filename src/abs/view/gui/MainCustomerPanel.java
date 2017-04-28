@@ -22,8 +22,8 @@ public class MainCustomerPanel extends JPanel implements ActionListener {
 	private JLabel dispdetLabel, passLabel, editLabel, disyBookLabel, disaBookLabel, bookTimeLabel, bookDentLabel, removeLabel, logOutLabel;
 
 	private LoginFrame loginFrame;
-	private AbsMaps absmaps;
 	private MainCustomerFrame  maincustomerframe;
+	private AbsMaps absmaps;
 	private AbsClientSystemImpl absclientsystem;
 
 	public MainCustomerPanel(MainCustomerFrame maincustomerframe) {
@@ -71,7 +71,7 @@ public class MainCustomerPanel extends JPanel implements ActionListener {
 		}
 		
 		if(e.getSource().equals(editLabel)) {
-			//new editInfo();
+			new EditCustomerFrame();
 			maincustomerframe.dispose();
 		}
 		
