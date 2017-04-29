@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import abs.controller.ChangePassButtonActionListener;
 import abs.controller.DisplayBookingButtonActionListener;
 import abs.controller.DisplayButtonActionListner;
+import abs.controller.editButtonActionListener;
 
 public class MainCustomerPanel extends JPanel {
 		
@@ -43,6 +44,7 @@ public class MainCustomerPanel extends JPanel {
 		add(passButton);
 		passButton.addActionListener(new ChangePassButtonActionListener(mainCustomerFrame));
 		add(editButton);
+		editButton.addActionListener(new editButtonActionListener(mainCustomerFrame));
 		add(disyBookButton);
 		disyBookButton.addActionListener(new DisplayBookingButtonActionListener(mainCustomerFrame));
 		add(disaBookButton);

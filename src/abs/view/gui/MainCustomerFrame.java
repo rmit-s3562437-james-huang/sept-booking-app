@@ -12,7 +12,7 @@ import abs.model.users.Customer;
 public class MainCustomerFrame extends JFrame{
 
 	private static final int WINDOW_WIDTH = 400;
-	private static final int WINDOW_HEIGHT = 325;
+	private static final int WINDOW_HEIGHT = 360;
 	
 	
 	private JPanel mainPanel;
