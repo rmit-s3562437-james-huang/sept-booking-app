@@ -9,7 +9,6 @@ import abs.view.gui.MainCustomerFrame;
 public class ChangePassButtonActionListener implements ActionListener {
 
 	private MainCustomerFrame mainFrame;
-	private ChangePasswordDialog changeDialog;
 	
 	public ChangePassButtonActionListener(MainCustomerFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -17,7 +16,7 @@ public class ChangePassButtonActionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		changeDialog = new ChangePasswordDialog(mainFrame);
+		new ChangePasswordDialog(mainFrame);
 	}
 
 }
