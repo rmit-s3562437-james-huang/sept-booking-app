@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import abs.view.gui.MainCustomerFrame;
 
-public class DisplayButtonActionListner extends JDialog implements ActionListener {
+public class DisplayButtonActionListner implements ActionListener {
 
 	private MainCustomerFrame mainFrame;
 	
