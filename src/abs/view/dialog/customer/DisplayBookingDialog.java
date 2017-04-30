@@ -1,5 +1,6 @@
 package abs.view.dialog.customer;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -39,7 +40,7 @@ public class DisplayBookingDialog extends JDialog {
 			}
 		}
 		
-		bookPanel.setBorder(BorderFactory.createEmptyBorder(2, 10, 2, 10));
+		bookPanel.setBorder(BorderFactory.createEmptyBorder(2, 50, 2, 10));
 		
 		add(bookPanel);
 		
