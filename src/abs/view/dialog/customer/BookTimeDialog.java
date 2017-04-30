@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import abs.model.bookings.Availability;
@@ -128,6 +129,10 @@ public class BookTimeDialog extends JDialog implements ActionListener {
 						mainFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), (String) cbTime.getSelectedItem(),
 								mainFrame.getCustomer().getUserName(), empAvailability.getEmployeeUserName());
 						mainFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainFrame.getAbsMaps().getBookingMap());
+						
+						//Notification Dialog has been added
+						JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
+								" with " + empAvailability.getEmployeeUserName() + ".");
 					}
 					
 				}
