@@ -194,6 +194,38 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
 	}
     
+	
+	public void compileEmployeeMapStrings(String writePath, HashMap<String, Employee> map) {
+		
+		String name, userName, password, address, phoneNumber;
+		String delim = ", ";
+		String employeeString;
+		int count = 0;
+		
+		primeCustomerFile(writePath);
+		
+		for(Employee employee : map.values()) {
+			name = employee.getName();
+			userName = employee.getUserName();
+			password = employee.getUserPassword();
+			address = employee.getUserAddress();
+			phoneNumber = employee.getUserPhoneNumber();
+			
+			count++;
+			employeeString = name + delim + userName + delim + 
+					password + delim + address + 
+					delim + phoneNumber;
+			
+			if(count < map.size()) {
+				writeToCustomerFile(writePath, employeeString, true);
+			}
+			else {
+				writeToCustomerFile(writePath, employeeString, false);
+			}
+		}
+	}
+
+
 	@Override
     public void compileBookingMapStrings(String writePath, HashMap<String, Booking> map) {
 		LOGGER.log(Level.WARNING, "Writing File");

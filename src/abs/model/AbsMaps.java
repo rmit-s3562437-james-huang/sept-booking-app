@@ -515,4 +515,12 @@ public class AbsMaps implements Maps {
 			System.out.println("No booking has been made as you've elected to cancle mid-way.");
 		}
 	}
+
+	public void addEmployee(Employee employee) {
+		employeeMap.put(employee.getUserName(), employee);
+	}
+	
+	public Employee getEmployee(String userName) {
+		return employeeMap.get(userName);
+	}
 }

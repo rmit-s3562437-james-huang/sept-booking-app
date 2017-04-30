@@ -45,6 +45,7 @@ public class MainOwnerPanel extends JPanel implements ActionListener {
 		add(makeCustomerBookingButton);
 		makeCustomerBookingButton.addActionListener(new MakeCustomerBookActionListener(mainOwnerFrame));
 		add(logOutButton);
+		logOutButton.addActionListener(this);
 		
 		setLayout(new GridLayout(10,2,5,5));
 		setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
@@ -52,7 +53,10 @@ public class MainOwnerPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource().equals(logOutButton)) {
+			mainOwnerFrame.dispose();
+			new LoginFrame(mainOwnerFrame.getAbsMaps(), mainOwnerFrame.getClientSystem(), mainOwnerFrame.getFileOps());
+		}
 	}
 
 }
