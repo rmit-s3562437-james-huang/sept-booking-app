@@ -226,9 +226,6 @@ public class AddEmpDialog extends JDialog implements ActionListener {
 				JOptionPane.showMessageDialog(null, "You've successfully registered a new Employee!\n Their username is: '" + newUserName + "'.\n Their password is: '" + 
 					newPassword + "'.\n\n Press OK to go back to return to the main menu."); 
 				
-				// I don't think you should forcibly logout the owner after making a new 
-				// employee in case they want to make more. You should return them to the menu.
-				new LoginFrame(mainOwnerFrame.getAbsMaps(), mainOwnerFrame.getClientSystem(), mainOwnerFrame.getFileOps());
 				dispose();
 			}
 		}
