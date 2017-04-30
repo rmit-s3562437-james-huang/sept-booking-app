@@ -210,8 +210,6 @@ public class AddEmpDialog extends JDialog implements ActionListener {
 		String newPhoneNumber;
 		Employee newEmployee;
 		
-		// I feel that this isn't the intended purpose of adding an Employee
-		// rather, it should be to add the availabilities for bookings.
 		if(e.getSource().equals(confirmButton)) {
 			boolean legit = checkDetails();
 			
@@ -225,12 +223,11 @@ public class AddEmpDialog extends JDialog implements ActionListener {
 				mainOwnerFrame.getAbsMaps().addEmployee(newEmployee);
 				mainOwnerFrame.getFileOps().compileEmployeeMapStrings(AbsTest.EMPLOYEEWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getEmployeeMap());
 				
-				// Doesn't make sense to return to the menu for an employee to login
-				// Employees have no functional menu and don't do anything since the
-				// Owner does everything. They don't even need a password.
+				JOptionPane.showMessageDialog(null, "You've successfully registered a new Employee!\n Their username is: '" + newUserName + "'.\n Their password is: '" + 
+					newPassword + "'.\n\n Press OK to go back to return to the main menu."); 
 				
-				JOptionPane.showMessageDialog(null, "You've successfully registered!\n Your username is: '" + newUserName + "'.\n Your password is: '" + 
-					newPassword + "'.\n\n Press OK to go back to the Login Screen."); 
+				// I don't think you should forcibly logout the owner after making a new 
+				// employee in case they want to make more. You should return them to the menu.
 				new LoginFrame(mainOwnerFrame.getAbsMaps(), mainOwnerFrame.getClientSystem(), mainOwnerFrame.getFileOps());
 				dispose();
 			}

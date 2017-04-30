@@ -68,10 +68,6 @@ public class DeleteEmpDialog extends JDialog implements ActionListener {
 		setVisible(true);
 	}
 	
-	// I also feel like this a misunderstanding of the functional requirement.
-	// That unlike removing an actual customer, you should be removing availabilities
-	// of the employee.
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(cancelButton)) {
