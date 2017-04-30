@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import abs.model.bookings.Availability;
@@ -145,6 +146,8 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 									(String) cbDentist.getSelectedItem());
 							System.out.println(mainOwnerFrame.getAbsMaps().getBookingMap());
 							mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
+							JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
+									" with " + (String) cbDentist.getSelectedItem() + ".");
 						}
 					}	
 				}

@@ -5,17 +5,21 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import abs.view.AbsTest;
 import abs.view.gui.MainCustomerFrame;
 
-public class EditInformationDialog extends JDialog {
+public class EditInformationDialog extends JDialog implements ActionListener {
 	
 	private JPanel buttonPanel;
 	private JPanel dialogPanel;
@@ -26,8 +30,12 @@ public class EditInformationDialog extends JDialog {
 	
 	private JButton okButton;
 	private JButton cancelButton;
+	
+	private MainCustomerFrame mainCustomerFrame;
 
 	public EditInformationDialog(MainCustomerFrame mainCustomerFrame) {
+		
+		this.mainCustomerFrame = mainCustomerFrame;
 		
 		setTitle("Edit Information");
 		setLayout(new BorderLayout());
@@ -61,6 +69,9 @@ public class EditInformationDialog extends JDialog {
 		
 		okButton = new JButton("OK");
 		cancelButton = new JButton("Cancel");
+		
+		okButton.addActionListener(this);
+		cancelButton.addActionListener(this);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		 
@@ -130,5 +141,58 @@ public class EditInformationDialog extends JDialog {
 		setSize(400, 200);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource().equals(okButton)) {
+			
+			boolean legit = true;
+			
+			String name = nameField.getText();
+			String address = addressField.getText();
+			String phone = phoneField.getText();
+			
+			if(!mainCustomerFrame.getClientSystem().validName(name)) {
+				badNameLabel.setVisible(true);
+				legit = false;
+			}
+			else {
+				badNameLabel.setVisible(false);
+			}
+			
+			if(!mainCustomerFrame.getClientSystem().validAddress(address)) {
+				badAddressLabel.setVisible(true);
+				legit = false;
+			}
+			else {
+				badAddressLabel.setVisible(false);
+			}
+			
+			if(!mainCustomerFrame.getClientSystem().validPhoneNumber(phone)) {
+				badAddressLabel.setVisible(true);
+				legit = false;
+			}
+			else {
+				badPhoneLabel.setVisible(false);
+			}
+			
+			if(legit) {
+				mainCustomerFrame.getCustomer().setName(name);
+				mainCustomerFrame.getCustomer().setUserAddress(address);
+				mainCustomerFrame.getCustomer().setUserPhoneNumber(phone);
+				mainCustomerFrame.getFileOps().compileCustomerMapStrings(AbsTest.CUSTOMERWRITEFILEPATH, mainCustomerFrame.getAbsMaps().getCustomerMap());
+				
+				JOptionPane.showMessageDialog(null, "Youve successfully changed your details!\nName: " + name 
+						+ "\nAddress: " + address + "\nPhone Number: " + phone);
+				
+				dispose();
+			}
+		}
+		
+		if(e.getSource().equals(cancelButton)) {
+			dispose();
+		}
+		
 	}
 }

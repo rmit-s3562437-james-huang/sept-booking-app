@@ -83,6 +83,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 					if (owner.getUserName().equals(userName) && 
 							owner.getUserPassword().equals(passWord)) {
 						new MainOwnerFrame(owner, absfileops, absMaps, absClientSystem);
+						loginFrame.dispose();
 					}
 				}
 				System.out.println("successful login!");

@@ -222,9 +222,10 @@ public class AddEmpDialog extends JDialog implements ActionListener {
 				newEmployee = new Employee(newName, newUserName, newPassword, newAddress, newPhoneNumber);
 				mainOwnerFrame.getAbsMaps().addEmployee(newEmployee);
 				mainOwnerFrame.getFileOps().compileEmployeeMapStrings(AbsTest.EMPLOYEEWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getEmployeeMap());
-				JOptionPane.showMessageDialog(null, "You've successfully registered!\n Your username is: '" + newUserName + "'.\n Your password is: '" + 
-					newPassword + "'.\n\n Press OK to go back to the Login Screen."); 
-				new LoginFrame(mainOwnerFrame.getAbsMaps(), mainOwnerFrame.getClientSystem(), mainOwnerFrame.getFileOps());
+				
+				JOptionPane.showMessageDialog(null, "You've successfully registered a new Employee!\n Their username is: '" + newUserName + "'.\n Their password is: '" + 
+					newPassword + "'.\n\n Press OK to go back to return to the main menu."); 
+				
 				dispose();
 			}
 		}
