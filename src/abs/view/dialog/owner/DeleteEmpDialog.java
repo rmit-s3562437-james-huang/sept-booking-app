@@ -81,7 +81,7 @@ public class DeleteEmpDialog extends JDialog implements ActionListener {
 					mainOwnerFrame.getAbsMaps().getEmployeeMap().remove(employee.getUserName());
 					mainOwnerFrame.getFileOps().compileEmployeeMapStrings(AbsTest.EMPLOYEEWRITEFILEPATH, 
 							mainOwnerFrame.getAbsMaps().getEmployeeMap());
-					JOptionPane.showMessageDialog(null, "Employee successfully removed.");
+					JOptionPane.showMessageDialog(null, "The employee has successfully removed from the records.");
 				}
 			}
 			dispose();
