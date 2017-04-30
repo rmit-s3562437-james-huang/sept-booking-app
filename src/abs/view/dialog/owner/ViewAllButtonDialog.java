@@ -1,5 +1,6 @@
 package abs.view.dialog.owner;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -23,19 +24,37 @@ public class ViewAllButtonDialog extends JDialog {
 		
 		//int bookingGridHeight = mainFrame.getAbsMaps().getBookingMap().size();
 		
-		bookPanel.add(new JLabel("Customer"));
-		bookPanel.add(new JLabel("Employee"));
-		bookPanel.add(new JLabel("Day"));
-		bookPanel.add(new JLabel("Times"));
+		JLabel customerLabel = new JLabel("Customer");
+		customerLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel employeeLabel = new JLabel("Employee");
+		employeeLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel dayLabel = new JLabel("Day");
+		dayLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel timesLabel = new JLabel("Times");
+		timesLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		bookPanel.add(customerLabel);
+		bookPanel.add(employeeLabel);
+		bookPanel.add(dayLabel);
+		bookPanel.add(timesLabel);
 		
 		for (Booking book : mainOwnerFrame.getAbsMaps().getBookingMap().values()) {
-			bookPanel.add(new JLabel(book.getEmployeeUserName()));
-			bookPanel.add(new JLabel(book.getCustomerUserName()));
-			bookPanel.add(new JLabel(book.getDay()));
-			bookPanel.add(new JLabel(book.getTimeSlot().toString()));
+			JLabel empUserLabel = new JLabel(book.getEmployeeUserName());
+			empUserLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel custUserLabel = new JLabel(book.getCustomerUserName());
+			custUserLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel getDayLabel = new JLabel(book.getDay());
+			getDayLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel getTimeLabel = new JLabel(book.getTimeSlot().toString());
+			getTimeLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			
+			bookPanel.add(empUserLabel);
+			bookPanel.add(custUserLabel);
+			bookPanel.add(getDayLabel);
+			bookPanel.add(getTimeLabel);
 		}
 		
-		bookPanel.setBorder(BorderFactory.createEmptyBorder(2, 10, 2, 10));
+		bookPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
 		
 		add(bookPanel);
 		

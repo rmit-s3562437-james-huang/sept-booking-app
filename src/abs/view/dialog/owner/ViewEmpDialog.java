@@ -1,5 +1,6 @@
 package abs.view.dialog.owner;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -21,23 +22,45 @@ public class ViewEmpDialog extends JDialog {
 		
 		viewPanel.setLayout(new GridLayout(0, 5));
 		
-		viewPanel.setBorder(BorderFactory.createEmptyBorder(2, 40, 2, 10));
+		viewPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
 		
-		viewPanel.add(new JLabel("Name"));
-		viewPanel.add(new JLabel("Username"));
-		viewPanel.add(new JLabel("Password"));
-		viewPanel.add(new JLabel("Address"));
-		viewPanel.add(new JLabel("Phone Number"));
+		JLabel nameLabel = new JLabel("Name");
+		nameLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel userLabel = new JLabel("UserName");
+		userLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel passLabel = new JLabel("Password");
+		passLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel addrLabel = new JLabel("Address");
+		addrLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel phonLabel = new JLabel("Phone Number");
+		phonLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		viewPanel.add(nameLabel);
+		viewPanel.add(userLabel);
+		viewPanel.add(passLabel);
+		viewPanel.add(addrLabel);
+		viewPanel.add(phonLabel);
 		
 		
 		for (Employee employee : mainOwnerFrame.getAbsMaps().getEmployeeMap().values()) {
 			System.out.println(employee);
 			
-			viewPanel.add(new JLabel(employee.getName()));
-			viewPanel.add(new JLabel(employee.getUserName()));
-			viewPanel.add(new JLabel(employee.getUserPassword()));
-			viewPanel.add(new JLabel(employee.getUserAddress()));
-			viewPanel.add(new JLabel(employee.getUserPhoneNumber()));
+			JLabel empNameLabel = new JLabel(employee.getName());
+			empNameLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel empUserLabel = new JLabel(employee.getUserName());
+			empUserLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel empPassLabel = new JLabel(employee.getUserPassword());
+			empPassLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel empAddrLabel = new JLabel(employee.getUserAddress());
+			empAddrLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			JLabel empPhonLabel = new JLabel(employee.getUserPhoneNumber());
+			empPhonLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			
+			viewPanel.add(empNameLabel);
+			viewPanel.add(empUserLabel);
+			viewPanel.add(empPassLabel);
+			viewPanel.add(empAddrLabel);
+			viewPanel.add(empPhonLabel);
 		}
 		
 		add(viewPanel);
