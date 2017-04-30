@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import abs.model.users.Employee;
@@ -80,6 +81,7 @@ public class DeleteEmpDialog extends JDialog implements ActionListener {
 					mainOwnerFrame.getAbsMaps().getEmployeeMap().remove(employee.getUserName());
 					mainOwnerFrame.getFileOps().compileEmployeeMapStrings(AbsTest.EMPLOYEEWRITEFILEPATH, 
 							mainOwnerFrame.getAbsMaps().getEmployeeMap());
+					JOptionPane.showMessageDialog(null, "Employee successfully removed.");
 				}
 			}
 			dispose();
