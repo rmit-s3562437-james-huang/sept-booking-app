@@ -3,12 +3,12 @@ package abs.controller.customer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import abs.model.users.Customer;
 import abs.view.gui.MainCustomerFrame;
 
-public class DisplayButtonActionListner implements ActionListener {
+public class DisplayButtonActionListner extends JDialog implements ActionListener {
 
 	private MainCustomerFrame mainFrame;
 	
