@@ -18,7 +18,7 @@ public interface Maps {
 
 	public abstract HashMap<String, Availability> getEmployeeAvailabilityMap();
 
-	public abstract HashMap<String, Booking> getRecordBookingMap();
+	public abstract HashMap<String, Booking> getBookingMap();
 
 	public abstract HashMap<String, Employee> getEmployeeMap();
 

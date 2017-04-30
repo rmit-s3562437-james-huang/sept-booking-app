@@ -1,9 +1,9 @@
-package abs.controller;
+package abs.controller.customer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import abs.view.dialog.EditInformationDialog;
+import abs.view.dialog.customer.EditInformationDialog;
 import abs.view.gui.MainCustomerFrame;
 
 public class EditButtonActionListener implements ActionListener {

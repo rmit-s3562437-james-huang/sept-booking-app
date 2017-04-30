@@ -1,4 +1,4 @@
-package abs.controller;
+package abs.controller.customer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

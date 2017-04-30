@@ -1,22 +1,23 @@
-package abs.controller;
+package abs.controller.customer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import abs.model.AbsMaps;
+import abs.view.dialog.customer.BookTimeDialog;
 import abs.view.gui.MainCustomerFrame;
 
-public class DisplayBookingButtonActionListener implements ActionListener {
+public class BookTimeButtonActionListener implements ActionListener {
 
 	private MainCustomerFrame mainFrame;
 	
-	public DisplayBookingButtonActionListener(MainCustomerFrame mainFrame) {
+	public BookTimeButtonActionListener(MainCustomerFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		new BookTimeDialog(mainFrame);
+
 	}
 
 }

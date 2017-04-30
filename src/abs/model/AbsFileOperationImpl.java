@@ -11,6 +11,7 @@ import abs.model.bookings.Availability;
 import abs.model.bookings.Booking;
 import abs.model.interfaces.*;
 import abs.model.users.Customer;
+import abs.model.users.Employee;
 import abs.model.users.Owner;
 import abs.view.AbsTest;
 
@@ -222,4 +223,14 @@ public class AbsFileOperationImpl implements FileOperation {
 			}
 		}
     }
+
+	public void readToEmployee(Path path, Employee employee, HashMap<String, Employee> map) {
+		String[] data; 
+		for (int i = 0; i < readFromFile(path).size() ; i++) {
+			data = readFromFile(path).get(i).split(REGEX);
+			employee = new Employee(data[0].toString(), data[1].toString(), data[2].toString(),
+					data[3].toString(), data[4].toString());
+			map.put(employee.getUserName(), employee);
+		}
+	}
 }

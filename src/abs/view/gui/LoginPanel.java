@@ -16,6 +16,7 @@ import abs.model.AbsClientSystemImpl;
 import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Customer;
+import abs.model.users.Owner;
 
 public class LoginPanel extends JPanel implements ActionListener {
 
@@ -73,14 +74,17 @@ public class LoginPanel extends JPanel implements ActionListener {
 				for (Customer customer : absMaps.getCustomerMap().values()) {
 					if (customer.getUserName().equals(userName) && 
 							customer.getUserPassword().equals(passWord)) {
-						new MainCustomerFrame(customer, absfileops, absMaps);
+						new MainCustomerFrame(customer, absfileops, absMaps, absClientSystem);
 					}
 				}
 				loginFrame.dispose();
 			} else if (absMaps.ownerValidation(userName, passWord) == true) {
-				/*
-				 * TODO
-				 */
+				for (Owner owner : absMaps.getOwnerMap().values()) {
+					if (owner.getUserName().equals(userName) && 
+							owner.getUserPassword().equals(passWord)) {
+						new MainOwnerFrame(owner, absfileops, absMaps, absClientSystem);
+					}
+				}
 				System.out.println("successful login!");
 				
 			} else {

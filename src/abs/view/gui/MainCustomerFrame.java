@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import abs.model.AbsClientSystemImpl;
+import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.interfaces.FileOperation;
 import abs.model.users.Customer;
@@ -19,10 +21,12 @@ public class MainCustomerFrame extends JFrame {
 	private MainCustomerPanel maincustomerpanel;
 	private AbsMaps absMaps;
 	private Customer customer;
-	private FileOperation fileOps;
+	private AbsFileOperationImpl fileOps;
+	private AbsClientSystemImpl absClientSystem;
 	
-	public MainCustomerFrame(Customer customer, FileOperation fo, AbsMaps absMaps) {
+	public MainCustomerFrame(Customer customer, AbsFileOperationImpl fo, AbsMaps absMaps, AbsClientSystemImpl absClientSystem) {
 		super("Customer - Main menu");
+		this.absClientSystem = absClientSystem;
 		this.absMaps = absMaps;
 		this.customer = customer;
 		this.fileOps = fo;
@@ -41,6 +45,10 @@ public class MainCustomerFrame extends JFrame {
 		setVisible(true);
 	}
 	
+	public AbsClientSystemImpl getClientSystem() {
+		return absClientSystem;
+	}
+	
 	public AbsMaps getAbsMaps() {
 		return absMaps;
 	}
@@ -49,7 +57,7 @@ public class MainCustomerFrame extends JFrame {
 		return customer;
 	}
 	
-	public FileOperation getFileOps() {
+	public AbsFileOperationImpl getFileOps() {
 		return fileOps;
 	}
 }

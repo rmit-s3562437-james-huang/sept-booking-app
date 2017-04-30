@@ -12,6 +12,7 @@ import abs.model.AbsMenuImpl;
 import abs.model.bookings.Availability;
 import abs.model.bookings.Booking;
 import abs.model.users.Customer;
+import abs.model.users.Employee;
 import abs.model.users.Owner;
 import abs.view.gui.*;
 
@@ -36,6 +37,7 @@ public class AbsTest {
 	public final static Path CUSTOMERBOOKINGPATH = Paths.get(PATHNAME + "customerAvailability" + ".txt");
 	public final static Path EMPLOYEEAVAILABILITYPATH = Paths.get(PATHNAME + "employeeAvailabilityTest" + ".txt");
 	public final static Path CUSTOMERFILEPATH = Paths.get(PATHNAME + "customerInfo" + ".txt");
+	public final static Path EMPLOYEEFILEPATH = Paths.get(PATHNAME + "employeeInfo" + ".txt");
 	public final static Path OWNERFILEPATH = Paths.get(PATHNAME + "ownerInfo" + ".txt");
 	public final static Path BOOKINGTESTPATH = Paths.get(PATHNAME + "bookingTest" + ".txt");
 
@@ -52,13 +54,15 @@ public class AbsTest {
 		Availability empAvailability = null;
 		Booking recordBooking = null;
 		Customer customer = null;
+		Employee employee = null;
 		Owner owner = null;
 		
 		LOGGER.log(Level.INFO, "Reading all files");
+		fo.readToEmployee(EMPLOYEEFILEPATH, employee, absMaps.getEmployeeMap());
 		fo.readToCustomer(CUSTOMERFILEPATH, customer, absMaps.getCustomerMap());
 		fo.readToOwner(OWNERFILEPATH, owner, absMaps.getOwnerMap());
 		fo.readEmployeeAvailabilityTest(EMPLOYEEAVAILABILITYPATH, empAvailability, absMaps.getEmployeeAvailabilityMap());
-		fo.readBookingTest(BOOKINGTESTPATH, recordBooking, absMaps.getRecordBookingMap());
+		fo.readBookingTest(BOOKINGTESTPATH, recordBooking, absMaps.getBookingMap());
 
 		LOGGER.log(Level.INFO, "Run program");
 		/*menu.initializeMenu(absMaps, cs, absMaps.getCustomerMap(), fo, CUSTOMERWRITEFILEPATH, 

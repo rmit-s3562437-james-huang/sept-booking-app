@@ -1,4 +1,4 @@
-package abs.view.dialog;
+package abs.view.dialog.customer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

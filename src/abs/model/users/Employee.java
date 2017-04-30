@@ -2,22 +2,10 @@ package abs.model.users;
 
 public class Employee extends AbstractClient {
 	
-	private String availability;
-	
 	public Employee(String name, String userName, String userPassword, String userAddress, 
-			String userPhoneNumber, String userRole, String EmployeeID, String availability) 
+			String userPhoneNumber) 
 	{
-		super(name, userName, userPassword, userAddress, userPhoneNumber, userRole);
-		this.availability = availability;
+		super(name, userName, userPassword, userAddress, userPhoneNumber, "Employee");
 	}
-
-	public String getAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(String availability) {
-		this.availability = availability;
-	}
-
 	
 }

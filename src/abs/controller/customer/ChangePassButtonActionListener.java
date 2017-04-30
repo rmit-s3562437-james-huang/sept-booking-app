@@ -1,9 +1,9 @@
-package abs.controller;
+package abs.controller.customer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import abs.view.dialog.ChangePasswordDialog;
+import abs.view.dialog.customer.ChangePasswordDialog;
 import abs.view.gui.MainCustomerFrame;
 
 public class ChangePassButtonActionListener implements ActionListener {

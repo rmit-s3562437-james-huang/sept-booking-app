@@ -22,7 +22,6 @@ public class AbsMaps implements Maps {
 	private HashMap<String, Owner> ownerMap = new HashMap<String, Owner>();
 	private HashMap<String, Customer> customerMap = new HashMap<String, Customer>();
 	private HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
-	
 	private HashMap<String, Booking> bookingMap = new HashMap<String, Booking>();
 	private HashMap<String, Availability> availabilityMap = new HashMap<String, Availability>();
 	
@@ -49,7 +48,7 @@ public class AbsMaps implements Maps {
 	}
 	
 	@Override
-	public HashMap<String, Booking> getRecordBookingMap() {
+	public HashMap<String, Booking> getBookingMap() {
 		return bookingMap;
 	}
 	
