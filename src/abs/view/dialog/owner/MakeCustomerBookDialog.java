@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import abs.model.bookings.Availability;
+import abs.model.bookings.Booking;
 import abs.model.users.Customer;
 import abs.model.users.Employee;
 import abs.view.AbsTest;
@@ -59,6 +60,10 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < BookTimeDialog.DAYS_OF_WEEK.length; i++) {
 			cbDay.addItem(BookTimeDialog.DAYS_OF_WEEK[i]);
 		}
+		
+		cbDentist.addActionListener(this);
+		cbDay.addActionListener(this);
+		cbTime.addActionListener(this);
 		
 		JLabel selectCustomerLabel = new JLabel("Select customer: ");
 		JLabel selectDentistLabel = new JLabel("Select dentist: ");
@@ -141,6 +146,24 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 				if (empAvailability.getEmployeeUserName().equals(cbDentist.getSelectedItem()) ) {
 					if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
 						if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
+							
+							
+							for (Booking book : mainOwnerFrame.getAbsMaps().getBookingMap().values()) {
+								System.out.println("pass1");
+								if (book.getEmployeeUserName().equals(cbDentist.getSelectedItem())) {
+									System.out.println("pass2");
+									if (book.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+										System.out.println("pass3");
+										if (!book.getTimeSlot().contains(cbTime.getSelectedItem())) {
+											System.out.println("pass4");
+											book.getTimeSlot().add((String)cbTime.getSelectedItem());
+											mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
+										}
+									}
+								}
+							}
+							
+							
 							mainOwnerFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), 
 									(String) cbTime.getSelectedItem(), (String) cbCustomer.getSelectedItem(), 
 									(String) cbDentist.getSelectedItem());
