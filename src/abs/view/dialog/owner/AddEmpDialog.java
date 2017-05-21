@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -44,6 +45,7 @@ public class AddEmpDialog extends JDialog implements ActionListener {
 	
 	public AddEmpDialog(MainOwnerFrame mainOwnerFrame) {
 		setTitle("Register Employee");
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		this.mainOwnerFrame = mainOwnerFrame;
 		setLayout(new GridBagLayout());

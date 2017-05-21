@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import abs.model.bookings.Booking;
+import abs.view.AbsTest;
 import abs.view.gui.MainOwnerFrame;
 
 public class ViewAllButtonDialog extends JDialog {
@@ -17,6 +19,7 @@ public class ViewAllButtonDialog extends JDialog {
 
 	public ViewAllButtonDialog(MainOwnerFrame mainOwnerFrame) {
 		setTitle("Timetable - all bookings");
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		bookPanel = new JPanel();
 		

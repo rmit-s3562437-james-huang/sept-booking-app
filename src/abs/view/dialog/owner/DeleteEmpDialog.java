@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -32,6 +33,7 @@ public class DeleteEmpDialog extends JDialog implements ActionListener {
 
 	public DeleteEmpDialog(MainOwnerFrame mainOwnerFrame) {
 		setTitle("Delete Employee");
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		setLayout(new BorderLayout());
 		this.mainOwnerFrame = mainOwnerFrame;
 		

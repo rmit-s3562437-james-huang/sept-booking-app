@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -33,6 +34,8 @@ public class ChangePasswordDialog extends JDialog implements ActionListener {
 	public ChangePasswordDialog(MainCustomerFrame mainFrame) {
 		setTitle("Change Password");
 		this.mainFrame = mainFrame;
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(3,2,5,5));

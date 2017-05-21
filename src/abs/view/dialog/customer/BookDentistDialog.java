@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -38,6 +39,8 @@ public class BookDentistDialog extends JDialog implements ActionListener {
 		setTitle("Book by Dentist");
 		this.mainFrame = mainFrame;
 		setLayout(new BorderLayout());
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		bookPanel = new JPanel();
 		buttonPanel = new JPanel();

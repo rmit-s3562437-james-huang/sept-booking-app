@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -40,6 +41,7 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 		this.mainOwnerFrame = mainOwnerFrame;
 	
 		setTitle("Make booking for Customer");
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		setLayout(new BorderLayout());
 		
 		bookPanel = new JPanel();

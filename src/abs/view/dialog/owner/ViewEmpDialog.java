@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import abs.model.users.Employee;
+import abs.view.AbsTest;
 import abs.view.gui.MainOwnerFrame;
 
 public class ViewEmpDialog extends JDialog {
@@ -17,6 +19,7 @@ public class ViewEmpDialog extends JDialog {
 	
 	public ViewEmpDialog(MainOwnerFrame mainOwnerFrame) {
 		setTitle("Employee Details");
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		viewPanel = new JPanel();
 		

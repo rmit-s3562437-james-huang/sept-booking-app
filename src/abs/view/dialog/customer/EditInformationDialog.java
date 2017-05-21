@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -38,6 +39,9 @@ public class EditInformationDialog extends JDialog implements ActionListener {
 		this.mainCustomerFrame = mainCustomerFrame;
 		
 		setTitle("Edit Information");
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
+		
 		setLayout(new BorderLayout());
 		
 		dialogPanel = new JPanel();

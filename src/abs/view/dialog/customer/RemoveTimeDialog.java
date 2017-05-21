@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Map.Entry;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -38,6 +39,8 @@ public class RemoveTimeDialog extends JDialog implements ActionListener {
 		setTitle("Remove booking");
 		this.mainFrame = mainFrame;
 		setLayout(new BorderLayout());
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		buttonPanel = new JPanel();
 		removePanel = new JPanel();

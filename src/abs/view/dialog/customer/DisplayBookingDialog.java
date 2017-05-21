@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import abs.model.bookings.Booking;
+import abs.view.AbsTest;
 import abs.view.gui.MainCustomerFrame;
 
 public class DisplayBookingDialog extends JDialog {
@@ -18,6 +20,8 @@ public class DisplayBookingDialog extends JDialog {
 	public DisplayBookingDialog(MainCustomerFrame mainFrame) {
 		
 		setTitle("Customer Timetable");
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		bookPanel = new JPanel();
 		

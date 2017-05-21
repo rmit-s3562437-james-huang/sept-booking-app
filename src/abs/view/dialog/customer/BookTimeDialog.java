@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -42,6 +43,8 @@ public class BookTimeDialog extends JDialog implements ActionListener {
 	public BookTimeDialog(MainCustomerFrame mainFrame) {
 		setTitle("Book by time");
 		this.mainFrame = mainFrame;
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		//user selects a day and time
 		//search days and times
