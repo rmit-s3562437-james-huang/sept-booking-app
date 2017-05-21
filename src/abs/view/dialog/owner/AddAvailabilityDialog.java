@@ -101,22 +101,51 @@ public class AddAvailabilityDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(addButton)) {
 			
-			
 			ArrayList<String> timeSlot = new ArrayList<String>();
-			String time = startTimeField.getText();
-			timeSlot.add(time);
-			String day = appendDay((String) dayComboBox.getSelectedItem());
-			String emp = (String) employeeComboBox.getSelectedItem();
-			mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
-			mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
+			String startTime = startTimeField.getText();
+			String finishTime = incrementHour(startTime);
+			String time = startTime + "-" + finishTime;
+			System.out.println(time);
+			//timeSlot.add(time);
+			//String day = appendDay((String) dayComboBox.getSelectedItem());
+			//String emp = (String) employeeComboBox.getSelectedItem();
+			//mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
+			//mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
 			
-//			for (Employee employee : mainOwnerFrame.getAbsMaps().getEmployeeMap().values()) {
-//				if (employee.getName().equals(emp)) {
-//					
-//				} else {
-//				}
-//			}
+			
+			
+		}	
+	}
+	
+	public String incrementHour(String startTime) {
+		
+		String ret;
+		int x,y;
+		String[] array = startTime.split("");
+		
+		if(array[1].equals('9')) {
+			if(array[0].equals('2')) {
+				ret = "";
+				return ret;
+			}
+			else {
+				x = Integer.parseInt(array[0]);
+				x++;
+				array[0] = Integer.toString(x);
+				array[1] = "0";
+			}
 		}
+		else {
+			x = Integer.parseInt(array[1]);
+			x++;
+			array[1] = Integer.toString(x);
+		}
+		
+		ret = array[0] + array[1] + array[2] + array[3] + array[4]; 
+		
+		System.out.println(ret);
+		
+		return ret;
 	}
 
 	/* code dupe 
