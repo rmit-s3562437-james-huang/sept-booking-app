@@ -111,8 +111,12 @@ public class BookDentistDialog extends JDialog implements ActionListener {
 		for (Availability empAvailability : mainFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
 			if (empAvailability.getEmployeeUserName().equals(cbDentist.getSelectedItem()) ) {
 				if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
-					for (int i = 0; i < empAvailability.getTimeSlot().size(); i++ ) 
-						cbTime.addItem(empAvailability.getTimeSlot().get(i));		
+					for (int i = 0; i < empAvailability.getTimeSlot().size(); i++ ) {
+						if (!mainFrame.getAbsMaps().validateBooking(empAvailability.getDay(), 
+								empAvailability.getTimeSlot().get(i))) {
+							cbTime.addItem(empAvailability.getTimeSlot().get(i));
+						}		
+					}
 				}
 			}		
 		}
