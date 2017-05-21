@@ -2,6 +2,7 @@ package abs.view.gui;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,6 +11,7 @@ import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.interfaces.FileOperation;
 import abs.model.users.Customer;
+import abs.view.AbsTest;
 
 public class MainCustomerFrame extends JFrame {
 
@@ -30,6 +32,8 @@ public class MainCustomerFrame extends JFrame {
 		this.absMaps = absMaps;
 		this.customer = customer;
 		this.fileOps = fo;
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		maincustomerpanel = new MainCustomerPanel(this);
 		mainPanel = new JPanel();

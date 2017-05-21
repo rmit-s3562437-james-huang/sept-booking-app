@@ -34,14 +34,16 @@ public class AbsTest {
 	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + "customerInfo" + ".txt";
 	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "bookingTest" + ".txt";
 	public final static String EMPLOYEEWRITEFILEPATH = PATHNAME + "employeeInfo" + ".txt";
-
+	
+	public final static String ICONPATH = PATHNAME + "iconImg" + ".png";
+	
 	public final static Path CUSTOMERBOOKINGPATH = Paths.get(PATHNAME + "customerAvailability" + ".txt");
 	public final static Path EMPLOYEEAVAILABILITYPATH = Paths.get(PATHNAME + "employeeAvailabilityTest" + ".txt");
 	public final static Path CUSTOMERFILEPATH = Paths.get(PATHNAME + "customerInfo" + ".txt");
 	public final static Path EMPLOYEEFILEPATH = Paths.get(PATHNAME + "employeeInfo" + ".txt");
 	public final static Path OWNERFILEPATH = Paths.get(PATHNAME + "ownerInfo" + ".txt");
 	public final static Path BOOKINGTESTPATH = Paths.get(PATHNAME + "bookingTest" + ".txt");
-
+	
 	public static void main(String[] args)
 	{		
 

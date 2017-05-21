@@ -2,6 +2,7 @@ package abs.view.gui;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -9,6 +10,7 @@ import abs.model.AbsClientSystemImpl;
 import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Customer;
+import abs.view.AbsTest;
 
 public class LoginFrame extends JFrame {
 	
@@ -27,6 +29,8 @@ public class LoginFrame extends JFrame {
 		this.absMaps = absMaps;
 		this.absclientsystem = absclientsystem;
 		this.absfileops = absfileops;
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		/* store login panel to a main panel 
 		 * without set border required */

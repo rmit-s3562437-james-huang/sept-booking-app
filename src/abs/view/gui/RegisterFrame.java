@@ -2,12 +2,14 @@ package abs.view.gui;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import abs.model.AbsClientSystemImpl;
 import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
+import abs.view.AbsTest;
 
 public class RegisterFrame extends JFrame {
 
@@ -27,6 +29,8 @@ public class RegisterFrame extends JFrame {
 		this.absClientSystem = absClientSystem;
 		this.absMaps = absMaps;
 		this.absfileops = absfileops;
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		registerPanel = new RegisterPanel(this, absMaps, absClientSystem, absfileops);
 		mainPanel = new JPanel();

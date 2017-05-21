@@ -2,6 +2,7 @@ package abs.view.gui;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -9,6 +10,7 @@ import abs.model.AbsClientSystemImpl;
 import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Owner;
+import abs.view.AbsTest;
 
 public class MainOwnerFrame extends JFrame {
 
@@ -28,6 +30,8 @@ public class MainOwnerFrame extends JFrame {
 		this.absMaps = absMaps;
 		this.owner = owner;
 		this.fileOps = fo;
+		
+		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
 		mainOwnerPanel = new MainOwnerPanel(this);
 		mainPanel = new JPanel();
