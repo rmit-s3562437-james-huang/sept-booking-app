@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import abs.controller.owner.AddEmpAvailabilityButtonActionListener;
 import abs.controller.owner.AddEmpButtonActionListener;
 import abs.controller.owner.DeleteEmpButtonActionListner;
 import abs.controller.owner.MakeCustomerBookActionListener;
@@ -20,12 +21,13 @@ public class MainOwnerPanel extends JPanel implements ActionListener {
 	private MainOwnerFrame mainOwnerFrame;
 	
 	private JButton viewAllBookButton, viewEmpDetailsButton, 
-		addEmpButton, deleteEmpButton, makeCustomerBookingButton, logOutButton;
+		addEmpButton, deleteEmpButton, makeCustomerBookingButton, logOutButton, addEmpAvailabilityButton;
 
 	public MainOwnerPanel(MainOwnerFrame mainOwnerFrame) {
 		
 		this.mainOwnerFrame = mainOwnerFrame;
 		
+		addEmpAvailabilityButton = new JButton("Add Employee Availability");
 		viewAllBookButton = new JButton("View all bookings");
 		viewEmpDetailsButton = new JButton("View Employee Details");
 		addEmpButton = new JButton("Add Employees");
@@ -40,6 +42,8 @@ public class MainOwnerPanel extends JPanel implements ActionListener {
 		viewEmpDetailsButton.addActionListener(new ViewEmpButtonActionListener(mainOwnerFrame));
 		add(addEmpButton);
 		addEmpButton.addActionListener(new AddEmpButtonActionListener(mainOwnerFrame));
+		add(addEmpAvailabilityButton);
+		addEmpAvailabilityButton.addActionListener(new AddEmpAvailabilityButtonActionListener(mainOwnerFrame));
 		add(deleteEmpButton);
 		deleteEmpButton.addActionListener(new DeleteEmpButtonActionListner(mainOwnerFrame));
 		add(makeCustomerBookingButton);

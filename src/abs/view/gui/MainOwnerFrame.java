@@ -15,7 +15,7 @@ import abs.view.AbsTest;
 public class MainOwnerFrame extends JFrame {
 
 	private static final int WINDOW_WIDTH = 400;
-	private static final int WINDOW_HEIGHT = 260;
+	private static final int WINDOW_HEIGHT = 279;
 	
 	private JPanel mainPanel;
 	private MainOwnerPanel mainOwnerPanel;
