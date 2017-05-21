@@ -106,15 +106,12 @@ public class AddAvailabilityDialog extends JDialog implements ActionListener {
 			String finishTime = incrementHour(startTime);
 			String time = startTime + "-" + finishTime;
 			System.out.println(time);
-			//timeSlot.add(time);
-			//String day = appendDay((String) dayComboBox.getSelectedItem());
-			//String emp = (String) employeeComboBox.getSelectedItem();
-			//mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
-			//mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
-			
-			
-			
-		}	
+			timeSlot.add(time);
+			String day = appendDay((String) dayComboBox.getSelectedItem());
+			String emp = (String) employeeComboBox.getSelectedItem();
+			mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
+			mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
+		}
 	}
 	
 	public String incrementHour(String startTime) {
