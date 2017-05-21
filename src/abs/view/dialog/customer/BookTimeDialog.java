@@ -75,10 +75,46 @@ public class BookTimeDialog extends JDialog implements ActionListener {
 		bookPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		cbDay.addActionListener(this);
-		cbTime.addActionListener(this);
+		//cbTime.addActionListener(this);
 		
 		okButton = new JButton("OK");
-		okButton.addActionListener(this);
+		okButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource().equals(okButton)) {
+				System.out.println("pass1");
+				
+				/* create function for this in absMaps
+				 * TODO : notify the user
+				 */
+				
+				for (Availability empAvailability : mainFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
+					System.out.println("pass2");
+					if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+						System.out.println(cbDay.getSelectedItem());
+						System.out.println(empAvailability.getTimeSlot().toString() + " " + cbTime.getSelectedItem());
+						if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
+							System.out.println("pass4");
+							System.out.println(mainFrame.getAbsMaps().getBookingMap().toString());
+							empAvailability.getTimeSlot().remove(cbTime.getSelectedItem());
+							
+							mainFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), (String) cbTime.getSelectedItem(),
+									mainFrame.getCustomer().getUserName(), empAvailability.getEmployeeUserName());
+							mainFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainFrame.getAbsMaps().getBookingMap());
+							
+							//Notification Dialog has been added
+							JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
+									" with " + empAvailability.getEmployeeUserName() + ".");
+						}
+						
+					}
+				}
+				dispose();
+			}
+			}
+			
+		});
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(this);
 		buttonPanel.add(okButton);
@@ -114,34 +150,35 @@ public class BookTimeDialog extends JDialog implements ActionListener {
 			}
 		}
 		
-		if(e.getSource().equals(okButton)) {
-			System.out.println("pass1");
-			
-			/* create function for this in absMaps
-			 * TODO : notify the user
-			 */
-			
-			for (Availability empAvailability : mainFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
-				System.out.println("pass2");
-				if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
-					System.out.println(cbDay.getSelectedItem());
-					System.out.println(empAvailability.getTimeSlot().toString() + " " + cbTime.getSelectedItem());
-					if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
-						System.out.println("pass4");
-						System.out.println(mainFrame.getAbsMaps().getBookingMap().toString());
-						mainFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), (String) cbTime.getSelectedItem(),
-								mainFrame.getCustomer().getUserName(), empAvailability.getEmployeeUserName());
-						mainFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainFrame.getAbsMaps().getBookingMap());
-						
-						//Notification Dialog has been added
-						JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
-								" with " + empAvailability.getEmployeeUserName() + ".");
-					}
-					
-				}
-			}
-			dispose();
-		}
+		
+//		if(e.getSource().equals(okButton)) {
+//			System.out.println("pass1");
+//			
+//			/* create function for this in absMaps
+//			 * TODO : notify the user
+//			 */
+//			
+//			for (Availability empAvailability : mainFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
+//				System.out.println("pass2");
+//				if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+//					System.out.println(cbDay.getSelectedItem());
+//					System.out.println(empAvailability.getTimeSlot().toString() + " " + cbTime.getSelectedItem());
+//					if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
+//						System.out.println("pass4");
+//						System.out.println(mainFrame.getAbsMaps().getBookingMap().toString());
+//						mainFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), (String) cbTime.getSelectedItem(),
+//								mainFrame.getCustomer().getUserName(), empAvailability.getEmployeeUserName());
+//						mainFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainFrame.getAbsMaps().getBookingMap());
+//						
+//						//Notification Dialog has been added
+//						JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
+//								" with " + empAvailability.getEmployeeUserName() + ".");
+//					}
+//					
+//				}
+//			}
+//			dispose();
+//		}
 	}
 
 	public String appendDay(String day) {

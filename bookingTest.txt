@@ -1,1 +1,2 @@
-tess3 Tess Mon: [09:30-10:30]
+tess1 Tess Mon: [09:30-10:30, 10:30-11:30]
+tess2 Jess Tue: [09:30-10:30]
