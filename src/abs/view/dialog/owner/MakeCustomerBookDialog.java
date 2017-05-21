@@ -68,7 +68,7 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 		cbTime.addActionListener(this);
 		
 		JLabel selectCustomerLabel = new JLabel("Select customer: ");
-		JLabel selectDentistLabel = new JLabel("Select dentist: ");
+		JLabel selectDentistLabel = new JLabel("Select employee: ");
 		JLabel selectDayLabel = new JLabel("Select day: ");
 		JLabel selectTimeLabel = new JLabel("Select time: ");
 
