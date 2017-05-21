@@ -1,10 +1,16 @@
 package abs.view.gui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,6 +23,7 @@ import abs.model.AbsFileOperationImpl;
 import abs.model.AbsMaps;
 import abs.model.users.Customer;
 import abs.model.users.Owner;
+import abs.view.AbsTest;
 
 public class LoginPanel extends JPanel implements ActionListener {
 

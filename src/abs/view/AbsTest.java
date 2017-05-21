@@ -35,7 +35,9 @@ public class AbsTest {
 	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "bookingTest" + ".txt";
 	public final static String EMPLOYEEWRITEFILEPATH = PATHNAME + "employeeInfo" + ".txt";
 	
-	public final static String ICONPATH = PATHNAME + "iconImg" + ".png";
+	public final static String ICONPATH = PATHNAME + "iconImage" + ".png";
+	public final static String BANNERPATH = PATHNAME + "bannerImage" + ".png";
+	public final static String BACKGROUNDIMAGE = PATHNAME + "backgroundImage" + ".png";
 	
 	public final static Path CUSTOMERBOOKINGPATH = Paths.get(PATHNAME + "customerAvailability" + ".txt");
 	public final static Path EMPLOYEEAVAILABILITYPATH = Paths.get(PATHNAME + "employeeAvailabilityTest" + ".txt");

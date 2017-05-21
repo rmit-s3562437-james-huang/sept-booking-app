@@ -1,9 +1,14 @@
 package abs.view.gui;
 
 import java.awt.BorderLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import abs.model.AbsClientSystemImpl;
@@ -15,7 +20,7 @@ import abs.view.AbsTest;
 public class LoginFrame extends JFrame {
 	
 	private static final int WINDOW_WIDTH = 400;
-	private static final int WINDOW_HEIGHT = 150;
+	private static final int WINDOW_HEIGHT = 225;
 
 	private JPanel mainPanel;
 	private LoginPanel loginPanel;
@@ -41,6 +46,16 @@ public class LoginFrame extends JFrame {
 		setLayout(new BorderLayout());
 		
 		add(mainPanel, BorderLayout.CENTER);
+		
+		try {
+			BufferedImage bannerImage = ImageIO.read(new File(AbsTest.BANNERPATH));
+			JLabel bannerPanel = new JLabel(new ImageIcon(bannerImage));
+			add(bannerPanel, BorderLayout.NORTH);
+		}
+		catch (IOException e) {
+			System.out.println("Banner Image not found in " + AbsTest.PATHNAME + "!");
+		}
+		
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
