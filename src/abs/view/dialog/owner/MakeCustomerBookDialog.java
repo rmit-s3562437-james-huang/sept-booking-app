@@ -65,7 +65,7 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 		
 		cbDentist.addActionListener(this);
 		cbDay.addActionListener(this);
-		cbTime.addActionListener(this);
+		//cbTime.addActionListener(this);
 		
 		JLabel selectCustomerLabel = new JLabel("Select customer: ");
 		JLabel selectDentistLabel = new JLabel("Select employee: ");
@@ -94,7 +94,57 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 		cancelButton = new JButton("Cancel");
 		
 		buttonPanel.add(okButton);
-		okButton.addActionListener(this);
+		okButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource().equals(okButton)) {
+					System.out.println("pass1");
+					
+					/* create function for this in absMaps
+					 * TODO : notify the user
+					 * 
+					 * ERROR : times are not being deleted after having booked the slot
+					 */
+					
+					for (Availability empAvailability : mainOwnerFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
+						if (empAvailability.getEmployeeUserName().equals(cbDentist.getSelectedItem()) ) {
+							if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+								if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
+									
+									
+									for (Booking book : mainOwnerFrame.getAbsMaps().getBookingMap().values()) {
+										System.out.println("pass1");
+										if (book.getEmployeeUserName().equals(cbDentist.getSelectedItem())) {
+											System.out.println("pass2");
+											if (book.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+												System.out.println("pass3");
+												if (!book.getTimeSlot().contains(cbTime.getSelectedItem())) {
+													System.out.println("pass4");
+													book.getTimeSlot().add((String)cbTime.getSelectedItem());
+													mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
+												}
+											}
+										}
+									}
+									
+									
+									mainOwnerFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), 
+											(String) cbTime.getSelectedItem(), (String) cbCustomer.getSelectedItem(), 
+											(String) cbDentist.getSelectedItem());
+									System.out.println(mainOwnerFrame.getAbsMaps().getBookingMap());
+									mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
+									JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
+											" with " + (String) cbDentist.getSelectedItem() + ".");
+								}
+							}	
+						}
+					}
+					dispose();
+				}
+			}
+			
+		});
 		buttonPanel.add(cancelButton);
 		cancelButton.addActionListener(this);
 		
@@ -129,56 +179,60 @@ public class MakeCustomerBookDialog extends JDialog implements ActionListener {
 		for (Availability empAvailability : mainOwnerFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
 			if (empAvailability.getEmployeeUserName().equals(cbDentist.getSelectedItem()) ) {
 				if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
-					for (int i = 0; i < empAvailability.getTimeSlot().size(); i++ ) 
-						cbTime.addItem(empAvailability.getTimeSlot().get(i));		
+					for (int i = 0; i < empAvailability.getTimeSlot().size(); i++ ) {
+						if (!mainOwnerFrame.getAbsMaps().validateBooking(empAvailability.getDay(), 
+								empAvailability.getTimeSlot().get(i))) {
+							cbTime.addItem(empAvailability.getTimeSlot().get(i));
+						}		
+					}
 				}
 			}		
 		}
 		
-		if(e.getSource().equals(okButton)) {
-			System.out.println("pass1");
-			
-			/* create function for this in absMaps
-			 * TODO : notify the user
-			 * 
-			 * ERROR : times are not being deleted after having booked the slot
-			 */
-			
-			for (Availability empAvailability : mainOwnerFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
-				if (empAvailability.getEmployeeUserName().equals(cbDentist.getSelectedItem()) ) {
-					if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
-						if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
-							
-							
-							for (Booking book : mainOwnerFrame.getAbsMaps().getBookingMap().values()) {
-								System.out.println("pass1");
-								if (book.getEmployeeUserName().equals(cbDentist.getSelectedItem())) {
-									System.out.println("pass2");
-									if (book.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
-										System.out.println("pass3");
-										if (!book.getTimeSlot().contains(cbTime.getSelectedItem())) {
-											System.out.println("pass4");
-											book.getTimeSlot().add((String)cbTime.getSelectedItem());
-											mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
-										}
-									}
-								}
-							}
-							
-							
-							mainOwnerFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), 
-									(String) cbTime.getSelectedItem(), (String) cbCustomer.getSelectedItem(), 
-									(String) cbDentist.getSelectedItem());
-							System.out.println(mainOwnerFrame.getAbsMaps().getBookingMap());
-							mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
-							JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
-									" with " + (String) cbDentist.getSelectedItem() + ".");
-						}
-					}	
-				}
-			}
-			dispose();
-		}
+//		if(e.getSource().equals(okButton)) {
+//			System.out.println("pass1");
+//			
+//			/* create function for this in absMaps
+//			 * TODO : notify the user
+//			 * 
+//			 * ERROR : times are not being deleted after having booked the slot
+//			 */
+//			
+//			for (Availability empAvailability : mainOwnerFrame.getAbsMaps().getEmployeeAvailabilityMap().values()) {
+//				if (empAvailability.getEmployeeUserName().equals(cbDentist.getSelectedItem()) ) {
+//					if (empAvailability.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+//						if (empAvailability.getTimeSlot().contains(cbTime.getSelectedItem())) {
+//							
+//							
+//							for (Booking book : mainOwnerFrame.getAbsMaps().getBookingMap().values()) {
+//								System.out.println("pass1");
+//								if (book.getEmployeeUserName().equals(cbDentist.getSelectedItem())) {
+//									System.out.println("pass2");
+//									if (book.getDay().equals(appendDay((String) cbDay.getSelectedItem()))) {
+//										System.out.println("pass3");
+//										if (!book.getTimeSlot().contains(cbTime.getSelectedItem())) {
+//											System.out.println("pass4");
+//											book.getTimeSlot().add((String)cbTime.getSelectedItem());
+//											mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
+//										}
+//									}
+//								}
+//							}
+//							
+//							
+//							mainOwnerFrame.getAbsMaps().createBooking(appendDay((String) cbDay.getSelectedItem()), 
+//									(String) cbTime.getSelectedItem(), (String) cbCustomer.getSelectedItem(), 
+//									(String) cbDentist.getSelectedItem());
+//							System.out.println(mainOwnerFrame.getAbsMaps().getBookingMap());
+//							mainOwnerFrame.getFileOps().compileBookingMapStrings(AbsTest.BOOKINGWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getBookingMap());
+//							JOptionPane.showMessageDialog(null, "You've successfully book an appointment on: \n" + (String) cbDay.getSelectedItem() + " at " + (String) cbTime.getSelectedItem().toString() + 
+//									" with " + (String) cbDentist.getSelectedItem() + ".");
+//						}
+//					}	
+//				}
+//			}
+//			dispose();
+//		}
 	}
 
 }
