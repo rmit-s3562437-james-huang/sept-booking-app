@@ -2,6 +2,9 @@ package abs.view.dialog.owner;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -17,10 +20,10 @@ import abs.view.AbsTest;
 import abs.view.dialog.customer.BookTimeDialog;
 import abs.view.gui.MainOwnerFrame;
 
-public class AddAvailabilityDialog extends JDialog {
+public class AddAvailabilityDialog extends JDialog implements ActionListener {
 
 	private static final int WINDOW_WIDTH = 400;
-	private static final int WINDOW_HEIGHT = 250;
+	private static final int WINDOW_HEIGHT = 200;
 	
 	private MainOwnerFrame mainOwnerFrame;
 	
@@ -39,7 +42,7 @@ public class AddAvailabilityDialog extends JDialog {
 	private JPanel buttonPanel;
 	
 	public AddAvailabilityDialog(MainOwnerFrame mainOwnerFrame) {
-		
+		this.mainOwnerFrame = mainOwnerFrame;
 		setTitle("Add Employee Availabilities");
 		setIconImage(new ImageIcon(AbsTest.ICONPATH).getImage());
 		
@@ -78,6 +81,7 @@ public class AddAvailabilityDialog extends JDialog {
 		addTimePanel.add(startTimeField);
 		
 		addButton = new JButton("Confirm");
+		addButton.addActionListener(this);
 		cancelButton = new JButton("Cancel");
 		
 		addTimePanel.add(cancelButton);
@@ -87,9 +91,40 @@ public class AddAvailabilityDialog extends JDialog {
 		add(addTimePanel, BorderLayout.CENTER);
 		
 		setSize(this.WINDOW_WIDTH, this.WINDOW_HEIGHT);
-		setResizable(false);
+		setLocationRelativeTo(null);
+		//setResizable(false);
 		setVisible(true);
 		
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(addButton)) {
+			
+			
+			ArrayList<String> timeSlot = new ArrayList<String>();
+			String time = startTimeField.getText();
+			timeSlot.add(time);
+			String day = appendDay((String) dayComboBox.getSelectedItem());
+			String emp = (String) employeeComboBox.getSelectedItem();
+			mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
+			mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
+			
+//			for (Employee employee : mainOwnerFrame.getAbsMaps().getEmployeeMap().values()) {
+//				if (employee.getName().equals(emp)) {
+//					
+//				} else {
+//				}
+//			}
+		}
+	}
+
+	/* code dupe 
+	 * should be created in mainCustFrame
+	 * need to refactor later */
+	public String appendDay(String day) {
+		String appendDay;
+		appendDay = day.substring(0, (day.length()-(day.length()-3)));
+		return appendDay;
+	}
 }

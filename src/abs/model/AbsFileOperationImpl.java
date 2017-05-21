@@ -256,6 +256,34 @@ public class AbsFileOperationImpl implements FileOperation {
 		}
     }
 
+	public void compileAvailabilityMapStrings(String writePath, HashMap<String, Availability> map) {
+		LOGGER.log(Level.WARNING, "Writing File");
+    	String custUserName, empUserName, day, timeSlot;
+		String delim1 = " ";
+		String delim2 = ": ";
+		String availabilityString;
+		int count = 0;
+		
+		primeCustomerFile(writePath);
+		
+		for (Availability availability : map.values()) {
+			empUserName = availability.getEmployeeUserName();
+			day = availability.getDay();
+			timeSlot = availability.getTimeSlot().toString();
+			
+			count++;
+			availabilityString = empUserName + delim1
+					 + day + delim2 + timeSlot;
+			
+			if(count < map.size()) {
+				writeToCustomerFile(writePath, availabilityString, true);
+			}
+			else {
+				writeToCustomerFile(writePath, availabilityString, false);
+			}
+		}
+    }
+	
 	public void readToEmployee(Path path, Employee employee, HashMap<String, Employee> map) {
 		String[] data; 
 		for (int i = 0; i < readFromFile(path).size() ; i++) {

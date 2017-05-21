@@ -25,6 +25,10 @@ public class AbsMaps implements Maps {
 	private HashMap<String, Booking> bookingMap = new HashMap<String, Booking>();
 	private HashMap<String, Availability> availabilityMap = new HashMap<String, Availability>();
 	
+	public HashMap<String, Availability> getAvailabilityMap() {
+		return availabilityMap;
+	}
+
 	@Override
 	public void addCustomer(Customer customer) {
 		customerMap.put(customer.getUserName(), customer);
@@ -515,6 +519,11 @@ public class AbsMaps implements Maps {
 			System.out.println("No booking has been made as you've elected to cancle mid-way.");
 		}
 	}
+	
+	public void createAvailability(String emp, String day, ArrayList<String> timeSlot) {
+		Availability availability = new Availability(emp, day, timeSlot);
+		availabilityMap.put(availability.getAvailabilityId(), availability);
+	}
 
 	public void addEmployee(Employee employee) {
 		employeeMap.put(employee.getUserName(), employee);
@@ -523,4 +532,6 @@ public class AbsMaps implements Maps {
 	public Employee getEmployee(String userName) {
 		return employeeMap.get(userName);
 	}
+
+	
 }
