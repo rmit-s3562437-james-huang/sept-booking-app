@@ -36,7 +36,7 @@ public class BookDentistDialog extends JDialog implements ActionListener {
 	private JButton cancelButton;
 	
 	public BookDentistDialog(MainCustomerFrame mainFrame) {
-		setTitle("Book by Dentist");
+		setTitle("Book by Name");
 		this.mainFrame = mainFrame;
 		setLayout(new BorderLayout());
 		
@@ -62,7 +62,7 @@ public class BookDentistDialog extends JDialog implements ActionListener {
 			cbDay.addItem(BookTimeDialog.DAYS_OF_WEEK[i]);
 		}
 		
-		JLabel selectDentistLabel = new JLabel("Select dentist: ");
+		JLabel selectDentistLabel = new JLabel("Select employee: ");
 		JLabel selectDayLabel = new JLabel("Select day: ");
 		JLabel selectTimeLabel = new JLabel("Select time: ");
 

@@ -25,7 +25,7 @@ public class LoginFrame extends JFrame {
 	private AbsFileOperationImpl absfileops;
 	
 	public LoginFrame(AbsMaps absMaps, AbsClientSystemImpl absclientsystem, AbsFileOperationImpl absfileops) {
-		super("Dentist Booking System - Login");
+		super("Appointment Booking System - Login");
 		this.absMaps = absMaps;
 		this.absclientsystem = absclientsystem;
 		this.absfileops = absfileops;
