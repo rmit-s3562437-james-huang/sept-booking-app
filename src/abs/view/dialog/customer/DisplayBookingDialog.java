@@ -48,17 +48,19 @@ public class DisplayBookingDialog extends JDialog {
 			System.out.println(book.getCustomerUserName());
 			if (book.getCustomerUserName().equals(mainFrame.getCustomer().getUserName())) {
 				
-				JLabel empUserLabel = new JLabel(book.getEmployeeUserName());
-				empUserLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
 				JLabel custUserLabel = new JLabel(book.getCustomerUserName());
 				custUserLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				JLabel empUserLabel = new JLabel(book.getEmployeeUserName());
+				empUserLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				JLabel getDayLabel = new JLabel(book.getDay());
 				getDayLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				JLabel getTimeLabel = new JLabel(book.getTimeSlot().toString());
 				getTimeLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				
-				bookPanel.add(empUserLabel);
+				
 				bookPanel.add(custUserLabel);
+				bookPanel.add(empUserLabel);
 				bookPanel.add(getDayLabel);
 				bookPanel.add(getTimeLabel);
 				
