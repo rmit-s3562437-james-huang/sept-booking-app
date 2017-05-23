@@ -83,6 +83,7 @@ public class AddAvailabilityDialog extends JDialog implements ActionListener {
 		addButton = new JButton("Confirm");
 		addButton.addActionListener(this);
 		cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(this);
 		
 		addTimePanel.add(cancelButton);
 		addTimePanel.add(addButton);
@@ -112,7 +113,6 @@ public class AddAvailabilityDialog extends JDialog implements ActionListener {
 			mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
 			mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
 		}
-		
 		if(e.getSource().equals(cancelButton)) {
 			dispose();
 		}
