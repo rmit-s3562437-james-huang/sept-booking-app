@@ -112,6 +112,10 @@ public class AddAvailabilityDialog extends JDialog implements ActionListener {
 			mainOwnerFrame.getAbsMaps().createAvailability(emp, day, timeSlot);
 			mainOwnerFrame.getFileOps().compileAvailabilityMapStrings(AbsTest.AVAILABILITYWRITEFILEPATH, mainOwnerFrame.getAbsMaps().getAvailabilityMap());
 		}
+		
+		if(e.getSource().equals(cancelButton)) {
+			dispose();
+		}
 	}
 	
 	public String incrementHour(String startTime) {
