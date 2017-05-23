@@ -1,1 +1,4 @@
 tess3 Tess Mon: [09:30-10:30]
+maska Tess Wed: [09:30-10:30]
+maska Tess Tue: [12:30-13:30, 13:30-14:30]
+maska Jess Tue: [09:30-10:30, 10:30-11:30]
