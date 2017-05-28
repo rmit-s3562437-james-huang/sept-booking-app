@@ -27,25 +27,25 @@ public class AbsTest {
 	static Logger LOGGER = Logger.getLogger(AbsTest.class.getName());
 	
 	/* DEFUALT STATIC PATH */
-	public final static String PATHNAME = "../SEPT2017/Resources/";
+	public final static String PATHNAME = "../Appointment Booking System/Resources";
 	//public final static String PATHNAME = "/Users/James/git/SEPT2017/";
-	//public final static String PATHNAME = "D:\\Repositories\\SEPT2017\\SEPT2017\\";
+	//public final static String PATHNAME = "D:\\Repositories\\SEPT2017\\SEPT2017\\Resources\\";
 	
-	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + "customerInfo" + ".txt";
-	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "bookingTest" + ".txt";
-	public final static String EMPLOYEEWRITEFILEPATH = PATHNAME + "employeeInfo" + ".txt";
-	public final static String AVAILABILITYWRITEFILEPATH = PATHNAME + "employeeAvailabilityTest" + ".txt";
+	public final static String CUSTOMERWRITEFILEPATH = PATHNAME + "/CustomerFiles/" + "customerInfo" + ".txt";
+	public final static String BOOKINGWRITEFILEPATH = PATHNAME + "/BookingFiles/" + "bookingTest" + ".txt";
+	public final static String EMPLOYEEWRITEFILEPATH = PATHNAME + "/EmployeeFiles/" + "employeeInfo" + ".txt";
+	public final static String AVAILABILITYWRITEFILEPATH = PATHNAME + "/EmployeeFiles/" + "employeeAvailabilityTest" + ".txt";
 	
-	public final static String ICONPATH = PATHNAME + "iconImage" + ".png";
-	public final static String BANNERPATH = PATHNAME + "bannerImage" + ".png";
-	public final static String BACKGROUNDIMAGE = PATHNAME + "backgroundImage" + ".png";
+	public final static String ICONPATH = PATHNAME + "/ImageFiles/" + "iconImage" + ".png";
+	public final static String BANNERPATH = PATHNAME + "/ImageFiles/" + "bannerImage" + ".png";
+	public final static String BACKGROUNDIMAGE = PATHNAME + "/ImageFiles/" + "backgroundImage" + ".png";
 	
-	public final static Path CUSTOMERBOOKINGPATH = Paths.get(PATHNAME + "customerAvailability" + ".txt");
-	public final static Path EMPLOYEEAVAILABILITYPATH = Paths.get(PATHNAME + "employeeAvailabilityTest" + ".txt");
-	public final static Path CUSTOMERFILEPATH = Paths.get(PATHNAME + "customerInfo" + ".txt");
-	public final static Path EMPLOYEEFILEPATH = Paths.get(PATHNAME + "employeeInfo" + ".txt");
-	public final static Path OWNERFILEPATH = Paths.get(PATHNAME + "ownerInfo" + ".txt");
-	public final static Path BOOKINGTESTPATH = Paths.get(PATHNAME + "bookingTest" + ".txt");
+	public final static Path CUSTOMERBOOKINGPATH = Paths.get(PATHNAME + "/CustomerFiles/" + "customerAvailability" + ".txt");
+	public final static Path EMPLOYEEAVAILABILITYPATH = Paths.get(PATHNAME + "/EmployeeFiles/" + "employeeAvailabilityTest" + ".txt");
+	public final static Path CUSTOMERFILEPATH = Paths.get(PATHNAME + "/CustomerFiles/" +  "customerInfo" + ".txt");
+	public final static Path EMPLOYEEFILEPATH = Paths.get(PATHNAME + "/EmployeeFiles/" + "employeeInfo" + ".txt");
+	public final static Path OWNERFILEPATH = Paths.get(PATHNAME + "/OwnerFiles/" + "ownerInfo" + ".txt");
+	public final static Path BOOKINGTESTPATH = Paths.get(PATHNAME + "/BookingFiles/" + "bookingTest" + ".txt");
 
 	
 	public static void main(String[] args)
